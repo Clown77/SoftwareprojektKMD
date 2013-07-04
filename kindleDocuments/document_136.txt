@@ -1,0 +1,2 @@
+topic: buttons
+,  Inside, edge buttons ,  These have saved me from accidentally pressing buttons many times .

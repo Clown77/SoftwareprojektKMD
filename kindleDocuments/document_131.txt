@@ -1,0 +1,2 @@
+topic: buttons
+ The button layout looks odd because it's so regularly spaced in rows versus the keyboard's staggered style, but it isn't any harder to use than a cellphone's tri, letter entry or blackberry keyboard .

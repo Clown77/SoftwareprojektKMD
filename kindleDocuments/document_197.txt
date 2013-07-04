@@ -1,0 +1,2 @@
+topic: buttons
+ If you wish to go back say a dozen pages to look up something you simply have to press the 'previous page' button 12 times in succession .

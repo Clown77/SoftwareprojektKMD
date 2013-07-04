@@ -1,0 +1,2 @@
+topic: buttons
+After reading through the introductory guide that loads up automatically at the start and following along it took me almost no time to learn which buttons are where and what each of them do .

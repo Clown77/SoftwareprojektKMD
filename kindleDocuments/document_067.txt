@@ -1,0 +1,2 @@
+topic: battery-life
+ Plus the touch screen consumes battery life .

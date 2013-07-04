@@ -1,0 +1,2 @@
+topic: buttons
+ When you hold it in the opposite hand, the next page button is on the other side too .

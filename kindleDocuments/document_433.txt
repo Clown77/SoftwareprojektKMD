@@ -1,0 +1,2 @@
+topic: navigation
+Navigation is much easier with the 5, way button .

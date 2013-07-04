@@ -1,0 +1,2 @@
+topic: fonts
+ It is quick and responsive and reading from the default font is easy .

@@ -1,0 +1,2 @@
+topic: fonts
+ The font is clear and adjustable in size .

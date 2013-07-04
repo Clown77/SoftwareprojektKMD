@@ -1,0 +1,2 @@
+topic: price
+ Book prices are less than you will find in book stores and may be less than you will find on other e, book sites .

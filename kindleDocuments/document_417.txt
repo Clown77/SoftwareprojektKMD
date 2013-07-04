@@ -1,0 +1,2 @@
+topic: navigation
+ The controls are well placed, and the procedures for navigation are easy to learn .

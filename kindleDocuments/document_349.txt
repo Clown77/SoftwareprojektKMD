@@ -1,0 +1,2 @@
+topic: fonts
+ The text appears slightly blurry and I have to increase the font size to read it comfortably .

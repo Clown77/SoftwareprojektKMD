@@ -1,0 +1,2 @@
+topic: fonts
+ It's also easy to make the font larger whenever necessary, like when my eyes are tired .

@@ -1,0 +1,2 @@
+topic: buttons
+ All of the controls and buttons are well placed and easy to understand .

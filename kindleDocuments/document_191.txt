@@ -1,0 +1,2 @@
+topic: buttons
+ The buttons have been made smaller, which fixed the large buttons on the lst generation that made the device hard to hold and frustratingly easy to advance the page .

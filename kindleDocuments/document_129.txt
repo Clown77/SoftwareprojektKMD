@@ -1,0 +1,2 @@
+topic: buttons
+ A button click brings up the dictionary, starting with that entry .

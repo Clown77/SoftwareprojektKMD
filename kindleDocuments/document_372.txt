@@ -1,0 +1,2 @@
+topic: fonts
+ The clarity of the screen makes even the smallest font readable .

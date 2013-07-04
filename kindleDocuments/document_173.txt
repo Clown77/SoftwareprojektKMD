@@ -1,0 +1,2 @@
+topic: buttons
+ My thanks to  Arts&HistoryFan  for pointing out that when you hit the menu button, the time is shown in the top banner .

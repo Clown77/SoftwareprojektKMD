@@ -1,0 +1,2 @@
+topic: battery-life
+ A single battery charge of my Kindle lasts almost two weeks compared to the 3, 4 hours on my iphone or the 5, 6 hours on my netbook .

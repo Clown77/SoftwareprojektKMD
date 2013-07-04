@@ -1,0 +1,2 @@
+topic: buttons
+ One thing I didn't like was the page next button failed to work when the text to speech was in use and I wanted to skip ahead .

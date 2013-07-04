@@ -1,0 +1,2 @@
+topic: fonts
+ This allows only about 2 paragraphs of text to be visualised at a time at medium font size .

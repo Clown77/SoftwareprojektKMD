@@ -1,0 +1,2 @@
+topic: battery-life
+ It's also easy to charge the Kindle in the car if you have a battery charger with a USB port   .

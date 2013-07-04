@@ -1,0 +1,2 @@
+topic: fonts
+ However, just last night, I ran across a couple of user fixes for the font smoothing problem, and I've already put a  skin  on mine so that the contrast between the ePaper display's gray background and the  frame's  white is no longer an issue .

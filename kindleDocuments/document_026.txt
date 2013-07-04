@@ -1,0 +1,2 @@
+topic: battery-life
+ K2 goes into sleep mode if you leave it be for a few minutes, but in this mode it still uses battery power if wireless is enabled .

@@ -1,0 +1,2 @@
+topic: buttons
+ To use the  enter  function, that is to execute a command or enter the text I've typed in, I just have to push downward on the square button .

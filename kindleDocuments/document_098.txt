@@ -1,0 +1,2 @@
+topic: buttons
+ unintended page changes, the awkward way I sometimes have to hold it to keep from hitting buttons, the sometimes slow page refresh, and the screen freezes that now has me traveling with a paper clip lest I need to do a reset while commuting on the train .

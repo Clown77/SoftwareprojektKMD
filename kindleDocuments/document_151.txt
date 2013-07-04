@@ -1,0 +1,2 @@
+topic: buttons
+ When I'm trying to go to the next page, I hit the home button by accident a lot .

@@ -1,0 +1,2 @@
+topic: buttons
+It's very easy to page forward or backward through the text with the dedicated buttons .

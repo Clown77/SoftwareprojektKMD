@@ -1,0 +1,2 @@
+topic: battery-life
+The original Kindle had a removable battery and you could buy extra batteries in case you'd be away from a power source for an extended time .

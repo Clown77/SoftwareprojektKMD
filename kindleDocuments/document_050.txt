@@ -1,0 +1,2 @@
+topic: battery-life
+ I leave the wireless access feature turned off for longer battery life .

@@ -1,0 +1,2 @@
+topic: navigation
+ The screen reads like paper, it is easy to navigate .

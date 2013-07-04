@@ -1,0 +1,2 @@
+topic: buttons
+,  The 5, way button, though a bit small, allows you to select left and right, and not just up and down like the original version .

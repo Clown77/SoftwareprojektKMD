@@ -1,0 +1,2 @@
+topic: buttons
+In the Kindle 2, the corners have been rounded and the buttons have been restructured so that it takes a little pressure to press inward instead of outward .

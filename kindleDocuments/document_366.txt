@@ -1,0 +1,2 @@
+topic: fonts
+ Being able to change your font size is really nice as well, but I keep mine at the lowest so I don't have to turn pages so often .

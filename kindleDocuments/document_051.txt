@@ -1,0 +1,2 @@
+topic: battery-life
+ So far, it has taken anywhere from two to three hours to recharge the device, depending on how far down I've let the battery run .

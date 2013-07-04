@@ -1,0 +1,2 @@
+topic: buttons
+ The Qwerty keyboard, while the buttons are small, is spaced nicely for ease of use .

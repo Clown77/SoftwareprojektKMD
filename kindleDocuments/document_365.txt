@@ -1,0 +1,2 @@
+topic: fonts
+ Due to being able to change the font it is also difficult to be able to read this for a class and reference page numbers from an actual book, but a search function that regular books , don't',  have more than makes up for this .

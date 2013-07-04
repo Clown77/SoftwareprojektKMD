@@ -1,0 +1,2 @@
+topic: battery-life
+ And I like the fact the wireless is a menu option, I just leave it on all the time anyways with little perceptible battery drain .

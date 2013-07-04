@@ -1,0 +1,2 @@
+topic: fonts
+ While they may not reproduce the look of a printed page, applications for these devices, such as ereader, do offer a variety of font types, background colors, and page turning mechanisms, the ability to read in either vertical or horizontal mode, and the ability to make the text scroll on the page, like a teleprompter, at a speed of your choosing .

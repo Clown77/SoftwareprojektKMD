@@ -1,0 +1,2 @@
+topic: eyesight-issues
+Some have said they don't like the black text on a greyish background, but I find the contrast not only more than adequate but easier on the eyes than if the background were white .

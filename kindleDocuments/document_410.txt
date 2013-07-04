@@ -1,0 +1,2 @@
+topic: navigation
+ The home page is easier to navigate .

@@ -1,0 +1,2 @@
+topic: buttons
+ Add a prev page button on the right and a home button on the left .

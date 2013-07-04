@@ -1,0 +1,2 @@
+topic: battery-life
+ The battery charged quickly, in less than 2 hours .

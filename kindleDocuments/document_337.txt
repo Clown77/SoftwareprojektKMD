@@ -1,0 +1,2 @@
+topic: fonts
+ For whatever reason, Amazon decided to make the Font on the Home Screen   than on the K1 .

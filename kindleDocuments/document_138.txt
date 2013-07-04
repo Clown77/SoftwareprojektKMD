@@ -1,0 +1,2 @@
+topic: buttons
+ when I received my Kindle 2 I was very impressed with the design, especially the improved button design .

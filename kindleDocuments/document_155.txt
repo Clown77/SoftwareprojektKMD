@@ -1,0 +1,2 @@
+topic: buttons
+ With the K2 I can turn on the TTS feature with one button, place it beside me, and have it read to me all night !

@@ -1,0 +1,2 @@
+topic: battery-life
+ The 2 days battery life was with the wireless turned ON which is wholly unneccesary in the normal operation of the device .

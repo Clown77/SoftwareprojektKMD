@@ -1,0 +1,2 @@
+topic: buttons
+The on, off button is now on top and the radio on, off switch is now in a software menu .

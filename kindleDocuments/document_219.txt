@@ -1,0 +1,2 @@
+topic: buttons
+ As highly documented before, the buttons on the side of the device used for page turning, going to the home screen, and accessing the menu all engage with an inward click .

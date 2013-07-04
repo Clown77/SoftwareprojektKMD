@@ -1,0 +1,2 @@
+topic: buttons
+ They buttons are well placed .

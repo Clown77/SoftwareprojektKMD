@@ -1,0 +1,2 @@
+topic: buttons
+ The  next page  buttons should activate when pressed at any angle .

@@ -1,0 +1,2 @@
+topic: buttons
+ Previous button presses inward, toward the screen, while other buttons press toward the outside edges .

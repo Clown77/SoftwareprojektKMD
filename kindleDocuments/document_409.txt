@@ -1,0 +1,2 @@
+topic: navigation
+ It is easy to navigate without any risk of accidentally changing the page I'm on .

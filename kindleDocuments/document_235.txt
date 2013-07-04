@@ -1,0 +1,2 @@
+topic: buttons
+ You can hold the buttons on the edge and not turn pages .

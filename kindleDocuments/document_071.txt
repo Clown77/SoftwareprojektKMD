@@ -1,0 +1,2 @@
+topic: battery-life
+Oh and one more thing ,  I've discovered that if you turn of  wifi    until you know you need to send or retrieve something, the battery lasts for many many more hours .

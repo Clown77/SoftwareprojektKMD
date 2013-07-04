@@ -1,0 +1,2 @@
+topic: buttons
+ On the Kindle 2, the button has been moved to the top right side of the device .

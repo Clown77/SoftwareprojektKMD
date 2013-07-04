@@ -1,0 +1,2 @@
+topic: battery-life
+So far, the battery charge seems to last quite a long time for reading .

@@ -1,0 +1,2 @@
+topic: battery-life
+ The battery life is disappointing ,  with the wireless on, it probably wouldn't last 20 hours of determined reading .

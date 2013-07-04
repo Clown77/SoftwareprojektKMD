@@ -1,0 +1,2 @@
+topic: buttons
+ For some reason, my brain wants a prior page button on the left side and the next page button on the right .

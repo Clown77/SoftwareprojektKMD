@@ -1,0 +1,2 @@
+topic: battery-life
+ The battery in the Kindle 2 is not removable by the owner .

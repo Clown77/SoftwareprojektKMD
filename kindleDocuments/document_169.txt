@@ -1,0 +1,2 @@
+topic: buttons
+The next, previous, back buttons are much smaller and are hard to hit accidentally .

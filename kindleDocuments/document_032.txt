@@ -1,0 +1,2 @@
+topic: battery-life
+ which, I guess, is unavoidable with rechargable batteries, but I wish I could change the battery myself .

@@ -1,0 +1,2 @@
+topic: battery-life
+ And the lack of backlight saves on the battery .

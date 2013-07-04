@@ -1,0 +1,2 @@
+topic: buttons
+ This enables you to pick up the device with the edges without pressing any buttons .

@@ -1,0 +1,2 @@
+topic: battery-life
+ The issue with the battery door opening is thus solved, but Amazon went further, eliminating the door altogether and wrapping the back with sleek stainless steel .

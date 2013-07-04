@@ -1,0 +1,2 @@
+topic: buttons
+ The major buttons on both sides are for the next page .

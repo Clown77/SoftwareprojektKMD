@@ -1,0 +1,2 @@
+topic: fonts
+ Aa keys to quickly change font size, turning on off text to speech, Pause text to speech, change speech rate and speaking voice rather than using the menu .

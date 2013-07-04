@@ -1,0 +1,2 @@
+topic: price
+ Non, best seller book prices should be lower, just like some magazine subscriptions are .

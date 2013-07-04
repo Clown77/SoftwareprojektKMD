@@ -1,0 +1,2 @@
+topic: battery-life
+ Besides, I don't want to make the tradeoff of inferior battery life in order to power a device, native backlight .

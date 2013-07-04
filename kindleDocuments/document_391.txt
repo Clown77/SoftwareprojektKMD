@@ -1,0 +1,2 @@
+topic: fonts
+ Everyone looking into the Kindle has probably heard about the font smoothing contrast issue which is exacerbated by the bright whiteness of the unit's housing .

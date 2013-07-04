@@ -1,0 +1,2 @@
+topic: battery-life
+ extended use of this feature will cut into battery life significantly, I've been getting 2 .

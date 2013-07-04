@@ -1,0 +1,2 @@
+topic: buttons
+ I find myself using a large size typeface to compensate for the lack of contrast, but this means frequent  next page  button presses which is extremely annoying .

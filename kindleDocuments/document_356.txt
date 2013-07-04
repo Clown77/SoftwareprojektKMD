@@ -1,0 +1,2 @@
+topic: fonts
+Dictionary entries are now shown in your currently selected font size .

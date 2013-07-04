@@ -1,0 +1,2 @@
+topic: buttons
+ It is much harder now to accidentally hit the page buttons .

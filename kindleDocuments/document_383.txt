@@ -1,0 +1,2 @@
+topic: fonts
+ It's lightweight and allows changes in font size that enables ease of reading no matter how tired your eyes may get .

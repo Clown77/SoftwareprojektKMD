@@ -1,0 +1,2 @@
+topic: navigation
+ The problem with Kindle and I expect E, readers is that while Amazon is asking the book publishers to adhere to a standard of navigation to support these features, Amazon does not have the manpower to review each book submitted to see if its been published to their specification .

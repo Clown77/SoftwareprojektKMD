@@ -1,0 +1,2 @@
+topic: buttons
+The incredibly tiny buttons are literally impossible for people with low, vision to read .

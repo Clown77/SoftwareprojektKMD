@@ -1,0 +1,2 @@
+topic: buttons
+ I love how the content manager is better integrated and I don't have to hit so many buttons to manage my books .

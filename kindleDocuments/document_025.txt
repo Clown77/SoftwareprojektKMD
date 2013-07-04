@@ -1,0 +1,2 @@
+topic: battery-life
+ Battery life is very good, even with the wireless on constantly .

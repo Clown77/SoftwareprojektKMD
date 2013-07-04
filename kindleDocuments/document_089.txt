@@ -1,0 +1,2 @@
+topic: battery-life
+ While the Kindle 2 shows the title on the left as before and more readable, the battery life and network icons are in the place of the author's name .

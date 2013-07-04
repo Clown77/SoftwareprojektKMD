@@ -1,0 +1,2 @@
+topic: fonts
+ It is so much easier to read than a paper page and you can adjust the font size as needed .

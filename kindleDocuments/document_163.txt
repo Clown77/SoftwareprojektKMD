@@ -1,0 +1,2 @@
+topic: buttons
+ Also the keyboard has been redesigned to make things easier as well as added buttons like  menu  which is nice .

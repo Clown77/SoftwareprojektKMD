@@ -1,0 +1,2 @@
+topic: buttons
+ The new navigation button works well, and the keyboard   feels good to my fingers .

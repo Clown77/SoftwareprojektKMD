@@ -1,0 +1,2 @@
+topic: buttons
+ The little power button at the top of the Kindle is really a power slide .

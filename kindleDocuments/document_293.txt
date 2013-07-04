@@ -1,0 +1,2 @@
+topic: eyesight-issues
+ Using the smaller font sizes causes eye strain except in daylight conditions with open windows .

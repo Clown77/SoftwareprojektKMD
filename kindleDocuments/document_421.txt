@@ -1,0 +1,2 @@
+topic: navigation
+ The navigation stick works much better than I expected .

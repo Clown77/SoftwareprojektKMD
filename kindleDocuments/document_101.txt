@@ -1,0 +1,2 @@
+topic: buttons
+ You need to press on the interior of the button to get it to click .

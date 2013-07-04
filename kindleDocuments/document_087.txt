@@ -1,0 +1,2 @@
+topic: battery-life
+ And the long battery life is amazing !

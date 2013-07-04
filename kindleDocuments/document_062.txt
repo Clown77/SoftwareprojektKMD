@@ -1,0 +1,2 @@
+topic: battery-life
+ To me, this is more important than a user, replaceable battery .

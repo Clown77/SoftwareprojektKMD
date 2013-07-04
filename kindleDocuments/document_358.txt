@@ -1,0 +1,2 @@
+topic: fonts
+ With six font sizes, even the visually impaired could benefit from this feature .

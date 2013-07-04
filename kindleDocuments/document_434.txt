@@ -1,0 +1,2 @@
+topic: navigation
+ There can be occassional minor  ghosting  problems where the screen does not completely update on a page turn or when navigating .

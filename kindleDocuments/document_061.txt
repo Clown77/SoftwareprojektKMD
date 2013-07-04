@@ -1,0 +1,2 @@
+topic: battery-life
+>> Better battery life, FAR better with wireless function on .

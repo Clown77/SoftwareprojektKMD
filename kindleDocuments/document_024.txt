@@ -1,0 +1,2 @@
+topic: battery-life
+ When that came in, it was also in the critical battery stage and this time the charge light would not even come on upon charging .

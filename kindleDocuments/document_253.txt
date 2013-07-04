@@ -1,0 +1,2 @@
+topic: buttons
+ I flicked the switch to start reading, and the screen froze with a bunch of lines on it that would flicker a bit when I hit a button, but that was all .

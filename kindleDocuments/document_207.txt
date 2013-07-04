@@ -1,0 +1,2 @@
+topic: buttons
+The prev next back home buttons are too small ?

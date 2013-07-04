@@ -1,0 +1,2 @@
+topic: battery-life
+ It's not clear how big an advantage it is to have the extra battery life, though, because both get you through a long day with power to spare .

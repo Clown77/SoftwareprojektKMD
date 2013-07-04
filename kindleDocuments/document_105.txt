@@ -1,0 +1,2 @@
+topic: buttons
+ sleeker look and feel  , sharper screen, no longer accidentally depressing the next page button by accident and having to find your place in the book again .

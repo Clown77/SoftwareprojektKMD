@@ -1,0 +1,2 @@
+topic: buttons
+ This means that when you handle the Kindle 2 by the edges, the pages don't change even if you grab by the buttons .

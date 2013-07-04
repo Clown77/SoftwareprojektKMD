@@ -1,0 +1,2 @@
+topic: buttons
+The keyboard buttons are smaller and also require some pressure to activate .

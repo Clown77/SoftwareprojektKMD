@@ -1,0 +1,2 @@
+topic: buttons
+ The buttons rubbed the fingers at the bottom .

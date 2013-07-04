@@ -1,0 +1,2 @@
+topic: buttons
+ Moving the cursor to the word in question can be a bit awkward since there is some delay using the 5 direction button, but it's not so awkward as to not use the feature .

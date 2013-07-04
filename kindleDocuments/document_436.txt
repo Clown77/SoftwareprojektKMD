@@ -1,0 +1,2 @@
+topic: navigation
+ Instead, it displays the book title and there is no way to navigate to the last page read .

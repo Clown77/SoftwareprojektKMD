@@ -1,0 +1,2 @@
+topic: battery-life
+>> It has a user, replaceable battery, though this is offset by improved life with the built, in Kindle 2 battery .

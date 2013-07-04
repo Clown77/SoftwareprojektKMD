@@ -1,0 +1,2 @@
+topic: fonts
+ The interface is a bit like reading newsprint, though you can change the font size to 6 or 8 different settings .

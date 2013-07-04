@@ -1,0 +1,2 @@
+topic: fonts
+azw conversion the pdf will usually have teeny tiny unreadable font, this solves that, text to speech it, etc .

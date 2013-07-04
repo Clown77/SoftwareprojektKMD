@@ -1,0 +1,2 @@
+topic: buttons
+ Buttons are accessible, raised for convenience of all involved ,  another big plus for the visually impaired or those with other conditions .

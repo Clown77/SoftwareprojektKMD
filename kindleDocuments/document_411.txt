@@ -1,0 +1,2 @@
+topic: navigation
+ It lets you quickly navigate periodicals ,  moving to the next article with just a click right or left, or up to the section or article list with a flick up or down .

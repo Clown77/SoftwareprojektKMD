@@ -1,0 +1,2 @@
+topic: buttons
+ The only thing you can do is rotate, which makes some PDFs readable but then you're in the awkward position of having to press the next and previous page buttons vertically instead of horizontally .

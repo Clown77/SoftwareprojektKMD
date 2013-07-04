@@ -1,0 +1,2 @@
+topic: navigation
+Some PDFs' tables of contents DID work as a navigable set of links .

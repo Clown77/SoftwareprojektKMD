@@ -1,0 +1,2 @@
+topic: buttons
+ The buttons are not hard to press at all .

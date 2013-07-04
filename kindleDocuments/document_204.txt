@@ -1,0 +1,2 @@
+topic: buttons
+ My one complaint is that I'd like a  previous page  button on both side of the screen, the way there's a  next page  button on both sides, but that's a very minor consideration .

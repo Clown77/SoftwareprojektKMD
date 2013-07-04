@@ -1,0 +1,2 @@
+topic: battery-life
+ I've left the wireless on and really don't see tremendous battery usage yet .

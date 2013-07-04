@@ -1,0 +1,2 @@
+topic: buttons
+ You can pretty much figure everything out by just trying the buttons .

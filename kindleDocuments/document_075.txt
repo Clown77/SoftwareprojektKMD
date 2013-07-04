@@ -1,0 +1,2 @@
+topic: battery-life
+ This feature uses a lot of battery and the battery lasts for maximum 2, 3 days but it is worth it .

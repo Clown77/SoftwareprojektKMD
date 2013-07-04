@@ -1,0 +1,2 @@
+topic: battery-life
+ Many have been critical of the non user replaceability of the battery .

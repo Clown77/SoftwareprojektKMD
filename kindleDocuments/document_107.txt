@@ -1,0 +1,2 @@
+topic: buttons
+ Only issue is I need to recalibrate now, , in general, I try to anticipate how much time it will take the next page to load, and when I'm two lines from the bottom, I would hit the next page button .

@@ -1,0 +1,2 @@
+topic: buttons
+ Just hit the enter button on the keyboard, and it takes you directly to the full dictionary entry, complete with pronunciation guide .

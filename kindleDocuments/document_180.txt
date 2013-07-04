@@ -1,0 +1,2 @@
+topic: buttons
+ The sound button is raised only slightly ,  fine for VI but potentially problematic for those with arthritis or other issues with fine motor function as it is a relatively thin button that must be pressed slightly .

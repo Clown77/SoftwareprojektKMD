@@ -1,0 +1,2 @@
+topic: buttons
+ It looks good, feels good in the hand, has good buttons, which are easy to operate on purpose but not so easy accidentally .

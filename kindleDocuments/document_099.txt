@@ -1,0 +1,2 @@
+topic: buttons
+ No longer do I have to press and hold two buttons to put the device to sleep .

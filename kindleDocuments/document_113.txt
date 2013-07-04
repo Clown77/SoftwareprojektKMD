@@ -1,0 +1,2 @@
+topic: buttons
+ On off buttons are repositioned to be easily accessible .

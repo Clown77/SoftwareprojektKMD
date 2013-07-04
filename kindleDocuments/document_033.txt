@@ -1,0 +1,2 @@
+topic: battery-life
+ The battery was almost fully charged upon receipt so I turned it on and I was in business .

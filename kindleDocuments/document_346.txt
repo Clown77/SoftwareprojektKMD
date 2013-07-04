@@ -1,0 +1,2 @@
+topic: fonts
+ One or two larger font sizes would have benefited the visually impaired .

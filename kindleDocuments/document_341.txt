@@ -1,0 +1,2 @@
+topic: fonts
+ The kindle does not recognize page numbers, since they would change radically when you change font size  so Amazon provides the notion of location which is display independent .

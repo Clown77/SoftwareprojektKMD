@@ -1,0 +1,2 @@
+topic: battery-life
+ I can leave it on sleep for days and hardly ever need to recharge the battery .

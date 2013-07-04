@@ -1,0 +1,2 @@
+topic: battery-life
+ For one thing, there's no charge except battery power no pun intended !

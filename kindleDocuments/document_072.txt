@@ -1,0 +1,2 @@
+topic: battery-life
+ A clip, on light seems like a fine solution, plus it doesn't drain the battery .

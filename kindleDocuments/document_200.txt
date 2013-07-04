@@ -1,0 +1,2 @@
+topic: buttons
+ When you look at it, if you don't focus too hard, the little buttons and controls fade away and all you see is the text .

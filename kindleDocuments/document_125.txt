@@ -1,0 +1,2 @@
+topic: buttons
+ With the Kindle 2, the buttons have been scaled down to a much more manageable size and are a lot less sensitive .

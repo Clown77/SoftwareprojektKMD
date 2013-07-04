@@ -1,0 +1,2 @@
+topic: buttons
+significant improvement over Kindle 1's non intuitive forward and previous buttons .

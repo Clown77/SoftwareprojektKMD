@@ -1,0 +1,2 @@
+topic: price
+ To justify the purchase price, those functions really need to be there .

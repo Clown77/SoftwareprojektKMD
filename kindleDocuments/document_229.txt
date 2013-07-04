@@ -1,0 +1,2 @@
+topic: buttons
+ Your finger can rest on the  next page  button, and a simple click is all you need to advance .

@@ -1,0 +1,2 @@
+topic: fonts
+ Very accessible and friendly for those with a visual impairment ,  all raised keys, font sizing, text to voice .
