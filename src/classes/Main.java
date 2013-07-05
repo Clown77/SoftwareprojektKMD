@@ -37,7 +37,13 @@ public class Main {
 	 	
 	 	ourHash.sortHashtable();
 	 	
-	 	ourHash.printHashtable();
+	 	
+	 	Word[] test = WordHashtable.getHashWords(ourHash, 1, 50);
+	 	
+	 	System.out.println(test);
+	 	
+	 	
+//	 	ourHash.printHashtable();
 	    
 	    br.close();
 		fr.close();

@@ -40,11 +40,11 @@ public class WordHashtable {
 	// removes all characters that are neither digits nor letters
 	public  String normalize(String word)
 	{
-		word = word.replaceAll("[^a-zA-Z0-9_&ßöäü]", "");
+		word = word.replaceAll("[^a-zA-Z0-9_&ï¿½ï¿½ï¿½ï¿½]", "");
 		return word;
 	}
 	
-	/**MÜSSEN EVENTUELL AUF LONG UMSTEIGEN!*/
+	/**Mï¿½SSEN EVENTUELL AUF LONG UMSTEIGEN!*/
 	public void hash(String word)
 	{
 		int hashValue = Math.abs(word.hashCode() % size);
@@ -119,5 +119,30 @@ public class WordHashtable {
 			newArray[i] = table[i];
 		}
 		table = newArray;
+	}
+	
+	public static Word[] getHashWords(WordHashtable ourHash, int start, int end) {
+		Word[] newArray = new Word[ourHash.regularWords];
+		Word[] newOutputArray = new Word[1];
+		
+		int j = 0;
+		int c = 0;
+
+		for (int i = start; i <= end; i++) 
+		{
+			for (int k = 0; k < ourHash.regularWords; k++) 
+			{
+				if(ourHash.table[k].getCounter()==i)
+				{
+					newArray[c] = ourHash.table[k];
+					c++;
+				}
+			}
+			System.arraycopy(newArray, 0, newOutputArray, 0, c-1);
+			j+=c;
+			c=0;
+		}
+			
+		return newOutputArray;
 	}
 }
