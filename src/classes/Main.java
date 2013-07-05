@@ -2,6 +2,8 @@ package classes;
 
 import java.io.*;
 
+import classes.WordHashtable;
+
 public class Main {
 	
 	public static void main(String[] args) throws IOException {
@@ -42,7 +44,7 @@ public class Main {
 		createGesamttext();
 	}
 	
-	//Diese Funktion führt dazu, dass Zeilenumbrüche nicht zu zwei getrennten Wörtern führen.
+	//Diese Funktion fï¿½hrt dazu, dass Zeilenumbrï¿½che nicht zu zwei getrennten Wï¿½rtern fï¿½hren.
 	public static String handleLineBreak (String tempZeile, BufferedReader br) throws IOException
 	{
 		do
