@@ -38,12 +38,8 @@ public class Main {
 	 	ourHash.sortHashtable();
 	 	
 	 	
-	 	Word[] test = WordHashtable.getHashWords(ourHash, 1, 50);
 	 	
-	 	System.out.println(test);
-	 	
-	 	
-//	 	ourHash.printHashtable();
+	 	ourHash.printHashtable();
 	    
 	    br.close();
 		fr.close();
