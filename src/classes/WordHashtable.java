@@ -121,28 +121,28 @@ public class WordHashtable {
 		table = newArray;
 	}
 	
-	public static Word[] getHashWords(WordHashtable ourHash, int start, int end) {
-		Word[] newArray = new Word[ourHash.regularWords];
-		Word[] newOutputArray = new Word[1];
-		
-		int j = 0;
-		int c = 0;
-
-		for (int i = start; i <= end; i++) 
-		{
-			for (int k = 0; k < ourHash.regularWords; k++) 
-			{
-				if(ourHash.table[k].getCounter()==i)
-				{
-					newArray[c] = ourHash.table[k];
-					c++;
-				}
-			}
-			System.arraycopy(newArray, 0, newOutputArray, 0, c-1);
-			j+=c;
-			c=0;
-		}
-			
-		return newOutputArray;
-	}
+//	public static Word[] getHashWords(WordHashtable ourHash, int start, int end) {
+//		Word[] newArray = new Word[ourHash.regularWords];
+//		Word[] newOutputArray = new Word[1];
+//		
+//		int j = 0;
+//		int c = 0;
+//
+//		for (int i = start; i <= end; i++) 
+//		{
+//			for (int k = 0; k < ourHash.regularWords; k++) 
+//			{
+//				if(ourHash.table[k].getCounter()==i)
+//				{
+//					newArray[c] = ourHash.table[k];
+//					c++;
+//				}
+//			}
+//			System.arraycopy(newArray, 0, newOutputArray, 0, c-1);
+//			j+=c;
+//			c=0;
+//		}
+//			
+//		return newOutputArray;
+//	}
 }
