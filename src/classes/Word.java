@@ -43,6 +43,9 @@ public class Word implements Comparable<Word>{
 	 */
 	public void setKindOfWord(int kindOfWord){this.kindOfWord = kindOfWord;}
 	
-	public int getKindOfWord(){return this.kindOfWord;}
+	public boolean isContentWord(){ return this.kindOfWord == 1; }
+	public boolean isEgalWord(){ return this.kindOfWord == 0; }
+	public boolean isHighFrequencyWord(){ return this.kindOfWord == 2; }
+	public int getKindOfWord(){ return this.kindOfWord; }
 	
 }

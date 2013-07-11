@@ -5,6 +5,7 @@ import java.util.LinkedList;
 public class PatternCollector 
 {
 	private LinkedList<String> legalPatternStructures = new LinkedList<String>();
+	public LinkedList<Pattern> patternList = new LinkedList<Pattern>();
 	
 	// we can use this hardcoded to add other pattern structures.
 	public PatternCollector()
@@ -25,7 +26,7 @@ public class PatternCollector
 	// if yes, it means we can go on searching
 	public boolean isPrefixOfLegalPattern(String prefix)
 	{
-		// use for each loop for the LinkedList
+		// use for-each loop to iterate the linked List
 		for(String structure: legalPatternStructures)
 		{
 			if(structure.startsWith(prefix)) return true;
