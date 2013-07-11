@@ -2,7 +2,7 @@ package classes;
 
 import java.util.StringTokenizer;
 import java.util.Arrays;
-
+//haaaaaa motherfucker
 public class WordHashtable {
 	
 	Word[] table;
