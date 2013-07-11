@@ -2,20 +2,9 @@ package classes;
 
 import java.io.*;
 
-import classes.WordHashtable;
-
 public class Main {
 	
 	public static void main(String[] args) throws IOException {
-
-		// test if the user entered a filename
-		/*
-		if(args[0] == null)
-		{
-			System.out.println("\n\n\tUsage: \"CountWords.java\" <filename>");
-			return;
-		}
-		*/
 		
 		FileReader fr = new FileReader("kindleDocuments/Gesamttext/gesamttext.txt");
 	 	BufferedReader br = new BufferedReader(fr);
@@ -36,17 +25,13 @@ public class Main {
 	 	}
 	 	
 	 	ourHash.sortHashtable();
-	 	
-	 	
-	 	
 	 	ourHash.printHashtable();
 	    
 	    br.close();
 		fr.close();
-		createGesamttext();
 	}
 	
-	//Diese Funktion fï¿½hrt dazu, dass Zeilenumbrï¿½che nicht zu zwei getrennten Wï¿½rtern fï¿½hren.
+	//Diese Funktion führt dazu, dass Zeilenumbrüche nicht zu zwei getrennten Wörtern führen.
 	public static String handleLineBreak (String tempZeile, BufferedReader br) throws IOException
 	{
 		do

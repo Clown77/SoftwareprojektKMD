@@ -4,6 +4,7 @@ public class Word implements Comparable<Word>{
 
 	private String word;
 	private int counter = 0;
+	private int kindOfWord = 1;
 	
 	// Constructor overload
 	public Word(){};
@@ -33,5 +34,15 @@ public class Word implements Comparable<Word>{
 		
 		return 0;
 	}
+	
+	
+	/**
+	 * @param kindOfWord 	0 = mark as nothing
+	 * 						1 = mark as content word
+	 * 						2 = mark as high frequency word				
+	 */
+	public void setKindOfWord(int kindOfWord){this.kindOfWord = kindOfWord;}
+	
+	public int getKindOfWord(){return this.kindOfWord;}
 	
 }

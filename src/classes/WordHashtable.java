@@ -1,5 +1,5 @@
 package classes;
-//haaaaaaaaaaaaaaaaaaaa motherfuckAAAAAA
+
 import java.util.StringTokenizer;
 import java.util.Arrays;
 
@@ -8,6 +8,12 @@ public class WordHashtable {
 	Word[] table;
 	int size;		// size is prefered to be a prime number
 	int regularWords = 0; 
+	
+	// for better undestanding of the code
+	final int CONTENT_WORD_BORDER = 50;
+	final int HIGHFREQUENCY_WORD_BORDER = 100;
+	final int HIGHFREQUENCY_WORD = 2;
+	final int NO_MEANING = 0;
 	
 	public WordHashtable(int size)
 	{ 
@@ -40,11 +46,11 @@ public class WordHashtable {
 	// removes all characters that are neither digits nor letters
 	public  String normalize(String word)
 	{
-		word = word.replaceAll("[^a-zA-Z0-9_&ï¿½ï¿½ï¿½ï¿½]", "");
+		word = word.replaceAll("[^a-zA-Z0-9_&ßöäü]", "");
 		return word;
 	}
 	
-	/**Mï¿½SSEN EVENTUELL AUF LONG UMSTEIGEN!*/
+	/**MÜSSEN EVENTUELL AUF LONG UMSTEIGEN!*/
 	public void hash(String word)
 	{
 		int hashValue = Math.abs(word.hashCode() % size);
@@ -71,6 +77,13 @@ public class WordHashtable {
 			if(table[hashValue].sameWord(word))
 			{
 				table[hashValue].increaseCounter();
+				
+				//If the Word appears more than 50 times, its not a content word any more
+				if(table[hashValue].getCounter() > CONTENT_WORD_BORDER)	table[hashValue].setKindOfWord(NO_MEANING);
+				
+				//If the word appears more than 100 times, its a high frequency word
+				if(table[hashValue].getCounter() > HIGHFREQUENCY_WORD_BORDER)	table[hashValue].setKindOfWord(HIGHFREQUENCY_WORD);
+				
 				return;
 			}
 			
@@ -99,11 +112,16 @@ public class WordHashtable {
 	{
 		for(int i = 0; i < size; i++)
 		{
-			if(!(table[i].isEmpty())) System.out.println(table[i].getWord() +"\t: " +table[i].getCounter());
+			if(!(table[i].isEmpty())) System.out.println(table[i].getWord() 
+					+"\t: " +table[i].getCounter() 
+					+"\tkind of word:" +table[i].getKindOfWord());
 		}
+		System.out.println(regularWords);
 	}
 
-	// modified mergesort. assert O(log n)
+	/* We don't need this method anymore. In our new Version, we calculate high frequency words and content
+	 * while we are hashing. This saves much time and increases our performance.
+	 */
 	public void sortHashtable()
 	{
 		Arrays.sort(table);
@@ -120,29 +138,4 @@ public class WordHashtable {
 		}
 		table = newArray;
 	}
-	
-//	public static Word[] getHashWords(WordHashtable ourHash, int start, int end) {
-//		Word[] newArray = new Word[ourHash.regularWords];
-//		Word[] newOutputArray = new Word[1];
-//		
-//		int j = 0;
-//		int c = 0;
-//
-//		for (int i = start; i <= end; i++) 
-//		{
-//			for (int k = 0; k < ourHash.regularWords; k++) 
-//			{
-//				if(ourHash.table[k].getCounter()==i)
-//				{
-//					newArray[c] = ourHash.table[k];
-//					c++;
-//				}
-//			}
-//			System.arraycopy(newArray, 0, newOutputArray, 0, c-1);
-//			j+=c;
-//			c=0;
-//		}
-//			
-//		return newOutputArray;
-//	}
 }
