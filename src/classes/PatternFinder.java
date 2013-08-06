@@ -10,7 +10,7 @@ public class PatternFinder {
 	public PatternFinder(){}
 	
 	// searches for all Patterns in the text
-	public Pattern findAllPattern() throws IOException
+	public Pattern findAllPattern() throws IOException // TODO: soll es ein Pattern zurückgeben oder void
 	{
 		FileReader fr = new FileReader("kindleDocuments/Gesamttext/gesamttext.txt");
 		BufferedReader br = new BufferedReader(fr);
@@ -24,6 +24,7 @@ public class PatternFinder {
 		
 		br.close();
 		fr.close();
+		
 	}
 	
 	// it will happen, that a pattern is in two lines. This function will find a line break in a pattern and merge both lines. 
@@ -38,12 +39,21 @@ public class PatternFinder {
 		StringTokenizer st = new StringTokenizer(zeile);
 		while(st.hasMoreTokens()) 
 		{
-		    	word = st.nextToken();
+		    	String word = st.nextToken();
 		    	word = normalize(word);
 		    	
 		    	// this way, we filter a character sequence like ""
-		    	if(word.length() > 0) hash(word);
+		    	if(word.length() > 0) hash(word); //TODO: hash schreiben  -> was soll es genau machen
 	    }
+	}
+
+	private static String normalize(String word) {
+		for (int i = 0; i < word.length(); i++) {
+			if (word.charAt(i)<= 'Z' && word.charAt(i)>= 'A' ) {
+				word.replace(word.charAt(i), (char) ('z'- 'Z' - word.charAt(i)));
+			}
+		}
+		return word;
 	}
 
 }
