@@ -2,7 +2,7 @@ package classes;
 
 import java.util.StringTokenizer;
 import java.util.Arrays;
-//haaaaaa motherfucker
+
 public class WordHashtable {
 	
 	Word[] table;
@@ -10,10 +10,10 @@ public class WordHashtable {
 	int regularWords = 0; 
 	
 	// for better undestanding of the code
-	final int CONTENT_WORD_BORDER = 50;
-	final int HIGHFREQUENCY_WORD_BORDER = 100;
-	final int HIGHFREQUENCY_WORD = 2;
-	final int NO_MEANING = 0;
+	private final int CONTENT_WORD_BORDER = 50;
+	private final int HIGHFREQUENCY_WORD_BORDER = 100;
+	private final int HIGHFREQUENCY_WORD = 2;
+	private final int NO_MEANING = 0;
 	
 	public WordHashtable(int size)
 	{ 
@@ -37,6 +37,7 @@ public class WordHashtable {
 	    while(st.hasMoreTokens()) {
 	    	word = st.nextToken();
 	    	word = normalize(word);
+	    	System.out.print(word);
 	    	
 	    	// this way, we filter a character sequence like ""
 	    	if(word.length() > 0) hash(word);
@@ -54,6 +55,7 @@ public class WordHashtable {
 	public void hash(String word)
 	{
 		int hashValue = Math.abs(word.hashCode() % size);
+		System.out.println("  " +hashValue);
 		
 		while(!isfull())
 		{
@@ -91,6 +93,7 @@ public class WordHashtable {
 			 * we will have to look at the next place
 			 */
 			hashValue = (hashValue+1) % size;
+			System.out.println("REHASH");
 		}
 		System.out.println("\n\t.::Cannot hash anymore because the table is full!::.\n");
 	}
@@ -141,15 +144,37 @@ public class WordHashtable {
 	
 	// Will return the kind of a word, given as param.
 	// For this, we need to search in our table for exactly the same word
-	public int findKindOfWord(Word word)
+	public int getKindOfWord(String word)
 	{
-		
+		int indexOfWordInTable = getIndexOfWordInTable(word);
+		System.out.println("TEST: gefundenes Wort: " +table[indexOfWordInTable].getWord());
+		return table[indexOfWordInTable].getKindOfWord();
 	}
 	
 	// returns the index value of a word in the table. we have to sondier 
 	// in the same way, as the hash does
-	public int getIndexOfWordInTable(Word word)
+	public int getIndexOfWordInTable(String word)
 	{
+		int hashValue = Math.abs(word.hashCode() % size);
+		System.out.println(word +"  hashvalue: " +hashValue);
 		
+		// this seems like and endless slope - but for the fact, that our Word HAS TO exist in our table, it will stop when the word is found
+		while(true)
+		{
+			// if our code works correctly, this will never happen!
+			if(table[hashValue].isEmpty())
+			{
+				throw new RuntimeException(".:: An error occured. The programm has been searching for a word, that does not exist. Normaly this should NEVER happen. Please inform the programmers about it.");
+			}
+			
+			// return the hashValue as index of the word in our table
+			if(table[hashValue].sameWord(word))
+			{
+				return hashValue;
+			}
+			
+			// if the word is not the same, we need to sondier the same way, as the hashtable does
+			hashValue = (hashValue+1) % size;
+		}	
 	}
 }

@@ -24,6 +24,9 @@ public class Main {
 	 		zeile = br.readLine();
 	 	}
 	 	
+	 	int sorte = ourHash.getKindOfWord("topic");
+	 	System.out.println("Sorte: " +sorte);
+	 	
 	 	ourHash.sortHashtable();
 	 	ourHash.printHashtable();
 	    
