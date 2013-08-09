@@ -138,4 +138,18 @@ public class WordHashtable {
 		}
 		table = newArray;
 	}
+	
+	// Will return the kind of a word, given as param.
+	// For this, we need to search in our table for exactly the same word
+	public int findKindOfWord(Word word)
+	{
+		
+	}
+	
+	// returns the index value of a word in the table. we have to sondier 
+	// in the same way, as the hash does
+	public int getIndexOfWordInTable(Word word)
+	{
+		
+	}
 }
