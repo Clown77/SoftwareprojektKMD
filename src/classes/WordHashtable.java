@@ -37,7 +37,7 @@ public class WordHashtable {
 	    while(st.hasMoreTokens()) {
 	    	word = st.nextToken();
 	    	word = normalize(word);
-	    	System.out.print(word);
+	    	// System.out.print(word);
 	    	
 	    	// this way, we filter a character sequence like ""
 	    	if(word.length() > 0) hash(word);
@@ -55,7 +55,7 @@ public class WordHashtable {
 	public void hash(String word)
 	{
 		int hashValue = Math.abs(word.hashCode() % size);
-		System.out.println("  " +hashValue);
+		// System.out.println("  " +hashValue);
 		
 		while(!isfull())
 		{
@@ -93,7 +93,7 @@ public class WordHashtable {
 			 * we will have to look at the next place
 			 */
 			hashValue = (hashValue+1) % size;
-			System.out.println("REHASH");
+			// System.out.println("REHASH");
 		}
 		System.out.println("\n\t.::Cannot hash anymore because the table is full!::.\n");
 	}
@@ -119,7 +119,7 @@ public class WordHashtable {
 					+"\t: " +table[i].getCounter() 
 					+"\tkind of word:" +table[i].getKindOfWord());
 		}
-		System.out.println(regularWords);
+		// System.out.println(regularWords);
 	}
 
 	/* We don't need this method anymore. In our new Version, we calculate high frequency words and content
@@ -147,7 +147,7 @@ public class WordHashtable {
 	public int getKindOfWord(String word)
 	{
 		int indexOfWordInTable = getIndexOfWordInTable(word);
-		System.out.println("TEST: gefundenes Wort: " +table[indexOfWordInTable].getWord());
+		// System.out.println("TEST: gefundenes Wort: " +table[indexOfWordInTable].getWord());
 		return table[indexOfWordInTable].getKindOfWord();
 	}
 	
@@ -156,7 +156,7 @@ public class WordHashtable {
 	public int getIndexOfWordInTable(String word)
 	{
 		int hashValue = Math.abs(word.hashCode() % size);
-		System.out.println(word +"  hashvalue: " +hashValue);
+		// System.out.println(word +"  hashvalue: " +hashValue);
 		
 		// this seems like and endless slope - but for the fact, that our Word HAS TO exist in our table, it will stop when the word is found
 		while(true)
@@ -164,6 +164,7 @@ public class WordHashtable {
 			// if our code works correctly, this will never happen!
 			if(table[hashValue].isEmpty())
 			{
+				System.out.println(word);
 				throw new RuntimeException(".:: An error occured. The programm has been searching for a word, that does not exist. Normaly this should NEVER happen. Please inform the programmers about it.");
 			}
 			

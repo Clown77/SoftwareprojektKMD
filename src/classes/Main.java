@@ -4,13 +4,14 @@ import java.io.*;
 
 public class Main {
 	
+	private final static int WORDNUMBER = 30000;
+	
 	public static void main(String[] args) throws Exception {
 		
 		FileReader fr = new FileReader("kindleDocuments/Gesamttext/gesamttext.txt");
 	 	BufferedReader br = new BufferedReader(fr);
 
-	 	int size = 30000;
-	 	WordHashtable ourHash = new WordHashtable(size);
+	 	WordHashtable ourHash = new WordHashtable(WORDNUMBER);
 	 	
 	 	String zeile = br.readLine();
 	 	
@@ -24,14 +25,19 @@ public class Main {
 	 		zeile = br.readLine();
 	 	}
 	 	
-	 	int sorte = ourHash.getKindOfWord("topic");
-	 	System.out.println("Sorte: " +sorte);
-	 	
-	 	ourHash.sortHashtable();
-	 	ourHash.printHashtable();
-	    
-	    br.close();
+	 	br.close();
 		fr.close();
+		
+	 	// int sorte = ourHash.getKindOfWord("Topic");
+	 	// System.out.println("Sorte: " +sorte);
+	 	
+	 	
+	 	// ourHash.sortHashtable();
+	 	// ourHash.printHashtable();
+	 	
+	 	PatternFinder patternfinder = new PatternFinder();
+	 	patternfinder.findPattern(ourHash);
+
 	}
 	
 	//Diese Funktion führt dazu, dass Zeilenumbrüche nicht zu zwei getrennten Wörtern führen.
