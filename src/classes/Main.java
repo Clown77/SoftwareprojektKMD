@@ -1,6 +1,9 @@
 package classes;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.LinkedList;
 
 public class Main {
 	
@@ -27,20 +30,15 @@ public class Main {
 	 	
 	 	br.close();
 		fr.close();
-		
-	 	// int sorte = ourHash.getKindOfWord("Topic");
-	 	// System.out.println("Sorte: " +sorte);
-	 	
-	 	
-	 	// ourHash.sortHashtable();
-	 	// ourHash.printHashtable();
 	 	
 	 	PatternFinder patternfinder = new PatternFinder();
 	 	patternfinder.findPattern(ourHash);
+	 	LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
+	 	System.out.println("Der Maulwurf ist endlich auf dem Mond angekommen: " +foundPattern.toString());
 
 	}
 	
-	//Diese Funktion führt dazu, dass Zeilenumbrüche nicht zu zwei getrennten Wörtern führen.
+	//Diese Funktion fï¿½hrt dazu, dass Zeilenumbrï¿½che nicht zu zwei getrennten Wï¿½rtern fï¿½hren.
 	public static String handleLineBreak (String tempZeile, BufferedReader br) throws IOException
 	{
 		do

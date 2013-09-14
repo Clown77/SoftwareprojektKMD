@@ -25,6 +25,7 @@ public class PatternFinder
 		legalPattern.addLast("2121");	// HCHC
 	}
 	
+	
 	// we will now search in the text for all patterns and save them in foundPattern
 	public void findPattern(WordHashtable ourHash) throws Exception
 	{
@@ -63,9 +64,7 @@ public class PatternFinder
 			
 			// take the next i words
 			while(st.hasMoreTokens() && !currentWords.isEmpty())
-			{
-				System.out.println(currentWords); 
-				
+			{ 
 				currentWords.removeFirst();
 				currentWords.add(st.nextToken());
 				
@@ -75,10 +74,7 @@ public class PatternFinder
 					foundPattern.add(new Pattern(removeHighFrequencyWords(currentWords, ourHash)));
 				}
 			}
-		}
-		
-		 System.out.println("PATTERN: " +foundPattern.toString());
-			
+		}			
 	}
 	
 	
@@ -114,8 +110,6 @@ public class PatternFinder
 	 	br.close();
 	 	fr.close();
 	 	
-	 	System.out.println(text);
-	 	
 	 	return text;
 	}
 	
@@ -137,7 +131,6 @@ public class PatternFinder
 			
 			// get the type of the word and compare it to the pattern we are looking for
 			String type = "" +ourHash.getKindOfWord(temp);
-			System.out.print(type);
 			if(type.charAt(0) != currentPatternStructure.charAt(i)) return false;
 			
 			// increase the word counter
@@ -148,7 +141,7 @@ public class PatternFinder
 		return true;
 	}
 	
-	
+	// we don't want to work on references, so we copy the list
 	public void copyLists(LinkedList<String> list1, LinkedList<String> list2)
 	{
 		int length = list1.size();
@@ -173,5 +166,11 @@ public class PatternFinder
 			}
 		}
 		return result;
+	}
+	
+	
+	public LinkedList<Pattern> getFoundPattern()
+	{
+		return foundPattern;
 	}
 }
