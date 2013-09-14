@@ -57,7 +57,7 @@ public class PatternFinder
 			// if a pattern is found, add it to the list
 			if(isPattern(currentWords, currentPatternStructure, ourHash))
 			{
-				foundPattern.add(new Pattern(currentWords));
+				foundPattern.add(new Pattern(removeHighFrequencyWords(currentWords, ourHash)));
 			}
 			
 			
@@ -72,7 +72,7 @@ public class PatternFinder
 				// if a pattern is found, add it to the list
 				if(isPattern(currentWords, currentPatternStructure, ourHash))
 				{
-					foundPattern.add(new Pattern(currentWords));
+					foundPattern.add(new Pattern(removeHighFrequencyWords(currentWords, ourHash)));
 				}
 			}
 		}
@@ -86,7 +86,7 @@ public class PatternFinder
 	public  String normalize(String word)
 	{
 		// SPACE NEEDED
-		word = word.replaceAll("[^a-zA-Z0-9_&ßöäü ]", "");
+		word = word.replaceAll("[^a-zA-Z0-9_&ï¿½ï¿½ï¿½ï¿½ ]", "");
 		return word;
 	}
 	
@@ -157,5 +157,21 @@ public class PatternFinder
 		{
 			list2.addLast(list1.get(i));
 		}
+	}
+	
+	
+	//We don't need the High Frequency words anymore, so we return a copy of our pattern that just contains the Content wordo
+	public LinkedList<String> removeHighFrequencyWords(LinkedList<String> currentWords, WordHashtable ourHash)
+	{
+		LinkedList<String> result = new LinkedList<String>();
+		
+		for(int i = 0; i < currentWords.size(); i++)
+		{
+			if(ourHash.getKindOfWord(currentWords.get(i)) == 1)
+			{
+				result.addLast(currentWords.get(i));
+			}
+		}
+		return result;
 	}
 }
