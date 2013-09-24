@@ -47,7 +47,7 @@ public class WordHashtable {
 	// removes all characters that are neither digits nor letters
 	public  String normalize(String word)
 	{
-		word = word.replaceAll("[^a-zA-Z0-9_&ßצהü]", "");
+		word = word.replaceAll("[^a-zA-Z_ßצהü]", "");
 		return word;
 	}
 	

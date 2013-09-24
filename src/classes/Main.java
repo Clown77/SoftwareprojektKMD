@@ -32,13 +32,13 @@ public class Main {
 		fr.close();
 	 	
 	 	PatternFinder patternfinder = new PatternFinder();
-	 	patternfinder.findPattern(ourHash);
+	 	patternfinder.findAllPattern(ourHash);
 	 	LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
 	 	System.out.println("Der Maulwurf ist endlich auf dem Mond angekommen: " +foundPattern.toString());
 
 	}
 	
-	//Diese Funktion fï¿½hrt dazu, dass Zeilenumbrï¿½che nicht zu zwei getrennten Wï¿½rtern fï¿½hren.
+	//Diese Funktion führt dazu, dass Zeilenumbrüche nicht zu zwei getrennten Wörtern führen.
 	public static String handleLineBreak (String tempZeile, BufferedReader br) throws IOException
 	{
 		do

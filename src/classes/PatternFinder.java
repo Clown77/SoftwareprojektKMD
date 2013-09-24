@@ -8,10 +8,10 @@ import java.util.StringTokenizer;
 public class PatternFinder 
 {
 	// Contains all possible patterns
-	LinkedList<String> legalPattern;
+	private LinkedList<String> legalPattern;
 	
 	// Contains all pattern that were found in the text
-	LinkedList<Pattern> foundPattern;
+	private LinkedList<Pattern> foundPattern;
 	
 	/** Here you can add more patterns for experiments
 	 */
@@ -26,13 +26,16 @@ public class PatternFinder
 	}
 	
 	// we will now search in the text for all patterns and save them in foundPattern
-	public void findPattern(WordHashtable ourHash) throws Exception
+	public void findAllPattern(WordHashtable ourHash) throws Exception
 	{
+		removeIllegalPattern();
+		
+		System.out.println(legalPattern);
+		
 		String text = readInFile();
 	
 		while(!legalPattern.isEmpty())
 		{
-			
 			String currentPatternStructure = legalPattern.getFirst();
 			legalPattern.removeFirst();
 			
@@ -63,7 +66,7 @@ public class PatternFinder
 			
 			// take the next i words
 			while(st.hasMoreTokens() && !currentWords.isEmpty())
-			{ 
+			{
 				currentWords.removeFirst();
 				currentWords.add(st.nextToken());
 				
@@ -73,7 +76,7 @@ public class PatternFinder
 					foundPattern.add(new Pattern(removeHighFrequencyWords(currentWords, ourHash)));
 				}
 			}
-		}			
+		}
 	}
 	
 	
@@ -81,7 +84,7 @@ public class PatternFinder
 	public  String normalize(String word)
 	{
 		// SPACE NEEDED
-		word = word.replaceAll("[^a-zA-Z0-9_&ï¿½ï¿½ï¿½ï¿½ ]", "");
+		word = word.replaceAll("[^a-zA-Z_ßöäü ]", "");
 		return word;
 	}
 	
@@ -152,7 +155,7 @@ public class PatternFinder
 	}
 	
 	
-	//We don't need the High Frequency words anymore, so we return a copy of our pattern that just contains the Content wordo
+	// We don't need the High Frequency words anymore, so we return a copy of our pattern that just contains the Content wordo
 	public LinkedList<String> removeHighFrequencyWords(LinkedList<String> currentWords, WordHashtable ourHash)
 	{
 		LinkedList<String> result = new LinkedList<String>();
@@ -167,9 +170,24 @@ public class PatternFinder
 		return result;
 	}
 	
-	
+	/**@return Returns null, if the methode 'findAllPattern' has not been used before.*/
 	public LinkedList<Pattern> getFoundPattern()
 	{
 		return foundPattern;
+	}
+
+	// Patterns with more then 2 content words cannot be used for M1. So we remove them
+	public void removeIllegalPattern()
+	{
+		int length = legalPattern.size();
+		
+		for(int i = length-1; i >= 0; i--)
+		{
+			if(legalPattern.get(i).replaceAll("2", "").length() > 2)
+			{
+				System.out.println("Illegal Pattern has been removed: " +legalPattern.get(i));
+				legalPattern.remove(i);
+			}
+		}
 	}
 }
