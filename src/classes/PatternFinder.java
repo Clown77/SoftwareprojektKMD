@@ -25,7 +25,6 @@ public class PatternFinder
 		legalPattern.addLast("2121");	// HCHC
 	}
 	
-	
 	// we will now search in the text for all patterns and save them in foundPattern
 	public void findPattern(WordHashtable ourHash) throws Exception
 	{
