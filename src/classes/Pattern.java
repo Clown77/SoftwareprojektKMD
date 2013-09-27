@@ -6,12 +6,19 @@ public class Pattern
 {
 
 	public LinkedList<String> pattern;
+	
+	private int counter;
+	
+	private double M1_Value;
+	private double M2_Value;
+	private double M3_Value;
 
 	// Take the list of words that are a pattern and save it
 	public Pattern(LinkedList<String> words)
 	{
 		pattern = new LinkedList<String>();
 		copyWordsIntoPattern(words);
+		counter = 1;
 	}
 
 	/** TODO NEEDS TO BE TESTED */
@@ -43,4 +50,7 @@ public class Pattern
 	{
 		return pattern.toString();
 	}
+	
+	public void increaseCounter() { counter++; } 
+	
 }

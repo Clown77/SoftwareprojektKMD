@@ -154,7 +154,6 @@ public class PatternFinder
 	}
 	
 	
-	/** TODO NEEDS TO BE CHANGED. HAS TO WORK ON THE COMPLETE LIST OF FOUND PATTERN, NOT ON A SINGLE  PATTERN */
 	// We don't need the High Frequency words anymore, so we return a copy of our pattern that just contains the Content words
 	public void removeHighFrequencyWords(WordHashtable ourHash)
 	{
