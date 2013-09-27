@@ -23,6 +23,14 @@ public class PatternFinder
 		legalPattern.addLast("121");	// CHC
 		legalPattern.addLast("1221");	// CHHC
 		legalPattern.addLast("2121");	// HCHC
+		
+		//for testing
+		/**LinkedList<String> words = new LinkedList<String>();
+		words.add("auto");
+		words.add("hund");
+		words.add("Katze");
+		Pattern testPattern = new Pattern(words);
+		foundPattern.add(testPattern);*/
 	}
 	
 	// we will now search in the text for all patterns and save them in foundPattern
@@ -61,7 +69,8 @@ public class PatternFinder
 			if(isPattern(currentWords, currentPatternStructure, ourHash))
 			{
 				/** TODO TEST IF PATTERN ALREADY EXISTS IN THE LIST OF FOUND PATTERN */
-				foundPattern.add(new Pattern(currentWords));
+					foundPattern.add(new Pattern(currentWords));
+				
 			}
 			
 			
@@ -75,8 +84,18 @@ public class PatternFinder
 				if(isPattern(currentWords, currentPatternStructure, ourHash))
 				{
 					/** TODO TEST IF PATTERN ALREADY EXISTS IN THE LIST OF FOUND PATTERN */
-					foundPattern.add(new Pattern(currentWords));
+					countPattern(currentWords);
+					//foundPattern.add(new Pattern(currentWords));
+					
 				}
+			}
+		}
+	}
+
+	private void countPattern(LinkedList<String> test) {
+		for (Pattern testingPattern : foundPattern) {
+			if (testingPattern.equals(new Pattern(test))) {
+				
 			}
 		}
 	}
@@ -183,7 +202,7 @@ public class PatternFinder
 	public void removeIllegalPattern()
 	{
 		int length = legalPattern.size();
-		
+		/**TODO REMOVE SAME STRUCKTURAL-PATTERN */
 		for(int i = length-1; i >= 0; i--)
 		{
 			if(legalPattern.get(i).replaceAll("2", "").length() > 2)
