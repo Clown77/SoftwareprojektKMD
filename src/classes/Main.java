@@ -7,14 +7,15 @@ import java.util.LinkedList;
 
 public class Main {
 	
-	private final static int WORDNUMBER = 30000;
+	private final static int TABLESIZE = 30000;
+	private static int WORDNUMBER = 0;
 	
 	public static void main(String[] args) throws Exception {
 		
 		FileReader fr = new FileReader("kindleDocuments/Gesamttext/gesamttext.txt");
 	 	BufferedReader br = new BufferedReader(fr);
 
-	 	WordHashtable ourHash = new WordHashtable(WORDNUMBER);
+	 	WordHashtable ourHash = new WordHashtable(TABLESIZE);
 	 	
 	 	String zeile = br.readLine();
 	 	
@@ -33,6 +34,7 @@ public class Main {
 	 		zeile = br.readLine();
 	 	}
 	 	
+	 	WORDNUMBER = ourHash.regularWords;
 	 	
 	 	br.close();
 		fr.close();
@@ -45,6 +47,9 @@ public class Main {
 	 	
 	 	// High Frequency words are just used to find patterns, but they are not needed for future work anymore
 	 	patternfinder.removeHighFrequencyWords(ourHash);
+	 	
+	 	// Patterns, that don't appear for Tp times, will be removed
+	 	patternfinder.removeLowAppearencePattern(WORDNUMBER);
 
 	 	LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
 	 	

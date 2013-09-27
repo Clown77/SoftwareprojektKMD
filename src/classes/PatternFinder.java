@@ -7,6 +7,9 @@ import java.util.StringTokenizer;
 
 public class PatternFinder 
 {
+	// Means the pattern has to occure 20 times in 1 million words
+	private final int TP = 20;
+	
 	// Contains all possible patterns
 	private LinkedList<String> legalPattern;
 
@@ -23,20 +26,12 @@ public class PatternFinder
 		legalPattern.addLast("121");	// CHC
 		legalPattern.addLast("1221");	// CHHC
 		legalPattern.addLast("2121");	// HCHC
-
-		//for testing
-		LinkedList<String> words = new LinkedList<String>();
-		words.add("after");
-		words.add("i");
-		words.add("plugged");
-		words.add("it");
-		Pattern testPattern = new Pattern(words);
-		foundPattern.add(testPattern);
 	}
 
 	// we will now search in the text for all patterns and save them in foundPattern
 	public void findAllPattern(WordHashtable ourHash) throws Exception
 	{
+		// tests if there are pattern doubled or with more then two Content words (and removes them)
 		removeIllegalPattern();
 
 		String text = readInFile();
@@ -125,7 +120,6 @@ public class PatternFinder
 
 		while(zeile != null)
 		{
-
 			text = text.concat(zeile +" ");
 			zeile = br.readLine();
 		}
@@ -215,6 +209,19 @@ public class PatternFinder
 				System.out.println("Illegal Pattern has been removed: " +legalPattern.get(i));
 				legalPattern.remove(i);
 			}
+		}
+	}
+	
+	// Can be used only, if the method 'findAllPattern' has been calles before
+	public void removeLowAppearencePattern(final int WORDNUMBER)
+	{
+		double ratio = TP/1000000.0;
+		double patternRatio = 0;
+		
+		for (Pattern currentPattern : foundPattern) 
+		{
+			patternRatio = (double)(currentPattern.getCounter())/WORDNUMBER;
+			if(patternRatio < ratio) foundPattern.remove(currentPattern);
 		}
 	}
 }
