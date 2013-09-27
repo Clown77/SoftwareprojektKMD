@@ -23,18 +23,32 @@ public class Main {
 	 	{
 	 		// We are not interested in case sensitivity
 	 		zeile = zeile.toLowerCase();
+	 		
+	 		// This checks if the line ends with a seperator (-). If it does, the lines will be concatenated
 	 		zeile = handleLineBreak(zeile, br);
+	 		
+	 		// filters the words out of the string and adds them into the hashtable
 	 		ourHash.handleString(zeile);
+	 		
 	 		zeile = br.readLine();
 	 	}
+	 	
 	 	
 	 	br.close();
 		fr.close();
 	 	
+		// The patternfinder can work on the text and return us a list with all patterns we want to search for
 	 	PatternFinder patternfinder = new PatternFinder();
+	 	
+	 	// in this step the patternfinder collects all patterns. Including High frequency words
 	 	patternfinder.findAllPattern(ourHash);
+	 	
+	 	// High Frequency words are just used to find patterns, but they are not needed for future work anymore
+	 	patternfinder.removeHighFrequencyWords(ourHash);
+
 	 	LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
-	 	System.out.println("Der Maulwurf ist endlich auf dem Mond angekommen: " +foundPattern.toString());
+	 	
+	 	System.out.println("Ohne High Frequency Words: " +foundPattern.toString());
 
 	}
 	
