@@ -9,9 +9,9 @@ public class Pattern
 	
 	private int counter;
 	
-	private double M1_Value;
-	private double M2_Value;
-	private double M3_Value;
+	private double M1_Value = 0;
+	private double M2_Value = 0;
+	private double M3_Value = 0;
 
 	// Take the list of words that are a pattern and save it
 	public Pattern(LinkedList<String> words)
@@ -21,7 +21,6 @@ public class Pattern
 		counter = 1;
 	}
 
-	/** TODO NEEDS TO BE TESTED */
 	public boolean equals(Pattern otherPattern)
 	{
 
@@ -51,6 +50,23 @@ public class Pattern
 		return pattern.toString();
 	}
 	
+	
+	// Getters and Setters 
+	
 	public void increaseCounter() { counter++; } 
+	
+	public int getCounter() { return counter; }
+
+	public double getM1_Value() { return M1_Value; }
+
+	public void setM1_Value(double m1_Value) { M1_Value = m1_Value; }
+
+	public double getM2_Value() { return M2_Value; }
+
+	public void setM2_Value(double m2_Value) { M2_Value = m2_Value; }
+
+	public double getM3_Value() { return M3_Value; }
+
+	public void setM3_Value(double m3_Value) { M3_Value = m3_Value; }
 	
 }
