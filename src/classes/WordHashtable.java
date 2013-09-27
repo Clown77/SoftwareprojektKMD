@@ -98,16 +98,15 @@ public class WordHashtable {
 		System.out.println("\n\t.::Cannot hash anymore because the table is full!::.\n");
 	}
 	
+	// Returns true, if there is no empty slot in our hashtable anymore
 	public boolean isfull()
 	{
-		boolean full = true;
-		
 		for(int i = 0; i < size; i++)
 		{
-			if(table[i].isEmpty()) full = false;
+			if(table[i].isEmpty()) return false;
 		}
 		
-		return full;
+		return true;
 	}
 	
 	// simple output to console including the word with its appearence

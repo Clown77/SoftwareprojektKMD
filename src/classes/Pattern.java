@@ -22,11 +22,7 @@ public class Pattern
 
 		for(int i = 0; i < pattern.size() ; i++)
 		{
-			if(!this.pattern.get(i).equals(otherPattern.pattern.get(i)))
-			{
-				return false;
-			}
-
+			if(this.pattern.get(i) != otherPattern.pattern.get(i)) return false;
 		}
 		return true;
 	}
