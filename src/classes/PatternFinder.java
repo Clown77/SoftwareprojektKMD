@@ -99,7 +99,6 @@ public class PatternFinder
 		for (Pattern testingPattern : foundPattern) {
 			if (testingPattern.equals(new Pattern(test))) {
 				testingPattern.increaseCounter();
-				System.out.println("wurde erhöht");
 				return true;
 			}
 		}
