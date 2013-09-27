@@ -30,7 +30,7 @@ public class PatternFinder
 	{
 		removeIllegalPattern();
 		
-		System.out.println(legalPattern);
+		System.out.println("erlaubte Pattern: "+legalPattern);
 		
 		String text = readInFile();
 	
@@ -87,6 +87,8 @@ public class PatternFinder
 		word = word.replaceAll("[^a-zA-Z_ßöäü ]", "");
 		return word;
 	}
+	
+	
 	
 	public String readInFile() throws Exception
 	{
@@ -155,7 +157,7 @@ public class PatternFinder
 	}
 	
 	
-	// We don't need the High Frequency words anymore, so we return a copy of our pattern that just contains the Content wordo
+	// We don't need the High Frequency words anymore, so we return a copy of our pattern that just contains the Content words
 	public LinkedList<String> removeHighFrequencyWords(LinkedList<String> currentWords, WordHashtable ourHash)
 	{
 		LinkedList<String> result = new LinkedList<String>();
