@@ -67,7 +67,8 @@ public class PatternFinder
 			// if a pattern is found, add it to the list
 			if(isPattern(currentWords, currentPatternStructure, ourHash))
 			{
-				if (!patternInList(currentWords)) {
+				if (!patternInList(currentWords)) 
+				{
 					foundPattern.add(new Pattern(currentWords));
 				}
 				
@@ -85,7 +86,8 @@ public class PatternFinder
 				if(isPattern(currentWords, currentPatternStructure, ourHash))
 				{
 					// patternInList increases Pattern counter if true
-					if (!patternInList(currentWords)) {
+					if (!patternInList(currentWords)) 
+					{
 						foundPattern.add(new Pattern(currentWords));
 					}
 
@@ -95,9 +97,12 @@ public class PatternFinder
 	}
 	
 	// patternInList increases Pattern counter if true
-	private boolean patternInList(LinkedList<String> test) {
-		for (Pattern testingPattern : foundPattern) {
-			if (testingPattern.equals(new Pattern(test))) {
+	private boolean patternInList(LinkedList<String> test) 
+	{
+		for (Pattern testingPattern : foundPattern) 
+		{
+			if (testingPattern.equals(new Pattern(test))) 
+			{
 				testingPattern.increaseCounter();
 				System.out.println("wurde erhöht");
 				return true;
