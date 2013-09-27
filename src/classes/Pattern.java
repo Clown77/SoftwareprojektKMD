@@ -43,11 +43,27 @@ public class Pattern
 			pattern.addLast(words.get(i));
 		}
 	}
+	
+	public Pattern clone()
+	{
+		Pattern clonedPattern = new Pattern(pattern);
+		clonedPattern.setCounter(counter);
+		clonedPattern.setM1_Value(M1_Value);
+		clonedPattern.setM2_Value(M2_Value);
+		clonedPattern.setM3_Value(M3_Value);
+		
+		return clonedPattern;
+	}
 
 	// just for visualization
 	public String toString()
 	{
 		return pattern.toString() +counter;
+	}
+	
+	public void setCounter(int value)
+	{
+		this.counter = value;
 	}
 	
 	

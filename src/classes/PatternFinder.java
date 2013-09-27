@@ -225,4 +225,27 @@ public class PatternFinder
 			if(patternRatio < ratio) foundPattern.remove(i);
 		}
 	}
+	
+	// Sorts the list by the counter value
+	public void sortByAppearences()
+	{
+		boolean swapped = true;
+		
+		while(swapped)
+		{
+			swapped = false;
+			for(int i = 0; i < foundPattern.size()-1; i++)
+			{
+				if(foundPattern.get(i).getCounter() > foundPattern.get(i+1).getCounter())
+				{
+					Pattern temp = foundPattern.get(i+1).clone();
+					foundPattern.remove(i+1);
+					foundPattern.add(i+1, foundPattern.get(i));
+					foundPattern.remove(i);
+					foundPattern.add(i+1, temp);
+					swapped = true;
+				}
+			}
+		}
+	}
 }
