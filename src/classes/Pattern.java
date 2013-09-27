@@ -47,7 +47,7 @@ public class Pattern
 	// just for visualization
 	public String toString()
 	{
-		return pattern.toString();
+		return pattern.toString() +counter;
 	}
 	
 	
