@@ -24,11 +24,11 @@ public class Pattern
 	public boolean equals(Pattern otherPattern)
 	{
 
-		if(this.pattern.size() != otherPattern.pattern.size()) { System.out.println("ungleiche Länge"); return false; }
+		if(this.pattern.size() != otherPattern.pattern.size())  return false; 
 
 		for(int i = 0; i < pattern.size() ; i++)
 		{
-			if(!this.pattern.get(i).equals(otherPattern.pattern.get(i))) {  System.out.println("verschiedener inhalt beim Wort:" +this.pattern.get(i) +"  " +otherPattern.pattern.get(i)); return false; }
+			if(!this.pattern.get(i).equals(otherPattern.pattern.get(i))) return false; 
 		}
 		return true;
 	}
