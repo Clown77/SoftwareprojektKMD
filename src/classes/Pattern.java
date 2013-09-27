@@ -14,37 +14,37 @@ public class Pattern
 		copyWordsIntoPattern(words);
 	}
 
-	public boolean equals(Pattern otherPattern){
+	/** TODO NEEDS TO BE TESTED */
+	public boolean equals(Pattern otherPattern)
+	{
 
 		if(this.pattern.size() != otherPattern.pattern.size())	return false;
 
-		for(int i = 0; i < pattern.size() ; i++){
-			if(!this.pattern.get(i).equals(otherPattern.pattern.get(i))){
+		for(int i = 0; i < pattern.size() ; i++)
+		{
+			if(!this.pattern.get(i).equals(otherPattern.pattern.get(i)))
+			{
 				return false;
 			}
 
 		}
 		return true;
 	}
+	
+	// Creates a real copy, not just references
 	private void copyWordsIntoPattern(LinkedList<String> words)
 	{
-		copyLists(words, pattern);
+		int length = words.size();
+
+		for(int i = 0; i < length; i++)
+		{
+			pattern.addLast(words.get(i));
+		}
 	}
 
 	// just for visualization
 	public String toString()
 	{
 		return pattern.toString();
-	}
-
-	// This methode makes a real copy and not just a reference
-	public void copyLists(LinkedList<String> list1, LinkedList<String> list2)
-	{
-		int length = list1.size();
-
-		for(int i = 0; i < length; i++)
-		{
-			list2.addLast(list1.get(i));
-		}
 	}
 }
