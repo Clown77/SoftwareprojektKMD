@@ -30,8 +30,6 @@ public class PatternFinder
 	{
 		removeIllegalPattern();
 		
-		System.out.println("erlaubte Pattern: "+legalPattern);
-		
 		String text = readInFile();
 	
 		while(!legalPattern.isEmpty())
@@ -97,7 +95,6 @@ public class PatternFinder
 	 	
 	 	// we fill the whole text into 'text' --> maybe change it later for better performance
 	 	String text = "";
-	 	
 	 	String zeile = br.readLine();
 	 		 	
 	 	while(zeile != null)
@@ -159,18 +156,20 @@ public class PatternFinder
 	
 	/** TODO NEEDS TO BE CHANGED. HAS TO WORK ON THE COMPLETE LIST OF FOUND PATTERN, NOT ON A SINGLE  PATTERN */
 	// We don't need the High Frequency words anymore, so we return a copy of our pattern that just contains the Content words
-	public LinkedList<String> removeHighFrequencyWords(LinkedList<String> currentWords, WordHashtable ourHash)
+	public void removeHighFrequencyWords(WordHashtable ourHash)
 	{
-		LinkedList<String> result = new LinkedList<String>();
-		
-		for(int i = 0; i < currentWords.size(); i++)
-		{
-			if(ourHash.getKindOfWord(currentWords.get(i)) == 1)
+		for (Pattern currentPattern : foundPattern) {
+			
+			int length = currentPattern.pattern.size();
+
+			for(int i = (length-1); i >= 0; i--)
 			{
-				result.addLast(currentWords.get(i));
+				if(ourHash.getKindOfWord(currentPattern.pattern.get(i)) == 2)
+				{
+					currentPattern.pattern.remove(i);
+				}
 			}
 		}
-		return result;
 	}
 	
 	/**@return Returns null, if the methode 'findAllPattern' has not been used before.*/

@@ -34,7 +34,9 @@ public class Main {
 	 	PatternFinder patternfinder = new PatternFinder();
 	 	patternfinder.findAllPattern(ourHash);
 	 	LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
-	 	System.out.println("Der Maulwurf ist endlich auf dem Mond angekommen: " +foundPattern.toString());
+	 	System.out.println("Fabian: " +foundPattern.toString());
+	 	patternfinder.removeHighFrequencyWords(ourHash);
+	 	System.out.println("Ohne High Frequency Words: " +foundPattern.toString());
 
 	}
 	
