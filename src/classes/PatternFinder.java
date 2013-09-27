@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class PatternFinder 
 {
 	// Means the pattern has to occure 20 times in 1 million words
-	private final int TP = 20;
+	private final int TP = 750;
 	
 	// Contains all possible patterns
 	private LinkedList<String> legalPattern;
@@ -218,10 +218,11 @@ public class PatternFinder
 		double ratio = TP/1000000.0;
 		double patternRatio = 0;
 		
-		for (Pattern currentPattern : foundPattern) 
+		for (int i = (foundPattern.size()-1); i >= 0; i--) 
 		{
-			patternRatio = (double)(currentPattern.getCounter())/WORDNUMBER;
-			if(patternRatio < ratio) foundPattern.remove(currentPattern);
+			patternRatio = (double)(foundPattern.get(i).getCounter())/WORDNUMBER;
+			System.out.println(ratio +"  " +patternRatio);
+			if(patternRatio < ratio) foundPattern.remove(i);
 		}
 	}
 }
