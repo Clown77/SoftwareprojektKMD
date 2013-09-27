@@ -67,12 +67,7 @@ public class PatternFinder
 			// if a pattern is found, add it to the list
 			if(isPattern(currentWords, currentPatternStructure, ourHash))
 			{
-				if (!patternInList(currentWords)) 
-				{
-					foundPattern.add(new Pattern(currentWords));
-				}
-				
-
+				foundPattern.add(new Pattern(currentWords));
 			}
 
 
