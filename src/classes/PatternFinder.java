@@ -22,10 +22,10 @@ public class PatternFinder
 	{
 		foundPattern = new LinkedList<Pattern>();
 		legalPattern = new LinkedList<String>();
-		legalPattern.addLast("1212");	// CHCH
-		legalPattern.addLast("121");	// CHC
-		legalPattern.addLast("1221");	// CHHC
-		legalPattern.addLast("2121");	// HCHC
+		legalPattern.addLast("CHCH");	// CHCH 1212
+		legalPattern.addLast("CHC");	// CHC 121
+		legalPattern.addLast("CHHC");	// CHHC 1221
+		legalPattern.addLast("HCHC");	// HCHC 2121
 	}
 
 	// we will now search in the text for all patterns and save them in foundPattern
@@ -183,7 +183,7 @@ public class PatternFinder
 
 			for(int i = (length-1); i >= 0; i--)
 			{
-				if(ourHash.getKindOfWord(currentPattern.pattern.get(i)) == 2)
+				if(ourHash.getKindOfWord(currentPattern.pattern.get(i)) == 'H')
 				{
 					currentPattern.pattern.remove(i);
 				}
@@ -203,7 +203,7 @@ public class PatternFinder
 		int length = legalPattern.size();
 		for(int i = length-1; i >= 0; i--)
 		{
-			if(legalPattern.get(i).replaceAll("2", "").length() > 2)
+			if(legalPattern.get(i).replaceAll("H", "").length() > 2)
 			{
 				System.out.println("Illegal Pattern has been removed: " +legalPattern.get(i));
 				legalPattern.remove(i);

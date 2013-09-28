@@ -4,7 +4,7 @@ public class Word implements Comparable<Word>{
 
 	private String word;
 	private int counter = 0;
-	private int kindOfWord = 1;
+	private char kindOfWord = 'C';
 	
 	// Constructor overload
 	public Word(){};
@@ -41,11 +41,16 @@ public class Word implements Comparable<Word>{
 	 * 						1 = mark as content word
 	 * 						2 = mark as high frequency word				
 	 */
-	public void setKindOfWord(int kindOfWord){this.kindOfWord = kindOfWord;}
+	public void setKindOfWord(char kindOfWord){this.kindOfWord = kindOfWord;}
 	
-	public boolean isContentWord(){ return this.kindOfWord == 1; }
-	public boolean isEgalWord(){ return this.kindOfWord == 0; }
-	public boolean isHighFrequencyWord(){ return this.kindOfWord == 2; }
-	public int getKindOfWord(){ return this.kindOfWord; }
+	public boolean isContentWord(){ return this.kindOfWord == 'C'; }
+	public boolean isEgalWord(){ return this.kindOfWord == 'N'; }
+	public boolean isHighFrequencyWord(){ return this.kindOfWord == 'H'; }
+	public char getKindOfWord(){ return this.kindOfWord; }
+	
+	public String toString(){
+		return "" +this.kindOfWord;
+	}
 	
 }
+

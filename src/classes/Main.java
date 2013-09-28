@@ -35,7 +35,7 @@ public class Main {
 	 	}
 	 	
 	 	ourHash.setHFWBorder();
-	 	ourHash.setHFWBorder();
+	 	ourHash.setCWFBorder();
 	 	ourHash.setWordTypes();
 	 	
 	 	ourHash.tableToString();

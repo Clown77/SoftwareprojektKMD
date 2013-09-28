@@ -8,22 +8,23 @@ public class WordHashtable {
 	public Word[] table;
 	
 	// size is prefered to be a prime number
+	//TODO Get the size of teh hashtable by lookig at the size of the text
 	int size;		
 	int regularWordsCount = 0;
 	int textsize = 0;
 	
 	// Describes how often a word has to appear in 1 000 000 words 
-	private int TH = 1000;
-	private int TC = 500;
+	private int TH = 8300;
+	private int TC = 4150;
 	
 	// hold the values for word categories, calculated for our amount of words
 	private double CONTENT_WORD_BORDER;
 	private double HIGHFREQUENCY_WORD_BORDER;
 	
 	// for better undestanding of the code
-	private final int HIGHFREQUENCY_WORD = 2;
-	private final int CONTENT_WORD = 1;
-	private final int NO_MEANING = 0;
+	private final char HIGHFREQUENCY_WORD = 'H';
+	private final char CONTENT_WORD = 'C';
+	private final char NO_MEANING = 'N';
 	
 	public WordHashtable(int size)
 	{ 
@@ -148,7 +149,7 @@ public class WordHashtable {
 	
 	// Will return the kind of a word, given as param.
 	// For this, we need to search in our table for exactly the same word
-	public int getKindOfWord(String word)
+	public char getKindOfWord(String word)
 	{
 		int indexOfWordInTable = getIndexOfWordInTable(word);
 		return table[indexOfWordInTable].getKindOfWord();
