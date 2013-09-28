@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class PatternFinder 
 {
 	// Means the pattern has to occure 20 times in 1 million words
-	private final int TP = 750;
+	private final int TP = 20;
 	
 	// Contains all possible patterns
 	private LinkedList<String> legalPattern;
@@ -215,37 +215,14 @@ public class PatternFinder
 	// Can be used only, if the method 'findAllPattern' has been calles before
 	public void removeLowAppearencePattern(final int WORDNUMBER)
 	{
+		// Change TP for tests
 		double ratio = TP/1000000.0;
 		double patternRatio = 0;
 		
 		for (int i = (foundPattern.size()-1); i >= 0; i--) 
 		{
 			patternRatio = (double)(foundPattern.get(i).getCounter())/WORDNUMBER;
-			System.out.println(ratio +"  " +patternRatio);
 			if(patternRatio < ratio) foundPattern.remove(i);
-		}
-	}
-	
-	// Sorts the list by the counter value
-	public void sortByAppearences()
-	{
-		boolean swapped = true;
-		
-		while(swapped)
-		{
-			swapped = false;
-			for(int i = 0; i < foundPattern.size()-1; i++)
-			{
-				if(foundPattern.get(i).getCounter() > foundPattern.get(i+1).getCounter())
-				{
-					Pattern temp = foundPattern.get(i+1).clone();
-					foundPattern.remove(i+1);
-					foundPattern.add(i+1, foundPattern.get(i));
-					foundPattern.remove(i);
-					foundPattern.add(i+1, temp);
-					swapped = true;
-				}
-			}
 		}
 	}
 }

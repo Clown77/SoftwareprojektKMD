@@ -34,7 +34,13 @@ public class Main {
 	 		zeile = br.readLine();
 	 	}
 	 	
-	 	WORDNUMBER = ourHash.regularWords;
+	 	ourHash.setHFWBorder();
+	 	ourHash.setHFWBorder();
+	 	ourHash.setWordTypes();
+	 	
+	 	ourHash.tableToString();
+	 	
+	 	WORDNUMBER = ourHash.regularWordsCount;
 	 	
 	 	br.close();
 		fr.close();
@@ -50,8 +56,6 @@ public class Main {
 	 	
 	 	// Patterns, that don't appear for Tp times, will be removed
 	 	patternfinder.removeLowAppearencePattern(WORDNUMBER);
-	 	
-	 	patternfinder.sortByAppearences();
 
 	 	LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
 	 	

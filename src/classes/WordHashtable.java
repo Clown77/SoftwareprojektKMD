@@ -5,14 +5,24 @@ import java.util.Arrays;
 
 public class WordHashtable {
 	
-	Word[] table;
-	int size;		// size is prefered to be a prime number
-	int regularWords = 0; 
+	public Word[] table;
+	
+	// size is prefered to be a prime number
+	int size;		
+	int regularWordsCount = 0;
+	int textsize = 0;
+	
+	// Describes how often a word has to appear in 1 000 000 words 
+	private int TH = 1000;
+	private int TC = 500;
+	
+	// hold the values for word categories, calculated for our amount of words
+	private double CONTENT_WORD_BORDER;
+	private double HIGHFREQUENCY_WORD_BORDER;
 	
 	// for better undestanding of the code
-	private final int CONTENT_WORD_BORDER = 50;
-	private final int HIGHFREQUENCY_WORD_BORDER = 100;
 	private final int HIGHFREQUENCY_WORD = 2;
+	private final int CONTENT_WORD = 1;
 	private final int NO_MEANING = 0;
 	
 	public WordHashtable(int size)
@@ -32,15 +42,21 @@ public class WordHashtable {
 	public void handleString(String zeile)
 	{
 		String word;
+		
 		// uses delimeters in default, perfect for our task
 		StringTokenizer st = new StringTokenizer(zeile);
-	    while(st.hasMoreTokens()) {
+		
+	    while(st.hasMoreTokens()) 
+	    {
 	    	word = st.nextToken();
 	    	word = normalize(word);
-	    	// System.out.print(word);
 	    	
 	    	// this way, we filter a character sequence like ""
-	    	if(word.length() > 0) hash(word);
+	    	if(word.length() > 0)
+    		{
+	    		hash(word);
+	    		textsize++;
+    		}
 	    }
 	}
 	
@@ -51,11 +67,9 @@ public class WordHashtable {
 		return word;
 	}
 	
-	/**MÜSSEN EVENTUELL AUF LONG UMSTEIGEN!*/
 	public void hash(String word)
 	{
 		int hashValue = Math.abs(word.hashCode() % size);
-		// System.out.println("  " +hashValue);
 		
 		while(!isfull())
 		{
@@ -69,23 +83,16 @@ public class WordHashtable {
 				table[hashValue].increaseCounter();
 				
 				// if a new word was found, increade the class-counter
-				regularWords++;
+				regularWordsCount++;
 				return;
 			}
 			
 			/* if there is a collision while hashing, that means the words are the same
-			 * and the counter should be increased
+			 * and the counter should be increased 
 			 */
 			if(table[hashValue].sameWord(word))
 			{
 				table[hashValue].increaseCounter();
-				
-				//If the Word appears more than 50 times, its not a content word any more
-				if(table[hashValue].getCounter() > CONTENT_WORD_BORDER)	table[hashValue].setKindOfWord(NO_MEANING);
-				
-				//If the word appears more than 100 times, its a high frequency word
-				if(table[hashValue].getCounter() > HIGHFREQUENCY_WORD_BORDER)	table[hashValue].setKindOfWord(HIGHFREQUENCY_WORD);
-				
 				return;
 			}
 			
@@ -93,7 +100,6 @@ public class WordHashtable {
 			 * we will have to look at the next place
 			 */
 			hashValue = (hashValue+1) % size;
-			// System.out.println("REHASH");
 		}
 		System.out.println("\n\t.::Cannot hash anymore because the table is full!::.\n");
 	}
@@ -118,7 +124,6 @@ public class WordHashtable {
 					+"\t: " +table[i].getCounter() 
 					+"\tkind of word:" +table[i].getKindOfWord());
 		}
-		// System.out.println(regularWords);
 	}
 
 	/* We don't need this method anymore. In our new Version, we calculate high frequency words and content
@@ -132,9 +137,9 @@ public class WordHashtable {
 	// remove empty slots
 	public void removeEmptySlots()
 	{
-		Word[] newArray = new Word[regularWords];
+		Word[] newArray = new Word[regularWordsCount];
 		
-		for(int i = 0; i < regularWords; i++)
+		for(int i = 0; i < regularWordsCount; i++)
 		{
 			newArray[i] = table[i];
 		}
@@ -146,7 +151,6 @@ public class WordHashtable {
 	public int getKindOfWord(String word)
 	{
 		int indexOfWordInTable = getIndexOfWordInTable(word);
-		// System.out.println("TEST: gefundenes Wort: " +table[indexOfWordInTable].getWord());
 		return table[indexOfWordInTable].getKindOfWord();
 	}
 	
@@ -155,7 +159,6 @@ public class WordHashtable {
 	public int getIndexOfWordInTable(String word)
 	{
 		int hashValue = Math.abs(word.hashCode() % size);
-		// System.out.println(word +"  hashvalue: " +hashValue);
 		
 		// this seems like and endless slope - but for the fact, that our Word HAS TO exist in our table, it will stop when the word is found
 		while(true)
@@ -176,5 +179,40 @@ public class WordHashtable {
 			// if the word is not the same, we need to sondier the same way, as the hashtable does
 			hashValue = (hashValue+1) % size;
 		}	
+	}
+	
+	// Marks every word in our table, if it is a high frequency word or a word that doesn't matter at all.
+	public void setWordTypes()
+	{
+		for(int i = 0; i < size; i++)
+		{
+			//If the Word appears more than 50 times, its not a content word any more
+			if(table[i].getCounter() > CONTENT_WORD_BORDER)	table[i].setKindOfWord(NO_MEANING);
+			
+			//If the word appears more than 100 times, its a high frequency word
+			if(table[i].getCounter() > HIGHFREQUENCY_WORD_BORDER) table[i].setKindOfWord(HIGHFREQUENCY_WORD);
+		}
+	}
+	
+	// Use this methodes only, when you are finished with hashing
+	public void setHFWBorder()
+	{
+		HIGHFREQUENCY_WORD_BORDER = ((double)(textsize * TH))/1000000.0;
+	}
+	
+	public void setCWFBorder()
+	{
+		CONTENT_WORD_BORDER =  ((double)(textsize * TC))/1000000.0;
+	}
+	
+	// use this method for debug
+	public void tableToString()
+	{
+		System.out.println(textsize);
+		for(int i = 0; i < size; i++)
+		{
+			if(table[i].getWord() != "")
+			System.out.println(table[i].getWord() +" " +table[i].getCounter() +" " +table[i].getKindOfWord());
+		}
 	}
 }
