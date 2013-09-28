@@ -201,7 +201,6 @@ public class PatternFinder
 	public void removeIllegalPattern()
 	{
 		int length = legalPattern.size();
-		/**TODO REMOVE SAME STRUCKTURAL-PATTERN */
 		for(int i = length-1; i >= 0; i--)
 		{
 			if(legalPattern.get(i).replaceAll("2", "").length() > 2)

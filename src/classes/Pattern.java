@@ -21,6 +21,7 @@ public class Pattern
 		counter = 1;
 	}
 
+	//Compares two Pattern if they are identical
 	public boolean equals(Pattern otherPattern)
 	{
 
