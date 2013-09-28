@@ -50,6 +50,8 @@ public class Main {
 	 	
 	 	// Patterns, that don't appear for Tp times, will be removed
 	 	patternfinder.removeLowAppearencePattern(WORDNUMBER);
+	 	
+	 	patternfinder.sortByAppearences();
 
 	 	LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
 	 	
