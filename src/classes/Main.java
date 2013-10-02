@@ -11,7 +11,7 @@ public class Main {
 	private static int TABLESIZE = 0;
 	private static int WORDNUMBER = 0;
 	private static String path = "kindleDocuments/Gesamttext/Bibel.txt";
-	
+
 	public static void main(String[] args) throws Exception {
 		
 		FileReader fr = new FileReader(path);
@@ -50,8 +50,8 @@ public class Main {
 	 	
 	 	WORDNUMBER = ourHash.textsize;
 	 	
-	 	br.close();
-		fr.close();
+	 	br.close();fr.close();
+
 	 	
 		// The patternfinder can work on the text and return us a list with all patterns we want to search for
 	 	PatternFinder patternfinder = new PatternFinder(path);
@@ -65,10 +65,9 @@ public class Main {
 	 	// Patterns, that don't appear for Tp times, will be removed
 	 	patternfinder.removeLowAppearencePattern(WORDNUMBER);
 
-	 	LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
-	 	
-	 	System.out.println("Ohne High Frequency Words: " +foundPattern.toString());
+		LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
 
+		System.out.println("Ohne High Frequency Words: " +foundPattern.toString());
 	}
 	
 	//Diese Funktion führt dazu, dass Zeilenumbrüche nicht zu zwei getrennten Wörtern führen.

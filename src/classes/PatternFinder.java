@@ -25,10 +25,11 @@ public class PatternFinder
 		this.path = path;
 		foundPattern = new LinkedList<Pattern>();
 		legalPattern = new LinkedList<String>();
-		legalPattern.addLast("CHCH");	// CHCH 
-		legalPattern.addLast("CHC");	// CHC 
-		legalPattern.addLast("CHHC");	// CHHC
-		legalPattern.addLast("HCHC");	// HCHC 
+
+		legalPattern.addLast("CHCH");
+		legalPattern.addLast("CHC");
+		legalPattern.addLast("CHHC");
+		legalPattern.addLast("HCHC");
 	}
 
 	// we will now search in the text for all patterns and save them in foundPattern
@@ -39,6 +40,7 @@ public class PatternFinder
 
 		String text = readInFile();
 
+//		TODO nicht jedes Pattern einzeln den Text durchgehen lassen sondern in einem vorgang
 		while(!legalPattern.isEmpty())
 		{
 			String currentPatternStructure = legalPattern.getFirst();
@@ -51,40 +53,56 @@ public class PatternFinder
 			LinkedList<String> currentWords = new LinkedList<String>();
 
 			// search for words
-			StringTokenizer st = new StringTokenizer(text);
+			StringTokenizer stringToken = new StringTokenizer(text);
 
-			// for i times, give me the next word
-			for(int i = 0; i < patternLength; i++)
-			{
-				if(st.hasMoreTokens())
-				{
-					currentWords.add(st.nextToken());
-				}
-			}
+			inizialiseCurrentWords(patternLength, currentWords, stringToken);
+
+			addFoundPattern(ourHash, currentPatternStructure, currentWords);
+
+			checkNextWords(ourHash, currentPatternStructure, currentWords,
+					stringToken);
+		}
+	}
+
+	private void checkNextWords(WordHashtable ourHash,
+			String currentPatternStructure, LinkedList<String> currentWords,
+			StringTokenizer stringToken) {
+		// take the next i words
+		while(stringToken.hasMoreTokens() && !currentWords.isEmpty())
+		{
+			currentWords.removeFirst();
+			currentWords.add(stringToken.nextToken());
 
 			// if a pattern is found, add it to the list
 			if(isPattern(currentWords, currentPatternStructure, ourHash))
 			{
-				foundPattern.add(new Pattern(currentWords));
-			}
-
-
-			// take the next i words
-			while(st.hasMoreTokens() && !currentWords.isEmpty())
-			{
-				currentWords.removeFirst();
-				currentWords.add(st.nextToken());
-
-				// if a pattern is found, add it to the list
-				if(isPattern(currentWords, currentPatternStructure, ourHash))
+				// patternInList increases Pattern counter if true
+				if (!patternInList(currentWords)) 
 				{
-					// patternInList increases Pattern counter if true
-					if (!patternInList(currentWords)) 
-					{
-						foundPattern.add(new Pattern(currentWords));
-					}
-
+					foundPattern.add(new Pattern(currentWords));
 				}
+
+			}
+		}
+	}
+
+	private void addFoundPattern(WordHashtable ourHash,
+			String currentPatternStructure, LinkedList<String> currentWords) {
+		// if a pattern is found, add it to the list
+		if(isPattern(currentWords, currentPatternStructure, ourHash))
+		{
+			foundPattern.add(new Pattern(currentWords));
+		}
+	}
+
+	private void inizialiseCurrentWords(int patternLength,
+			LinkedList<String> currentWords, StringTokenizer stringToken) {
+		// for i times, give me the next word
+		for(int i = 0; i < patternLength; i++)
+		{
+			if(stringToken.hasMoreTokens())
+			{
+				currentWords.add(stringToken.nextToken());
 			}
 		}
 	}
