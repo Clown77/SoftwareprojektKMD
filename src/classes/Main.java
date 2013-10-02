@@ -35,7 +35,7 @@ public class Main {
 	 	}
 	 	
 	 	ourHash.setHFWBorder();
-	 	ourHash.setHFWBorder();
+	 	ourHash.setCWBorder();
 	 	ourHash.setWordTypes();
 	 	
 	 	ourHash.tableToString();
@@ -57,6 +57,7 @@ public class Main {
 	 	// Patterns, that don't appear for Tp times, will be removed
 	 	patternfinder.removeLowAppearencePattern(WORDNUMBER);
 
+	 	
 	 	LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
 	 	
 	 	System.out.println("Ohne High Frequency Words: " +foundPattern.toString());
