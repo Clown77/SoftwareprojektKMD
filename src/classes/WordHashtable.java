@@ -7,22 +7,23 @@ public class WordHashtable {
 	
 	public Word[] table;
 	
-	// size is prefered to be a prime number
 	int size;		
 	int regularWordsCount = 0;
 	int textsize = 0;
 	
 	// Describes how often a word has to appear in 1 000 000 words 
-	private int TH = 8300;
-	private int TC = 4150;
+	private int TH = 200;
+	private int TC = 100;
 	
 	// hold the values for word categories, calculated for our amount of words
 	private double CONTENT_WORD_BORDER;
 	private double HIGHFREQUENCY_WORD_BORDER;
 	
 	// for better undestanding of the code
-	private final int HIGHFREQUENCY_WORD = 2;
-	private final int NO_MEANING = 0;
+	private final char HIGHFREQUENCY_WORD = 'H';
+	private final char CONTENT_WORD = 'C';
+	private final char NO_MEANING = 'N';
+
 	
 	public WordHashtable(int size)
 	{ 
@@ -62,7 +63,7 @@ public class WordHashtable {
 	// removes all characters that are neither digits nor letters
 	public  String normalize(String word)
 	{
-		word = word.replaceAll("[^a-zA-Z_ßöäü]", "");
+		word = word.replaceAll("[^a-zA-Z\t]", "");
 		return word;
 	}
 	
@@ -147,7 +148,7 @@ public class WordHashtable {
 	
 	// Will return the kind of a word, given as param.
 	// For this, we need to search in our table for exactly the same word
-	public int getKindOfWord(String word)
+	public char getKindOfWord(String word)
 	{
 		int indexOfWordInTable = getIndexOfWordInTable(word);
 		return table[indexOfWordInTable].getKindOfWord();
@@ -165,8 +166,7 @@ public class WordHashtable {
 			// if our code works correctly, this will never happen!
 			if(table[hashValue].isEmpty())
 			{
-				System.out.println(word);
-				throw new RuntimeException(".:: An error occured. The programm has been searching for a word, that does not exist. Normaly this should NEVER happen. Please inform the programmers about it.");
+				throw new RuntimeException(".:: An error occured. The programm has been searching for a word, that does not exist. Normaly this should NEVER happen. Please inform the programmers about it." +word +"<-");
 			}
 			
 			// return the hashValue as index of the word in our table

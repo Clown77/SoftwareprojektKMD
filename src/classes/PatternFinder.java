@@ -7,8 +7,10 @@ import java.util.StringTokenizer;
 
 public class PatternFinder 
 {
-	// Means the pattern has to occure 20 times in 1 million words
-	private final int TP = 20;
+	// Means the pattern has to occure TP times in 1 million words
+	private final int TP = 10;
+	
+	String path;
 	
 	// Contains all possible patterns
 	private LinkedList<String> legalPattern;
@@ -18,14 +20,15 @@ public class PatternFinder
 
 	/** Here you can add more patterns for experiments
 	 */
-	public PatternFinder()
+	public PatternFinder(String path)
 	{
+		this.path = path;
 		foundPattern = new LinkedList<Pattern>();
 		legalPattern = new LinkedList<String>();
-		legalPattern.addLast("1212");	// CHCH
-		legalPattern.addLast("121");	// CHC
-		legalPattern.addLast("1221");	// CHHC
-		legalPattern.addLast("2121");	// HCHC
+		legalPattern.addLast("CHCH");	// CHCH 
+		legalPattern.addLast("CHC");	// CHC 
+		legalPattern.addLast("CHHC");	// CHHC
+		legalPattern.addLast("HCHC");	// HCHC 
 	}
 
 	// we will now search in the text for all patterns and save them in foundPattern
@@ -105,13 +108,13 @@ public class PatternFinder
 	public  String normalize(String word)
 	{
 		// SPACE NEEDED
-		word = word.replaceAll("[^a-zA-Z_ßöäü ]", "");
+		word = word.replaceAll("[^a-zA-Z\t ]", "");
 		return word;
 	}
 
 	public String readInFile() throws Exception
 	{
-		FileReader fr = new FileReader("kindleDocuments/Gesamttext/gesamttext.txt");
+		FileReader fr = new FileReader(path);
 		BufferedReader br = new BufferedReader(fr);
 
 		// we fill the whole text into 'text' --> maybe change it later for better performance
@@ -183,7 +186,7 @@ public class PatternFinder
 
 			for(int i = (length-1); i >= 0; i--)
 			{
-				if(ourHash.getKindOfWord(currentPattern.pattern.get(i)) == 2)
+				if(ourHash.getKindOfWord(currentPattern.pattern.get(i)) == 'H')
 				{
 					currentPattern.pattern.remove(i);
 				}
@@ -203,7 +206,7 @@ public class PatternFinder
 		int length = legalPattern.size();
 		for(int i = length-1; i >= 0; i--)
 		{
-			if(legalPattern.get(i).replaceAll("2", "").length() > 2)
+			if(legalPattern.get(i).replaceAll("H", "").length() > 2)
 			{
 				System.out.println("Illegal Pattern has been removed: " +legalPattern.get(i));
 				legalPattern.remove(i);
