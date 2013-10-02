@@ -59,8 +59,7 @@ public class PatternFinder
 
 			addFoundPattern(ourHash, currentPatternStructure, currentWords);
 
-			checkNextWords(ourHash, currentPatternStructure, currentWords,
-					stringToken);
+			checkNextWords(ourHash, currentPatternStructure, currentWords, stringToken);
 		}
 	}
 

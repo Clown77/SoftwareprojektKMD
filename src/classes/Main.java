@@ -59,11 +59,11 @@ public class Main {
 	 	// in this step the patternfinder collects all patterns. Including High frequency words
 	 	patternfinder.findAllPattern(ourHash);
 	 	
-	 	// High Frequency words are just used to find patterns, but they are not needed for future work anymore
-	 	patternfinder.removeHighFrequencyWords(ourHash);
-	 	
 	 	// Patterns, that don't appear for Tp times, will be removed
 	 	patternfinder.removeLowAppearencePattern(WORDNUMBER);
+	 	
+	 	// High Frequency words are just used to find patterns, but they are not needed for future work anymore
+	 	patternfinder.removeHighFrequencyWords(ourHash);
 
 		LinkedList<Pattern> foundPattern = patternfinder.getFoundPattern();
 
