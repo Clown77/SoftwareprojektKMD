@@ -19,6 +19,7 @@ public class Main {
 	 	
 	 	String zeile = br.readLine();
 	 	
+//	 	TODO while in methode auslagern
 	 	// read the file line for line until its at the end
 	 	while(zeile != null)
 	 	{
@@ -35,7 +36,7 @@ public class Main {
 	 	}
 	 	
 	 	ourHash.setHFWBorder();
-	 	ourHash.setCWFBorder();
+	 	ourHash.setCWBorder();
 	 	ourHash.setWordTypes();
 	 	
 	 	ourHash.tableToString();

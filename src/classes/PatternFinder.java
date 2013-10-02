@@ -22,12 +22,13 @@ public class PatternFinder
 	{
 		foundPattern = new LinkedList<Pattern>();
 		legalPattern = new LinkedList<String>();
-		legalPattern.addLast("CHCH");	// CHCH 1212
-		legalPattern.addLast("CHC");	// CHC 121
-		legalPattern.addLast("CHHC");	// CHHC 1221
-		legalPattern.addLast("HCHC");	// HCHC 2121
+		legalPattern.addLast("CHCH");
+		legalPattern.addLast("CHC");
+		legalPattern.addLast("CHHC");
+		legalPattern.addLast("HCHC");
 	}
 
+//	TODO findAllPattern ist zu lang wen möglich in mehrer Meth benutzen. Vorallem die while in while :D
 	// we will now search in the text for all patterns and save them in foundPattern
 	public void findAllPattern(WordHashtable ourHash) throws Exception
 	{

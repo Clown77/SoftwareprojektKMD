@@ -201,7 +201,7 @@ public class WordHashtable {
 		HIGHFREQUENCY_WORD_BORDER = ((double)(textsize * TH))/1000000.0;
 	}
 	
-	public void setCWFBorder()
+	public void setCWBorder()
 	{
 		CONTENT_WORD_BORDER =  ((double)(textsize * TC))/1000000.0;
 	}
