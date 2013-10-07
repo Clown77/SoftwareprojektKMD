@@ -214,4 +214,28 @@ public class WordHashtable {
 			System.out.println(table[i].getWord() +" " +table[i].getCounter() +" " +table[i].getKindOfWord());
 		}
 	}
+	
+	// I wanted to add this methode for future work. Allows to modify word categories afterwards
+	public boolean changeWordType(String word, char kindOfWord)
+	{
+		if(kindOfWord != 'C' && kindOfWord != 'H' && kindOfWord != 'N') 
+		{
+			System.out.println("Word category \"" +kindOfWord +"\" doesn't excist.");
+			return false;
+		}
+		
+		int index = 0;
+		
+		try 
+		{
+			index = getIndexOfWordInTable(word);
+			table[index].setKindOfWord(kindOfWord);
+			return true;
+		} 
+		catch (RuntimeException notFound) 
+		{
+			System.out.println("The specified word doesn't exist in the text.");
+			return false;
+		}
+	}
 }

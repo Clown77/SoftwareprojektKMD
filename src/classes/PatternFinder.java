@@ -59,7 +59,11 @@ public class PatternFinder
 
 			addFoundPattern(ourHash, currentPatternStructure, currentWords);
 
+			long timestart = System.currentTimeMillis();
 			checkNextWords(ourHash, currentPatternStructure, currentWords, stringToken);
+			long timeend = System.currentTimeMillis();
+			
+			System.out.println("Finished searching for " +currentPatternStructure +"-Pattern. (" +((timeend - timestart)/1000) +" seconds needed)");
 		}
 	}
 
@@ -85,8 +89,8 @@ public class PatternFinder
 		}
 	}
 
-	private void addFoundPattern(WordHashtable ourHash,
-			String currentPatternStructure, LinkedList<String> currentWords) {
+	private void addFoundPattern(WordHashtable ourHash, String currentPatternStructure, LinkedList<String> currentWords) 
+	{
 		// if a pattern is found, add it to the list
 		if(isPattern(currentWords, currentPatternStructure, ourHash))
 		{
