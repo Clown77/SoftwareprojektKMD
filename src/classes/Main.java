@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class Main {
-	
+
 	private final static int WORDNUMBER = 30000;
 	
 	public static void main(String[] args) throws Exception {
@@ -46,5 +46,5 @@ public class Main {
 			if(!tempZeile.endsWith("-")) return tempZeile;
 			tempZeile = tempZeile.concat(br.readLine());		
 		}while(true);
-	}
+	} 
 }
