@@ -38,7 +38,9 @@ public class PatternFinder
 		// tests if there are pattern doubled or with more then two Content words (and removes them)
 		removeIllegalPattern();
 
+		long starttime = System.currentTimeMillis();
 		String text = readInFile();
+		System.out.println("Zeit benötigt zum einlesen der Datei: " +(System.currentTimeMillis()-starttime)/1000 +" seconds");
 
 //		TODO nicht jedes Pattern einzeln den Text durchgehen lassen sondern in einem vorgang
 		while(!legalPattern.isEmpty())
@@ -141,16 +143,17 @@ public class PatternFinder
 		BufferedReader br = new BufferedReader(fr);
 
 		// we fill the whole text into 'text' --> maybe change it later for better performance
-		String text = "";
+		StringBuffer input = new StringBuffer("");
 		String zeile = br.readLine();
 
 		while(zeile != null)
 		{
-			text = text.concat(zeile +" ");
+			input.append(zeile +" ");
 			zeile = br.readLine();
 		}
 
 		// we have to edit the text like we did with the words for the hashtable
+		String text = input.toString();
 		text = text.toLowerCase();
 		text = normalize(text);
 
@@ -163,7 +166,6 @@ public class PatternFinder
 	// returns if it is a pattern or not
 	public boolean isPattern(LinkedList<String> currentWords, String currentPatternStructure, WordHashtable ourHash)
 	{
-
 		int i = 0;
 
 		LinkedList<String> currentWordsCopy = new LinkedList<String>();
