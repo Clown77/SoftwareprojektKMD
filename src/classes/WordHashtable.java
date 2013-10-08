@@ -218,7 +218,7 @@ public class WordHashtable {
 	// I wanted to add this methode for future work. Allows to modify word categories afterwards
 	public boolean changeWordType(String word, char kindOfWord)
 	{
-		if(kindOfWord != 'C' && kindOfWord != 'H' && kindOfWord != 'N') 
+		if(kindOfWord != CONTENT_WORD && kindOfWord != HIGHFREQUENCY_WORD && kindOfWord != NO_MEANING) 
 		{
 			System.out.println("Word category \"" +kindOfWord +"\" doesn't excist.");
 			return false;
