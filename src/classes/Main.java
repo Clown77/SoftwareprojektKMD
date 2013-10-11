@@ -11,7 +11,7 @@ public class Main {
 	private static int TABLESIZE = 0;
 	private static int WORDNUMBER = 0;
 	private static String path = "kindleDocuments/Gesamttext/Bibel.txt";
-
+	
 	public static void main(String[] args) throws Exception {
 		
 		long programmStartTime = System.currentTimeMillis();
@@ -87,7 +87,7 @@ public class Main {
 		System.out.println("Total time needed: " +programTimeNeeded +" seconds");
 	}
 	
-	//Diese Funktion führt dazu, dass Zeilenumbrüche nicht zu zwei getrennten Wörtern führen.
+	//Diese Funktion fÃ¼hrt dazu, dass Zeilenumbrhe nicht zu zwei getrennten WÃ¶rtern fÃ¼hren.
 	public static String handleLineBreak (String tempZeile, BufferedReader br) throws IOException
 	{
 		do
