@@ -40,7 +40,7 @@ public class PatternFinder
 
 		long starttime = System.currentTimeMillis();
 		String text = readInFile();
-		System.out.println("Zeit benötigt zum einlesen der Datei: " +(System.currentTimeMillis()-starttime)/1000 +" seconds");
+		System.out.println("Zeit benï¿½tigt zum einlesen der Datei: " +(System.currentTimeMillis()-starttime)/1000 +" seconds");
 
 //		TODO nicht jedes Pattern einzeln den Text durchgehen lassen sondern in einem vorgang
 		while(!legalPattern.isEmpty())
@@ -133,7 +133,7 @@ public class PatternFinder
 	public  String normalize(String word)
 	{
 		// SPACE NEEDED
-		word = word.replaceAll("[^a-zA-Z\t ]", "");
+		word = word.replaceAll("[^a-z\t'\u00e4''\u00f4''\u00f6''\u00df' ]", "");
 		return word;
 	}
 
