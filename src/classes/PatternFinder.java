@@ -10,20 +10,23 @@ public class PatternFinder
 	// Means the pattern has to occure TP times in 1 million words
 	private final int TP = 10;
 	
-	String path;
+	String PATH;
+	int WORDNUMBER;
 	
 	// Contains all possible patterns
 	private LinkedList<String> legalPattern;
 
 	// Contains all pattern that were found in the text
-	private LinkedList<Pattern> foundPattern;
+	private LinkedList<LinkedList<Pattern>> foundPattern;
 
 	/** Here you can add more patterns for experiments
 	 */
-	public PatternFinder(String path)
+	public PatternFinder(String path, int WORDNUMBER)
 	{
-		this.path = path;
-		foundPattern = new LinkedList<Pattern>();
+		this.PATH = path;
+		this.WORDNUMBER = WORDNUMBER;
+		
+		foundPattern = new LinkedList<LinkedList<Pattern>>();
 		legalPattern = new LinkedList<String>();
 
 		legalPattern.addLast("CHCH");
@@ -67,7 +70,13 @@ public class PatternFinder
 			checkNextWords(ourHash, currentPatternStructure, currentWords, stringToken, tempList);
 			long timeend = System.currentTimeMillis();
 			
-			foundPattern.addAll(tempList);
+			// in this list we don't need the HFW's any more
+			removeHighFrequencyWords(ourHash, tempList);
+			
+			// Pattern that don't appear often enough are removed
+			removeLowAppearencePattern(WORDNUMBER, tempList);
+			
+			foundPattern.add(tempList);
 			
 			System.out.println("Finished searching for " +currentPatternStructure +"-Pattern. (" +((timeend - timestart)/1000) +" seconds needed)");
 		}
@@ -139,7 +148,7 @@ public class PatternFinder
 
 	public String readInFile() throws Exception
 	{
-		FileReader fr = new FileReader(path);
+		FileReader fr = new FileReader(PATH);
 		BufferedReader br = new BufferedReader(fr);
 
 		// we fill the whole text into 'text' --> maybe change it later for better performance
@@ -203,9 +212,9 @@ public class PatternFinder
 
 
 	// We don't need the High Frequency words anymore, so we return a copy of our pattern that just contains the Content words
-	public void removeHighFrequencyWords(WordHashtable ourHash)
+	public void removeHighFrequencyWords(WordHashtable ourHash, LinkedList<Pattern> tempList)
 	{
-		for (Pattern currentPattern : foundPattern) {
+		for (Pattern currentPattern : tempList) {
 
 			int length = currentPattern.pattern.size();
 
@@ -220,7 +229,7 @@ public class PatternFinder
 	}
 
 	/**@return Returns null, if the methode 'findAllPattern' has not been used before.*/
-	public LinkedList<Pattern> getFoundPattern()
+	public LinkedList<LinkedList<Pattern>> getFoundPattern()
 	{
 		return foundPattern;
 	}
@@ -240,16 +249,16 @@ public class PatternFinder
 	}
 	
 	// Can be used only, if the method 'findAllPattern' has been calles before
-	public void removeLowAppearencePattern(final int WORDNUMBER)
+	public void removeLowAppearencePattern(final int WORDNUMBER, LinkedList<Pattern> tempList)
 	{
 		// Change TP for tests
 		double ratio = TP/1000000.0;
 		double patternRatio = 0;
 		
-		for (int i = (foundPattern.size()-1); i >= 0; i--) 
+		for (int i = (tempList.size()-1); i >= 0; i--) 
 		{
-			patternRatio = (double)(foundPattern.get(i).getCounter())/WORDNUMBER;
-			if(patternRatio < ratio) foundPattern.remove(i);
+			patternRatio = (double)(tempList.get(i).getCounter())/WORDNUMBER;
+			if(patternRatio < ratio) tempList.remove(i);
 		}
 	}
 }
