@@ -1,7 +1,7 @@
 package classes;
 
-import java.util.StringTokenizer;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class WordHashtable {
 	
