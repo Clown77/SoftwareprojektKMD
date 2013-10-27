@@ -55,10 +55,6 @@ public class Main {
          
          System.out.println("Word categories set.");
          
-         ourHash.changeWordType("jesus", 'C');
-         ourHash.changeWordType("gott", 'C');
-         ourHash.changeWordType("herr", 'C');
-         
          System.out.println("Postprocessing word categories has been successfull.");
          
          //ourHash.tableToString();
@@ -74,6 +70,9 @@ public class Main {
         {
             SinglePatternGraph spg = new SinglePatternGraph(foundPattern.get(i));
         }
+        
+        System.out.println("Alle Pattern haben den Wert: " +foundPattern.get(0).get(0).getM1_Value());
+        System.out.println("Alle Pattern haben den Wert: " +foundPattern.get(0).get(0).getM2_Value());
         
         long programTimeNeeded = (System.currentTimeMillis() - programmStartTime)/1000;
         
