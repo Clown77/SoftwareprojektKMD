@@ -70,18 +70,32 @@ public class Main {
 		{
 			SinglePatternGraph spg = new SinglePatternGraph(foundPattern.get(i));
 		}
-
-		System.out.println("Alle Pattern haben den Wert M1 = : " +foundPattern.get(0).get(0).getM1_Value());
-		System.out.println("Alle Pattern haben den Wert M2 = : " +foundPattern.get(0).get(0).getM2_Value());
-		System.out.println("Alle Pattern haben den Wert M3 = : " +foundPattern.get(0).get(0).getM3_Value());
+		
+//		just for testing (can be deleted)
+//		System.out.println("Alle Pattern haben den Wert M1 = : " +foundPattern.get(0).get(0).getM1_Value());
+//		System.out.println("Alle Pattern haben den Wert M2 = : " +foundPattern.get(0).get(0).getM2_Value());
+//		System.out.println("Alle Pattern haben den Wert M3 = : " +foundPattern.get(0).get(0).getM3_Value());
 
 		ListHandler listHandler = new ListHandler(foundPattern);
+		
 		listHandler.sortPatternCandidates();
+		
+		System.out.println("M1 länge vor kürtzen " + listHandler.M1Sorted.size());
+		System.out.println("M2 länge vor kürtzen " + listHandler.M2Sorted.size());
+		System.out.println("M2 länge vor kürtzen " + listHandler.M3Sorted.size());
+		
+		listHandler.cleanSortedLists();
+		
+		System.out.println("M1 länge nach kürtzen " + listHandler.M1Sorted.size());
+		System.out.println("M2 länge nach kürtzen " + listHandler.M2Sorted.size());
+		System.out.println("M2 länge nach kürtzen " + listHandler.M3Sorted.size());
 
-		System.out.println(listHandler.M1Sorted);
-		System.out.println(listHandler.M2Sorted);
-		System.out.println(listHandler.M3Sorted);
-
+		System.out.println("M1 sortiert "+listHandler.M1Sorted);
+		System.out.println("M2 sortiert "+listHandler.M2Sorted);
+		System.out.println("M3 sortiert "+listHandler.M3Sorted);
+		
+		
+		
 		System.out.println("M1 of CHCH"+foundPattern.get(0).get(0).getM1_Value());
 		System.out.println("M2 of CHCH"+foundPattern.get(0).get(0).getM2_Value());
 		System.out.println("M3 of CHCH"+foundPattern.get(0).get(0).getM3_Value());
