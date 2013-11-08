@@ -71,15 +71,16 @@ public class Main {
             SinglePatternGraph spg = new SinglePatternGraph(foundPattern.get(i));
         }
         
-        System.out.println("Alle Pattern haben den Wert: " +foundPattern.get(0).get(0).getM1_Value());
-        System.out.println("Alle Pattern haben den Wert: " +foundPattern.get(0).get(0).getM2_Value());
+        System.out.println("Alle Pattern haben den Wert M1 = : " +foundPattern.get(0).get(0).getM1_Value());
+        System.out.println("Alle Pattern haben den Wert M2 = : " +foundPattern.get(0).get(0).getM2_Value());
+        System.out.println("Alle Pattern haben den Wert M3 = : " +foundPattern.get(0).get(0).getM3_Value());
         
         long programTimeNeeded = (System.currentTimeMillis() - programmStartTime)/1000;
         
         System.out.println("Total time needed: " +programTimeNeeded +" seconds");
     }
     
-    //Diese Funktion führt dazu, dass Zeilenumbrhe nicht zu zwei getrennten Wörtern führen.
+    //Diese Funktion führt dazu, dass Zeilenumbr�che nicht zu zwei getrennten Wörtern führen.
     public static String handleLineBreak (String tempZeile, BufferedReader br) throws IOException
     {
         do
