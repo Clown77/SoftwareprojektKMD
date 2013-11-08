@@ -12,7 +12,7 @@ public class PatternFinder
     int WORDNUMBER;
     
     // Contains all possible patterns
-    private LinkedList<String> legalPattern;
+    public LinkedList<String> legalPattern;
     // Contains all pattern that were found in the text
     private LinkedList<LinkedList<Pattern>> foundPattern;
     /** Here you can add more patterns for experiments
@@ -24,10 +24,10 @@ public class PatternFinder
         
         foundPattern = new LinkedList<LinkedList<Pattern>>();
         legalPattern = new LinkedList<String>();
-        //legalPattern.addLast("CHCH");
+        legalPattern.addLast("CHCH");
         legalPattern.addLast("CHC");
-        //legalPattern.addLast("CHHC");
-        //legalPattern.addLast("HCHC");
+        legalPattern.addLast("CHHC");
+        legalPattern.addLast("HCHC");
     }
     // we will now search in the text for all patterns and save them in foundPattern
     public void findAllPattern(WordHashtable ourHash) throws Exception
