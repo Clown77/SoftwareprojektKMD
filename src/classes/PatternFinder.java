@@ -37,7 +37,6 @@ public class PatternFinder
         long starttime = System.currentTimeMillis();
         String text = readInFile();
         System.out.println("Zeit ben�tigt zum einlesen der Datei: " +(System.currentTimeMillis()-starttime)/1000 +" seconds");
-//        TODO nicht jedes Pattern einzeln den Text durchgehen lassen sondern in einem vorgang
         while(!legalPattern.isEmpty())
         {
             LinkedList<Pattern> tempList = new LinkedList<Pattern>();

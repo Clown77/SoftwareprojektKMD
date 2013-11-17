@@ -85,4 +85,15 @@ public class Pattern
 
 	public void setM3_Value(double m3_Value) { M3_Value = m3_Value; }
 	
+	public double getM_Value(int mType) {
+		switch (mType) {
+		case 1: return M1_Value;
+		case 2: return M2_Value;
+		case 3: return M3_Value;
+			
+		default:
+			throw new RuntimeException("wrong integer value!");
+		}
+	}
+	
 }

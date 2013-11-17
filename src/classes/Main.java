@@ -78,7 +78,10 @@ public class Main {
 
 		ListHandler listHandler = new ListHandler(foundPattern);
 		
-		listHandler.sortPatternCandidates();
+		listHandler.sortPatternCandidatesM(1);
+		listHandler.sortPatternCandidatesM(2);
+		listHandler.sortPatternCandidatesM(3);
+		
 		
 		System.out.println("M1 länge vor kürtzen " + listHandler.M1Sorted.size());
 		System.out.println("M2 länge vor kürtzen " + listHandler.M2Sorted.size());
