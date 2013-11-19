@@ -5,9 +5,6 @@ import java.util.LinkedList;
 
 public class ListHandler {
 	LinkedList<LinkedList<Pattern>> patternCandidates;
-	// TODO: In speicher erst inizialisieren wen es gebraucht wird;
-	LinkedList<Pattern> sortetList = new LinkedList<Pattern>();
-
 	// TODO: In Speicher erst inizialisieren wen es gebraucht wird;
 	LinkedList<Pattern> M1Sorted = new LinkedList<Pattern>();
 	LinkedList<Pattern> M2Sorted = new LinkedList<Pattern>();
@@ -19,44 +16,30 @@ public class ListHandler {
 
 	}
 
-	// sort pattern and add them in Mi in Pattern
+	// sort pattern and add them in M(mType) in Pattern
 	public void sortPatternCandidatesM(int mType) {
-		// sort for m1
-		sort(mType);
-		// add sortetList to MiSorted
-		for (Pattern currentList : sortetList) {
+		@SuppressWarnings("unchecked")
+		LinkedList<LinkedList<Pattern>> copyPatternCandidates = (LinkedList<LinkedList<Pattern>>) patternCandidates.clone();
+		while (!copyPatternCandidates.isEmpty()) {
+			int smalestValue = 0;
+			for (LinkedList<Pattern> linkedList : copyPatternCandidates) {
+				if (linkedList.get(0).getM_Value(mType) < copyPatternCandidates.get(smalestValue).get(0).getM_Value(mType)) {
+					smalestValue = copyPatternCandidates.indexOf(linkedList);
+				}
+			}
 			switch (mType) {
-			case 1:
-				M1Sorted.add(currentList);
+			case 1:M1Sorted.addAll(copyPatternCandidates.get(smalestValue));
 				break;
-			case 2:
-				M2Sorted.add(currentList);
+			case 2:M2Sorted.addAll(copyPatternCandidates.get(smalestValue));
 				break;
-			case 3:
-				M3Sorted.add(currentList);
+			case 3:M3Sorted.addAll(copyPatternCandidates.get(smalestValue));
 				break;
 
 			default:
 				throw new RuntimeException("wrong M Value");
 			}
+			copyPatternCandidates.remove(smalestValue);
 		}
-		sortetList.clear();
-	}
-
-	private void sort(int mType) {
-		// TODO: adding pattern from patternCandidates to Linkedlist<Pattern> is
-		// not possible
-		for (LinkedList<Pattern> PatternLink : patternCandidates) {
-			if (patternCandidates.isEmpty()) {
-				System.out.println("patternCandidates ist lehr");
-			} else {
-				sortetList.addAll(PatternLink); // throws Nullpointer Exeption
-				// becouse foundpattern semms
-				// empty
-			}
-
-		}
-		// TODO: sort sortedList
 	}
 
 	// A Version of Felix (not working, same Problem withe NullpointerExeption)

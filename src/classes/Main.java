@@ -70,11 +70,6 @@ public class Main {
 		{
 			SinglePatternGraph spg = new SinglePatternGraph(foundPattern.get(i));
 		}
-		
-//		just for testing (can be deleted)
-//		System.out.println("Alle Pattern haben den Wert M1 = : " +foundPattern.get(0).get(0).getM1_Value());
-//		System.out.println("Alle Pattern haben den Wert M2 = : " +foundPattern.get(0).get(0).getM2_Value());
-//		System.out.println("Alle Pattern haben den Wert M3 = : " +foundPattern.get(0).get(0).getM3_Value());
 
 		ListHandler listHandler = new ListHandler(foundPattern);
 		
