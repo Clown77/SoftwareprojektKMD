@@ -9,7 +9,6 @@ public class ListHandler {
 	LinkedList<Pattern> M1Sorted = new LinkedList<Pattern>();
 	LinkedList<Pattern> M2Sorted = new LinkedList<Pattern>();
 	LinkedList<Pattern> M3Sorted = new LinkedList<Pattern>();
-	LinkedList<Pattern> patternM1 = new LinkedList<Pattern>();
 
 	public ListHandler(LinkedList<LinkedList<Pattern>> patternCandidates) {
 		this.patternCandidates = patternCandidates;
@@ -41,30 +40,6 @@ public class ListHandler {
 			copyPatternCandidates.remove(smalestValue);
 		}
 	}
-
-	// A Version of Felix (not working, same Problem withe NullpointerExeption)
-	// public void sortPatternCandidatesM(int mType) {
-	//
-	// for (LinkedList<Pattern> currentLinked : patternCandidates) {
-	// for (Pattern pattern : currentLinked) {
-	// patternM1.add(pattern);
-	// }
-	// }
-	//
-	// M1Sorted.add(patternM1.getFirst());
-	//
-	// for(int i = 1; i < patternM1.size(); i++){
-	//
-	// for(int j = 0; j < M1Sorted.size(); j++){
-	//
-	// if(patternM1.get(i).getM_Value(mType) <
-	// M1Sorted.get(j).getM_Value(mType))
-	// M1Sorted.add(j, patternM1.get(i));
-	// else M1Sorted.addLast(patternM1.get(i));
-	// }
-	// }
-	//
-	// }
 
 	public void cleanSortedLists() {
 		// clean M1
