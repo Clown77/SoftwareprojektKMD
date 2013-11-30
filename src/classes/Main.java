@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Main {
  
     /** @DEBUG_MODE Set true to get information about the process in the terminal*/
-    private static boolean DEBUG_MODE = false;
+    private static boolean DEBUG_MODE = true;
    
     private static int TABLESIZE = 0;
     private static int WORDNUMBER = 0;
@@ -45,7 +45,7 @@ public class Main {
         if(DEBUG_MODE) System.out.println("Total time needed: " +((System.currentTimeMillis() - programmStartTime)/1000) +" seconds");
     }
  
-    //Diese Funktion führt dazu, dass Zeilenumbr�che nicht zu zwei getrennten Wörtern führen.
+    //Diese Funktion führt dazu, dass Zeilenumbr�che nicht zu zwei getrennten Wörtern führen.
     public static String handleLineBreak (String tempZeile, BufferedReader br) throws IOException
     {
         do
