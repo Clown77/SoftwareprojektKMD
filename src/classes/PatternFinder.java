@@ -32,9 +32,9 @@ public class PatternFinder
         legalPattern = new LinkedList<String>();
        
         legalPattern.addLast("CHCH");
-        //legalPattern.addLast("CHC");
-        //legalPattern.addLast("CHHC");
-        //legalPattern.addLast("HCHC");
+        legalPattern.addLast("CHC");
+        legalPattern.addLast("CHHC");
+        legalPattern.addLast("HCHC");
     }
     // we will now search in the text for all patterns and save them in foundPattern
     public void findAllPattern(WordHashtable ourHash) throws Exception

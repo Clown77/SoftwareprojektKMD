@@ -10,9 +10,69 @@ public class ListHandler {
 	LinkedList<Pattern> M2Sorted = new LinkedList<Pattern>();
 	LinkedList<Pattern> M3Sorted = new LinkedList<Pattern>();
 
+	/**Top x of each list remain*/
+	private int zT = 100;
+	/**Last x of each list to delete*/
+	private int zB = 20;
+	
 	public ListHandler(LinkedList<LinkedList<Pattern>> patternCandidates) {
 		this.patternCandidates = patternCandidates;
 
+	}
+
+	/**
+	 * {@code}search for last MSorted zB and delete in other MSorted 
+	 * @param mType Type of MSorted to opperate
+	 * @throws Exception if getSortedM gets an invalid mType
+	 */
+	public void removeDoubleM(int mType) throws Exception {
+		for (int i = getSortedM(mType).size(); i > zB; i--) {
+			for (int j = 0; j < getSortedM((mType%3)+1).size(); j++) {
+				if (getSortedM(mType).getLast().equals(getSortedM((mType%3)+1).get(j))) {
+					getSortedM((mType%3)+1).remove(j);
+					break;
+				}
+			}
+			for (int k = 0; k < getSortedM((mType%3)+2).size(); k++) {
+				if (getSortedM(mType).getLast().equals(getSortedM((mType%3)+2).get(k))) {
+					getSortedM((mType%3)+2).remove(k);
+					break;
+				}
+			}
+			getSortedM(mType).removeLast();
+		}
+	}
+
+	/**
+	 * {@code}short MSorted to zT
+	 * @param mType Type of MSorted to opperate
+	 * @throws Exception if getSortedM gets an invalid mType
+	 */
+	public void clearZT_M(int mType) throws Exception {
+		if (getSortedM(mType).size()>=zT) {
+			int sizeM = getSortedM(mType).size();
+			for (int i = 0; i < sizeM-zT; i++) {
+				getSortedM(mType).removeLast();
+			}
+		}
+	}
+
+	/**
+	 * @param mType Type of MSorted to opperate
+	 * @return MSorted
+	 * @throws Exception gets an invalid mType
+	 */
+	public LinkedList<Pattern> getSortedM(int mType) throws Exception {
+		switch (mType) {
+		case 1:
+			return M1Sorted;
+		case 2: 
+			return M2Sorted;
+		case 3:
+			return M3Sorted;
+		default:
+			throw new Exception("invalid mType");
+		}
 	}
 
 	// sort pattern and add them in M(mType) in Pattern
@@ -28,11 +88,11 @@ public class ListHandler {
 			}
 			switch (mType) {
 			case 1:M1Sorted.addAll(copyPatternCandidates.get(smalestValue));
-				break;
+			break;
 			case 2:M2Sorted.addAll(copyPatternCandidates.get(smalestValue));
-				break;
+			break;
 			case 3:M3Sorted.addAll(copyPatternCandidates.get(smalestValue));
-				break;
+			break;
 
 			default:
 				throw new RuntimeException("wrong M Value");
@@ -41,24 +101,5 @@ public class ListHandler {
 		}
 	}
 
-	public void cleanSortedLists() {
-		// clean M1
-		if (M1Sorted.size() <= 100)
-			;
-		else
-			M1Sorted = (LinkedList<Pattern>) M1Sorted.subList(
-					M1Sorted.size() - 100, M1Sorted.size());
-		// clean M2
-		if (M2Sorted.size() <= 100)
-			;
-		else
-			M2Sorted = (LinkedList<Pattern>) M2Sorted.subList(
-					M2Sorted.size() - 100, M2Sorted.size());
-		// clean M3
-		if (M3Sorted.size() <= 100)
-			;
-		else
-			M3Sorted = (LinkedList<Pattern>) M3Sorted.subList(
-					M3Sorted.size() - 100, M3Sorted.size());
-	}
+
 }
