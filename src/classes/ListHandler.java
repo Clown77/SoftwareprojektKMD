@@ -9,10 +9,15 @@ public class ListHandler {
 	LinkedList<Pattern> M1Sorted = new LinkedList<Pattern>();
 	LinkedList<Pattern> M2Sorted = new LinkedList<Pattern>();
 	LinkedList<Pattern> M3Sorted = new LinkedList<Pattern>();
+	LinkedList<Pattern> completeList;
 
-	/**Top x of each list remain*/
+	/**
+	 * Top x of each list remain
+	 */
 	private int zT = 100;
-	/**Last x of each list to delete*/
+	/**
+	 * Last x of each list to delete
+	 */
 	private int zB = 20;
 	
 	public ListHandler(LinkedList<LinkedList<Pattern>> patternCandidates) {
@@ -75,7 +80,10 @@ public class ListHandler {
 		}
 	}
 
-	// sort pattern and add them in M(mType) in Pattern
+	/** 
+	 * sort pattern and add them in M(mType) in Pattern
+	 * @param mType Type of MSorted to opperate
+	 */
 	public void sortPatternCandidatesM(int mType) {
 		@SuppressWarnings("unchecked")
 		LinkedList<LinkedList<Pattern>> copyPatternCandidates = (LinkedList<LinkedList<Pattern>>) patternCandidates.clone();
@@ -100,6 +108,71 @@ public class ListHandler {
 			copyPatternCandidates.remove(smalestValue);
 		}
 	}
+	
+	/**
+	 * {@code}inizialise completeList
+	 * @param completeList = M1Sorted + M2Sorted + M3Sorted
+	 */
+	public void inizializeCompleteList() {
+		LinkedList<Pattern> completeList = new LinkedList<Pattern>();
+		completeList.addAll(M1Sorted);
+		completeList.addAll(M2Sorted);
+		completeList.addAll(M3Sorted);
+		deleteDoublePattern(completeList);
+	}
 
+	/**
+	 * deletes double pattern in the List
+	 * @param completeList
+	 */
+	private void deleteDoublePattern(LinkedList<Pattern> completeList) {
+		for (Pattern pattern : completeList) {
+			for (Pattern pattern2 : completeList) {
+				if (pattern.equals(pattern2)) {
+					completeList.remove(pattern2);
+				}
+			}
+		}
+	}
+
+	
+	/**
+	 * searches for binary pairs in the completeList
+	 * @param completeList is the complete List of found Pattern after m1,m2,m3
+	 * @return LinkedList<Pattern> twoBinaryList is a list of pairs of Pattern which are binary conected
+	 */
+	public LinkedList<Pattern> findtwoBinarys(LinkedList<Pattern> completeList) {
+		
+		LinkedList<Pattern> twoBinaryList = new LinkedList<Pattern>();
+		
+		for (int i = 0; i < completeList.size(); i++) {
+			for (int j = i; j < completeList.size(); j++) {
+				if (completeList.get(i).pattern.getFirst().equalsIgnoreCase(completeList.get(j).pattern.getLast()) 
+					&&completeList.get(i).pattern.getLast().equalsIgnoreCase(completeList.get(j).pattern.getFirst())){
+					twoBinaryList.add(completeList.get(i));
+				}
+			}
+		}
+		
+		return twoBinaryList;
+	}
+	
+	public LinkedList<Pattern> searchCcompleteCluster(LinkedList<Pattern> binaryList) {
+		
+		LinkedList<Pattern> completeCluster = new LinkedList<Pattern>();
+		
+		
+		/*
+		 * TODO: durchsucht binaryList ob ein element eines Patterns in einem anderen Pattern vorkommt und fügt sie in die complete Cluster ein
+		 * damit sie dann wider dursucht werden können um ein cluster zu suchen
+		 */
+		for (int i = 0; i < binaryList.size(); i++) {
+			for (int j = i; j < binaryList.size(); j++) {
+				
+			}
+		}
+		
+		return null;
+	}
 
 }

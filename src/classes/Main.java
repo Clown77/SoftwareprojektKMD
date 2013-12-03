@@ -36,7 +36,7 @@ public class Main {
        
         for(int i = 0; i < foundPattern.size(); i++) { SinglePatternGraph spg = new SinglePatternGraph(foundPattern.get(i)); }
        
-        // The listHandler will sort the patterns by M1, M2 and M3 and then create a final list of pattern candidates
+        /**@listHandler Sort the patterns by M1, M2 and M3 and then create a final list of pattern candidates*/
         ListHandler listHandler = new ListHandler(foundPattern);
         listHandler.sortPatternCandidatesM(1);
         listHandler.sortPatternCandidatesM(2);
@@ -45,7 +45,7 @@ public class Main {
         if(DEBUG_MODE) System.out.println("Total time needed: " +((System.currentTimeMillis() - programmStartTime)/1000) +" seconds");
     }
  
-    //Diese Funktion führt dazu, dass Zeilenumbr�che nicht zu zwei getrennten Wörtern führen.
+    /**Linebreaks won't cut words.*/
     public static String handleLineBreak (String tempZeile, BufferedReader br) throws IOException
     {
         do

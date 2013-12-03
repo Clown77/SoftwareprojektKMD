@@ -113,8 +113,8 @@ public class SinglePatternGraph
         }
     }
    
-    // Each meta pattern gains a value M1, M2 and M3
-    // M1 = |{x|Ex(y) A(x,y) ^ Ex(z) A(z,x)}|/|Nodes(G(P))|
+    /** Each meta pattern gains a value M1, M2 and M3
+    *@param M1 = |{x|Ex(y) A(x,y) ^ Ex(z) A(z,x)}|/|Nodes(G(P))|*/
     public void calculateM1Value()
     {
         int symmetrie_counter = 0;
@@ -139,8 +139,8 @@ public class SinglePatternGraph
         M1Value = ((double)(symmetrie_counter))/(double)vertex_counter;       
     }
    
-    // can be used, after the function buildSymGraph was called
-    // M2 = |Nodes(SymG(P))|/|Nodes(G(P))|
+    /** can be used, after the function buildSymGraph was called
+    *@param M2 = |Nodes(SymG(P))|/|Nodes(G(P))|*/
     public void calculateM2Value()
     {
         BreadthFirstIterator<String, DefaultEdge> iterator = new BreadthFirstIterator<String, DefaultEdge>(symGraph);
@@ -161,8 +161,8 @@ public class SinglePatternGraph
         M2Value = (double)symmetric_node_counter/(double)node_counter;       
     }
    
-    // can be used after buildSymGraph() was called
-    // M3 = |Arcs(SymG(P))| / |Arcs(G(P))|
+    /** {@code}can be used after buildSymGraph() was called 
+     * @param M3 = |Arcs(SymG(P))| / |Arcs(G(P))|*/
     public void calculateM3Value()
     {
         Set<DefaultEdge> symGraphEdges = symGraph.edgeSet();
@@ -174,7 +174,7 @@ public class SinglePatternGraph
         M3Value = (double)edgesCountSymGraph/(double)edgesCountGraph;
     }
    
-    // can be used after setM1Values() calculated M1. This methode will now set M1 for all Pattern.
+    /** can be used after setM1Values() calculated M1. This methode will now set M1 for all Pattern*/
     public void sendMeasurementsToPattern()
     {
         for (Pattern currentPattern : patternCandidates)
