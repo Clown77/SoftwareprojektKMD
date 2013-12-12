@@ -41,6 +41,12 @@ public class Main {
         listHandler.sortPatternCandidatesM(1);
         listHandler.sortPatternCandidatesM(2);
         listHandler.sortPatternCandidatesM(3);
+        
+        listHandler.clearAllM();
+        
+        listHandler.generateCliques();
+        
+        System.out.println(listHandler.completeClique);
  
         if(DEBUG_MODE) System.out.println("Total time needed: " +((System.currentTimeMillis() - programmStartTime)/1000) +" seconds");
     }

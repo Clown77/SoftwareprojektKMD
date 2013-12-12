@@ -96,4 +96,15 @@ public class Pattern
 		}
 	}
 	
+	public boolean patternHasSameString(Pattern pattern){
+		if (this.pattern.getFirst().equals(pattern.pattern.getFirst())||
+				this.pattern.getFirst().equals(pattern.pattern.getLast())||
+						this.pattern.getLast().equals(pattern.pattern.getFirst())||
+						this.pattern.getLast().equals(pattern.pattern.getLast())) {
+			return true;
+		}
+		return false;
+		
+	}
+	
 }
