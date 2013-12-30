@@ -32,17 +32,20 @@ public class ListHandler {
 
 	public void clearAllM() throws Exception 
 	{	
+		// removes pattern that appear in the ZB of any list
+		removeDoubleM();
+		
 		for (int i = 1; i <= 3; i++) 
 		{
-			// removes pattern that appear in the ZB of any list
-			removeDoubleM(i);
+			
+			// TODO
 			clearZT_M(i);
 		}
 		
 	}
 
 	/**
-	 * @param mType Type of MSorted to opperate
+	 * @param mType Type of MSorted to operate
 	 * @return MSorted
 	 * @throws Exception gets an invalid mType
 	 */
@@ -257,7 +260,7 @@ public class ListHandler {
 	 */
 	
 	//TODO: Alle die gelöscht werden sollen in eine Liste Packen und erst dann aus den jeweiligen Listen entfernen
-	private void removeDoubleM(int mType) throws Exception 
+	private void removeDoubleM() throws Exception 
 	{
 		LinkedList<Pattern> ZBElements = new LinkedList<Pattern>();
 		
