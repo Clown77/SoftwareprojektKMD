@@ -38,10 +38,13 @@ public class Main {
        
         /**@listHandler Sort the patterns by M1, M2 and M3 and then create a final list of pattern candidates*/
         ListHandler listHandler = new ListHandler(foundPattern);
+        
+        /** STATUS = CHECKED */ 
         listHandler.sortPatternCandidatesM(1);
         listHandler.sortPatternCandidatesM(2);
         listHandler.sortPatternCandidatesM(3);
         
+        /** Removes all Patterns that appear in the Bottom ZB of any List and shortens the list to max ZT Elements per List */
         listHandler.clearAllM();
         
         listHandler.generateCliques();
