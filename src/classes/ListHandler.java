@@ -278,6 +278,7 @@ public class ListHandler {
 
 	
 
-	
+	//TODO: doppelte Cliquen löschen
+
 
 }
