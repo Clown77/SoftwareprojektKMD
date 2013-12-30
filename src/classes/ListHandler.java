@@ -12,9 +12,9 @@ public class ListHandler {
 	LinkedList<Pattern> M1Sorted = new LinkedList<Pattern>();
 	LinkedList<Pattern> M2Sorted = new LinkedList<Pattern>();
 	LinkedList<Pattern> M3Sorted = new LinkedList<Pattern>();
-	LinkedList<Pattern> completeList;
+	LinkedList<Pattern> completeList = new LinkedList<Pattern>();
 	LinkedList<Pattern> bydirectionalList;
-	LinkedList<LinkedList<Pattern>> completeClique;
+	LinkedList<LinkedList<Pattern>> completeClique = new LinkedList<LinkedList<Pattern>>();
 
 	/**
 	 * Top x of each list remain
@@ -89,7 +89,7 @@ public class ListHandler {
 	public void generateCliques() {
 		inizializeCompleteList();
 		findBydirectionalList();
-		searchCcompleteClique();
+		searchCompleteClique();
 	}
 	
 	/**
@@ -97,7 +97,7 @@ public class ListHandler {
 	 * @param completeList = M1Sorted + M2Sorted + M3Sorted
 	 */
 	private void inizializeCompleteList() {
-		LinkedList<Pattern> completeList = new LinkedList<Pattern>();
+		
 		completeList.addAll(M1Sorted);
 		completeList.addAll(M2Sorted);
 		completeList.addAll(M3Sorted);
@@ -127,9 +127,7 @@ public class ListHandler {
 	 * creates completeCluster and fills it whith all connections of Words from twoBinaryList 
 	 * and cleans then the ones whithout at least one binary Conection and conections to all Words
 	 */
-	private void searchCcompleteClique() {
-		
-		LinkedList<LinkedList<Pattern>> completeClique = new LinkedList<LinkedList<Pattern>>();
+	private void searchCompleteClique() {
 		
 		fillCompleteClique();
 		
@@ -137,10 +135,15 @@ public class ListHandler {
 		
 	}
 
+	/**
+	 * creates completeCluster and fills it whith all connections of Words from twoBinaryList 
+	 */
 	private void fillCompleteClique() {
 		
 		for (int i = 0; i < completeList.size(); i++) {
-			completeClique.addAll((Collection<? extends LinkedList<Pattern>>) completeList.get(i));
+			// add first element for checking
+			completeClique.add(new LinkedList<Pattern>());
+			completeClique.getLast().add(completeList.get(i));
 			for (int j = i+1; j < completeList.size(); j++) {
 				if (completeList.get(i).patternHasSameString(completeList.get(j))) {
 					completeClique.getLast().add(completeList.get(j));
@@ -153,6 +156,9 @@ public class ListHandler {
 		
 	}
 
+	/**
+	 * cleans then the ones whithout at least one binary Conection and conections to all Words
+	 */
 	private void cleanCompleteClique() {
 		
 		deleteDoubleConections();
@@ -255,7 +261,9 @@ public class ListHandler {
 	 * @param completeList
 	 */
 	private void deleteDoublePattern() {
+		
 		LinkedList<Pattern> toDelete = new LinkedList<Pattern>();
+		
 		for (int i = 0; i < completeList.size(); i++) {
 			for (int j = i+1; j < completeList.size(); j++) {
 				if (completeList.get(i).equals(completeList.get(j))) {
