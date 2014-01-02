@@ -65,7 +65,7 @@ public class Main {
         // Offer each Category to each category (n² -.-)
         for (Category category : categories)
 		{
-        	// Wird Fehler schmeißen (HATS DOCH NICHT! :D)
+        	// Wird Fehler schmeißen (HATS DOCH NICHT, LIEF DURCH! :D)
 			for (Category offeredCategory : categories)
 			{
 				if(category.offerCategory(offeredCategory.category)) categories.remove(offeredCategory);
