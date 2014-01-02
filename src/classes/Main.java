@@ -40,8 +40,39 @@ public class Main {
         
         generateFinalLists(listHandler);
         
+        /** TODO: TEST! */
+        
         LinkedList<Pattern> finalList = listHandler.getFinalList();
+        LinkedList<String>	allWords = finalListToStrings(finalList);
         LinkedList<Pattern> biDirectionalPattern = listHandler.getBidirectionalPattern();
+        
+        // Each Bidirectional Pattern is a clique
+        LinkedList<Category> categories = new LinkedList<Category>();
+        
+        for (Pattern clique : biDirectionalPattern)
+		{
+			categories.add(new Category(clique));
+		}
+        
+        // fill each category using all the final words
+        for (Category category : categories)
+		{
+			category.fillCategory(finalList, allWords);
+		}
+        
+		System.out.println("Kategorien: " +categories.toString());
+        
+        // Offer each Category to each category (n² -.-)
+        for (Category category : categories)
+		{
+        	// Wird Fehler schmeißen (HATS DOCH NICHT! :D)
+			for (Category offeredCategory : categories)
+			{
+				if(category.offerCategory(offeredCategory.category)) categories.remove(offeredCategory);
+			}
+		}
+        
+        System.out.println("Finales Ergebnis: " +categories.toString());
  
         if(DEBUG_MODE) System.out.println("Total time needed: " +((System.currentTimeMillis() - programmStartTime)/1000) +" seconds");
     }
@@ -201,4 +232,21 @@ public class Main {
         listHandler.collectBidirectionalPattern();
 		return;
 	}
+    
+    // Because we used SinglePatternGraphs, there should be no double words anymore in the final SinglePatternGraph! But we need to test it!
+    /** @description Returns a List that contains all the words, that would be in the final SinglePatternGraph. The Words are representated as Strings, not Pattern!
+
+     */
+    private static LinkedList<String> finalListToStrings(LinkedList<Pattern> finalList)
+    {
+    	LinkedList<String> allWords = new LinkedList<String>();
+    	
+    	for (Pattern pattern : finalList)
+		{
+			allWords.add(pattern.pattern.getFirst());
+			allWords.add(pattern.pattern.getLast());
+		}
+    	
+    	return allWords;
+    }
 }

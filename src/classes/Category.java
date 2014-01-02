@@ -22,6 +22,7 @@ public class Category
 		cliqueFirst = clique.pattern.getFirst();
 		cliqueSecond = clique.pattern.getLast();
 
+		category = new LinkedList<String>();
 		category.addAll(clique.pattern);
 	}
 
@@ -42,8 +43,7 @@ public class Category
 	 *            TODO Die boolean fulfillsConditions braucht man wegen dem
 	 *            Break eigentlich nicht. Tests schreiben, ob es auch ohne geht.
 	 */
-	public void fillCategory(LinkedList<Pattern> finalPatternList,
-			LinkedList<String> allWords)
+	public void fillCategory(LinkedList<Pattern> finalPatternList, LinkedList<String> allWords)
 	{
 		boolean fulfillsConditions = true;
 
@@ -77,8 +77,7 @@ public class Category
 	 * @description Tests if the given word is unidirectional connected to all
 	 *              words in the clique
 	 */
-	private boolean uniDirectionalToAll(String word,
-			LinkedList<Pattern> finalPatternList)
+	private boolean uniDirectionalToAll(String word, LinkedList<Pattern> finalPatternList)
 	{
 		// If the word is unidirectional connected, there has to be any
 		// connection to the first word of the clique...
@@ -98,8 +97,7 @@ public class Category
 	 * @description Tests if the given word is bidirectional connected to at
 	 *              least one word in the clique
 	 */
-	private boolean biDirectionalToOne(String word,
-			LinkedList<Pattern> finalPatternList)
+	private boolean biDirectionalToOne(String word, LinkedList<Pattern> finalPatternList)
 	{
 		boolean bidirectional = false;
 
@@ -120,8 +118,7 @@ public class Category
 	 * @description Tests if there is a connection between the Strings "from" to
 	 *              "to".
 	 */
-	private boolean hasArc(String from, String to,
-			LinkedList<Pattern> finalPatternList)
+	private boolean hasArc(String from, String to, LinkedList<Pattern> finalPatternList)
 	{
 		// First we create a FakePattern...
 		LinkedList<String> ghostPattern = new LinkedList<String>();

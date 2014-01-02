@@ -12,7 +12,7 @@ import org.jgrapht.traverse.BreadthFirstIterator;
 public class SinglePatternGraph
 {
     /** @VISUALIZE_GRAPHS Set true to get a visualization of the Single Pattern Graph */
-    private final boolean VISUALIZE_GRAPHS = true;
+    private final boolean VISUALIZE_GRAPHS = false;
    
    
     // Contains all pattern candidates of a meta pattern
