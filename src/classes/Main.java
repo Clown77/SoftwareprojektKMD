@@ -34,27 +34,20 @@ public class Main {
        
         LinkedList<LinkedList<Pattern>> foundPattern = getAllPattern(ourHash);
        
-        for(int i = 0; i < foundPattern.size(); i++) { SinglePatternGraph spg = new SinglePatternGraph(foundPattern.get(i)); }
-       
-        /**@listHandler Sort the patterns by M1, M2 and M3 and then create a final list of pattern candidates*/
+        executeMeasurements(foundPattern);
+        
         ListHandler listHandler = new ListHandler(foundPattern);
         
-        /** STATUS = CHECKED */ 
-        listHandler.sortPatternCandidatesM(1);
-        listHandler.sortPatternCandidatesM(2);
-        listHandler.sortPatternCandidatesM(3);
+        generateFinalLists(listHandler);
         
-        /** Removes all Patterns that appear in the Bottom ZB of any List and shortens the list to max ZT Elements per List */
-        listHandler.clearAllM();
-        
-        listHandler.generateCliques();
-        
-        System.out.println(listHandler.completeClique);
+        LinkedList<Pattern> finalList = listHandler.getFinalList();
+        LinkedList<Pattern> biDirectionalPattern = listHandler.getBidirectionalPattern();
  
         if(DEBUG_MODE) System.out.println("Total time needed: " +((System.currentTimeMillis() - programmStartTime)/1000) +" seconds");
     }
- 
-    /**Linebreaks won't cut words.*/
+
+
+	/**Line separator won't cut words.*/
     public static String handleLineBreak (String tempZeile, BufferedReader br) throws IOException
     {
         do
@@ -167,7 +160,7 @@ public class Main {
    
     /**@description Parses the arguments vector and sets flags
      *
-     * @param args Possible argmuents: 'DEBUG_ENABLE' - Will activate all console outputs for debugs
+     * @param args Possible arguments: 'DEBUG_ENABLE' - Will activate all console outputs for debugs
      */
     public static void checkArgumentVector(String[] args)
     {
@@ -178,4 +171,34 @@ public class Main {
  
         return;
     }
+    
+    /**@description Does the Measurements M1, M2 and M3 for each Meta Pattern
+     * 
+     * @param foundPattern
+     */
+    public static void executeMeasurements(LinkedList<LinkedList<Pattern>> foundPattern)
+    {
+    	for(int i = 0; i < foundPattern.size(); i++) 
+    	{
+    		SinglePatternGraph spg = new SinglePatternGraph(foundPattern.get(i));
+    	} 
+    }
+    
+    /**@description Creates 3 Lists, sorted by M1, M2 and M3. Then builds a list of final Patterns, for our final Graph using zB and zT.
+     * 				It also creates a BidirectionalList, which contains all Pattern, that are bidirectional connected.
+     */
+    private static void generateFinalLists(ListHandler listHandler) throws Exception 
+    {
+        listHandler.sortPatternCandidatesM(1);
+        listHandler.sortPatternCandidatesM(2);
+        listHandler.sortPatternCandidatesM(3);
+        
+        /** Removes all Patterns that appear in the Bottom ZB of any List */
+        listHandler.removePatternOfZB();
+        
+        listHandler.createFinalList();
+        
+        listHandler.collectBidirectionalPattern();
+		return;
+	}
 }

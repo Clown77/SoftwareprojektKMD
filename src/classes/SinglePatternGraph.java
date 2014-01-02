@@ -1,7 +1,9 @@
 package classes;
 import java.util.LinkedList;
 import java.util.Set;
+
 import javax.swing.JFrame;
+
 import org.jgraph.JGraph;
 import org.jgrapht.ext.JGraphModelAdapter;
 import org.jgrapht.graph.DefaultEdge;
@@ -69,7 +71,7 @@ public class SinglePatternGraph
         if(VISUALIZE_GRAPHS) createWindow(internGraph);
     }
    
-    // use this methode to activate a visualization of the graph
+    // use this method to for a visualization of the graph
     public void createWindow(SimpleDirectedGraph<String, DefaultEdge> graph)
     {
         // JFrame can use JGraphs only, not SimpleDirectedGraphs. So we need to create a JGraph, using the internGraph as source
@@ -88,7 +90,8 @@ public class SinglePatternGraph
     }
    
    
-    public void buildSymGraph()
+    @SuppressWarnings("unchecked")
+	public void buildSymGraph()
     {
         // exactly the same Class --> Safe
         symGraph = (SimpleDirectedGraph<String, DefaultEdge>)internGraph.clone();
