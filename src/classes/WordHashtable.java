@@ -19,7 +19,7 @@ public class WordHashtable {
     private double CONTENT_WORD_BORDER;
     private double HIGHFREQUENCY_WORD_BORDER;
    
-    // for better undestanding of the code
+    // for better understanding of the code
     private final char HIGHFREQUENCY_WORD = 'H';
     private final char CONTENT_WORD = 'C';
     private final char NO_MEANING = 'N';

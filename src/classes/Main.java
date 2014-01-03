@@ -11,7 +11,7 @@ public class Main {
    
     private static int TABLESIZE = 0;
     private static int WORDNUMBER = 0;
-    private static String PATH = "kindleDocuments/Gesamttext/Bibel.txt";
+    private static String PATH = "Testfile.txt";//"kindleDocuments/Gesamttext/Bibel.txt";
  
     public static void main(String[] args) throws Exception {
        
@@ -37,7 +37,13 @@ public class Main {
         
         ListHandler listHandler = generateFinalList(foundPattern);
         
-        /** TODO: TEST! */
+        /** TODO: TEST! 
+         * 
+         * 	Für meinen Test: TP auf 1 setzen
+         *  HFW-Border auf 10
+         *  Postprocessing aktivieren
+         *
+         * */
         
         LinkedList<Category> categories = createCategories(listHandler);
         
@@ -69,7 +75,7 @@ public class Main {
         return (int)length/3;
     }
    
-    /** @desciption Fills the Hashtable with all words of the textfile */
+    /** @description Fills the Hashtable with all words of the textfile */
     public static void fillHashtable(WordHashtable wHash) throws IOException
     {
         FileReader fr = new FileReader(PATH);
@@ -178,8 +184,13 @@ public class Main {
      */
     public static void executeMeasurements(LinkedList<LinkedList<Pattern>> foundPattern)
     {
-    	for(int i = 0; i < foundPattern.size(); i++) 
+    	for(int i = foundPattern.size()-1; i >= 0; i--) 
     	{
+    		if(foundPattern.get(i).isEmpty())
+    		{
+    			foundPattern.remove(i);
+    			continue;
+    		}
     		SinglePatternGraph spg = new SinglePatternGraph(foundPattern.get(i));
     	} 
     }
@@ -189,7 +200,7 @@ public class Main {
      */
     private static ListHandler generateFinalList(LinkedList<LinkedList<Pattern>> foundPattern) throws Exception 
     {
-    	 ListHandler listHandler = new ListHandler(foundPattern);
+    	ListHandler listHandler = new ListHandler(foundPattern);
     	
         listHandler.sortPatternCandidatesM(1);
         listHandler.sortPatternCandidatesM(2);

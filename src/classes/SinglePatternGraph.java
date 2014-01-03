@@ -122,10 +122,10 @@ public class SinglePatternGraph
     {
         int symmetrie_counter = 0;
         int vertex_counter = 0;
-       
+        
         // an iterator class, useable for directed graphs
         BreadthFirstIterator<String, DefaultEdge> iterator = new BreadthFirstIterator<String, DefaultEdge>(internGraph);
-       
+        
         // will visit every node of the Graph and check if its symmetric
         do
         {

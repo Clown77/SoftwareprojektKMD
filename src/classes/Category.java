@@ -56,7 +56,7 @@ public class Category
 			if (!uniDirectionalToAll(word, finalPatternList))
 			{
 				fulfillsConditions = false;
-				break;
+				continue;
 			}
 
 			// test if the word is bidirectional connected to all words of the
@@ -64,7 +64,7 @@ public class Category
 			if (!biDirectionalToOne(word, finalPatternList))
 			{
 				fulfillsConditions = false;
-				break;
+				continue;
 			}
 
 			// if the word passed all tests, add it to the category
