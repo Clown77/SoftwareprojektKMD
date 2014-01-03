@@ -43,7 +43,9 @@ public class Main {
          *  HFW-Border auf 10
          *  Postprocessing aktivieren
          *  
-         *  CURRENT BUGS:	Findet Pattern zwischen Wörtern mit sich selbst. z.B. [frog, frog]; --> Wie kann man das am besten verhindern?
+         *  CURRENT BUGS:	Umlaute funktionieren bei mir leider immer noch nicht richtig.
+         *  
+         *  PERFORMANCE:	Es wäre total super, wenn wir das Pattern finden noch beschleunigen...
          *
          * */
         

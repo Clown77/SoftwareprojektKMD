@@ -116,11 +116,12 @@ public class ListHandler
 			}
 		}
 		
-		System.out.println("With double pattern : " +finalList.toString());
-		
 		deleteDoublePattern();
+		deletePhantomPattern();
 		
 		System.out.println("FinalList: " +finalList.toString());
+		
+		return;
 	}
 
 	/** @description Collects all Bidirectional Pattern from the finalList.
@@ -208,5 +209,25 @@ public class ListHandler
 		{
 			finalList.remove(pattern);
 		}
+	}
+	
+	/** @description PhantomPattern are Pattern, that contain all twice the same content words. The will form categories with exactly the same words, we don't want that.
+	 * 				 So we remove them.
+	 */
+	private void deletePhantomPattern()
+	{
+		LinkedList<Pattern> phantomPattern = new LinkedList<Pattern>();
+		
+		for (Pattern currentPattern : finalList)
+		{
+			if(currentPattern.pattern.getFirst().equals(currentPattern.pattern.getLast())) phantomPattern.add(currentPattern);
+		}
+		
+		for (Pattern pattern : phantomPattern)
+		{
+			finalList.remove(pattern);
+		}
+		
+		return;
 	}
 }

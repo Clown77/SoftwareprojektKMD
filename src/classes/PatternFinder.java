@@ -11,7 +11,7 @@ public class PatternFinder
     private final static boolean DEBUG_MODE = true;
    
     // Means the pattern has to occure TP times in 1 million words
-    private final int TP = 0;
+    private final int TP = 3;
    
     String PATH;
     int WORDNUMBER;
@@ -150,7 +150,7 @@ public class PatternFinder
     public  String normalize(String word)
     {
         // SPACE NEEDED
-        word = word.replaceAll("[^a-z\t'\u00e4''\u00f4''\u00f6''\u00df' ]", "");
+        word = word.replaceAll("[^a-z\t'\u00e4''\u00f4''\u00f6''\u00df''\u00fc' ]", "");
         return word;
     }
    
