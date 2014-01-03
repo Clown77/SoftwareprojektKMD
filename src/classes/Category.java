@@ -51,25 +51,25 @@ public class Category
 		{
 			fulfillsConditions = true;
 
-			// test if the word is unidirectional connected to all words of the
-			// clique
+			// don't add words to categories, that are already part of the category
+			if(category.contains(word)) continue;
+			
+			// test if the word is unidirectional connected to all words of the clique	
 			if (!uniDirectionalToAll(word, finalPatternList))
 			{
 				fulfillsConditions = false;
 				continue;
 			}
 
-			// test if the word is bidirectional connected to all words of the
-			// clique
+			// test if the word is bidirectional connected to all words of the clique
 			if (!biDirectionalToOne(word, finalPatternList))
 			{
 				fulfillsConditions = false;
 				continue;
 			}
-
+			
 			// if the word passed all tests, add it to the category
-			if (fulfillsConditions)
-				category.add(word);
+			if (fulfillsConditions) category.add(word);
 		}
 	}
 
@@ -79,15 +79,12 @@ public class Category
 	 */
 	private boolean uniDirectionalToAll(String word, LinkedList<Pattern> finalPatternList)
 	{
-		// If the word is unidirectional connected, there has to be any
-		// connection to the first word of the clique...
-		if (!(hasArc(word, cliqueFirst, finalPatternList) || hasArc(
-				cliqueFirst, word, finalPatternList)))
+		// If the word is unidirectional connected, there has to be any connection to the first word of the clique...
+		if (!(hasArc(word, cliqueFirst, finalPatternList) || hasArc(cliqueFirst, word, finalPatternList)))
 			return false;
 
 		// ...and any connection to the second word of the clique.
-		if (!(hasArc(word, cliqueSecond, finalPatternList) || hasArc(
-				cliqueSecond, word, finalPatternList)))
+		if (!(hasArc(word, cliqueSecond, finalPatternList) || hasArc(cliqueSecond, word, finalPatternList)))
 			return false;
 
 		return true;
@@ -99,24 +96,18 @@ public class Category
 	 */
 	private boolean biDirectionalToOne(String word, LinkedList<Pattern> finalPatternList)
 	{
-		boolean bidirectional = false;
-
 		// there has to be a bidirectional connection to the first...
-		if (hasArc(word, cliqueFirst, finalPatternList)
-				&& hasArc(cliqueFirst, word, finalPatternList))
-			bidirectional = true;
+		if (hasArc(word, cliqueFirst, finalPatternList) && hasArc(cliqueFirst, word, finalPatternList))
+			return true;
 
 		// ... or the second word of the clique.
-		if (hasArc(word, cliqueSecond, finalPatternList)
-				&& hasArc(cliqueSecond, word, finalPatternList))
-			bidirectional = true;
+		if (hasArc(word, cliqueSecond, finalPatternList) && hasArc(cliqueSecond, word, finalPatternList))
+			return true;
 
-		return bidirectional;
+		return false;
 	}
 
-	/**
-	 * @description Tests if there is a connection between the Strings "from" to
-	 *              "to".
+	/** @description Tests if there is a connection between the Strings "from" to "to".
 	 */
 	private boolean hasArc(String from, String to, LinkedList<Pattern> finalPatternList)
 	{
@@ -127,8 +118,13 @@ public class Category
 
 		Pattern fakePattern = new Pattern(ghostPattern);
 
-		// Then we test, if this Pattern already exists in the finalPatternList
-		return finalPatternList.contains(fakePattern);
+		// for some reason, contains doesn't use my own equals method, so we need this for-each loop
+		for (Pattern currentPattern : finalPatternList)
+		{
+			if(currentPattern.equals(fakePattern)) return true;
+		}
+		
+		return false;
 	}
 
 	/**

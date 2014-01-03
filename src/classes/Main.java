@@ -42,6 +42,8 @@ public class Main {
          * 	Für meinen Test: TP auf 1 setzen
          *  HFW-Border auf 10
          *  Postprocessing aktivieren
+         *  
+         *  CURRENT BUGS:	Findet Pattern zwischen Wörtern mit sich selbst. z.B. [frog, frog]; --> Wie kann man das am besten verhindern?
          *
          * */
         
@@ -225,9 +227,12 @@ public class Main {
     	
     	for (Pattern pattern : finalList)
 		{
-			allWords.add(pattern.pattern.getFirst());
-			allWords.add(pattern.pattern.getLast());
+    		// without double words
+			if(!allWords.contains(pattern.pattern.getFirst())) allWords.add(pattern.pattern.getFirst());
+			if(!allWords.contains(pattern.pattern.getLast()))  allWords.add(pattern.pattern.getLast());
 		}
+
+    	if(DEBUG_MODE) System.out.println("All Words: " +allWords.toString());
     	
     	return allWords;
     }
@@ -245,7 +250,7 @@ public class Main {
 		{
 			categories.add(new Category(clique));
 		}
-        
+
         // fill each category using all the final words
         for (Category category : categories)
 		{

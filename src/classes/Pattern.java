@@ -2,7 +2,7 @@ package classes;
 
 import java.util.LinkedList;
 
-public class Pattern 
+public class Pattern
 {
 
 	public LinkedList<String> pattern;
@@ -21,7 +21,7 @@ public class Pattern
 		counter = 1;
 	}
 
-	//Compares two Pattern if they are identical
+	// Compares two Pattern if they are identical
 	public boolean equals(Pattern otherPattern)
 	{
 
@@ -31,6 +31,7 @@ public class Pattern
 		{
 			if(!this.pattern.get(i).equals(otherPattern.pattern.get(i))) return false; 
 		}
+		
 		return true;
 	}
 	

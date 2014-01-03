@@ -116,9 +116,11 @@ public class ListHandler
 			}
 		}
 		
+		System.out.println("With double pattern : " +finalList.toString());
+		
 		deleteDoublePattern();
 		
-		System.out.println("Final List: " +finalList.toString());
+		System.out.println("FinalList: " +finalList.toString());
 	}
 
 	/** @description Collects all Bidirectional Pattern from the finalList.
@@ -144,12 +146,20 @@ public class ListHandler
 	 */
 	public void removePatternOfZB() throws Exception 
 	{
+		// We cannot apply the zB filter if there are not even zB elements in the lists
+		if(M1Sorted.size() < zB)
+		{
+			System.out.println("The zB-Filter was ignored, because there are not enough pattern found.");
+			return;
+		}
+		
 		LinkedList<Pattern> ZBElements = new LinkedList<Pattern>();
 		
 		for(int i = 0 ; i < zB; i++)
 		{
 			for(int j = 1; j <= 3; j++)
 			{
+				
 				boolean contains = false;
 				
 				for (Pattern currentPattern : ZBElements) 
@@ -187,6 +197,9 @@ public class ListHandler
 				if (finalList.get(i).equals(finalList.get(j))) 
 				{
 					toDelete.add(finalList.get(j));
+					
+					// if it found itself once, break! Else it will delete all occurrences of itself
+					break;
 				}
 			}
 		}

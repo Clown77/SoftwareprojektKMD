@@ -11,7 +11,7 @@ public class PatternFinder
     private final static boolean DEBUG_MODE = true;
    
     // Means the pattern has to occure TP times in 1 million words
-    private final int TP = 1;
+    private final int TP = 0;
    
     String PATH;
     int WORDNUMBER;
