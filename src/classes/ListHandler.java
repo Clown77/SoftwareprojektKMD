@@ -133,7 +133,7 @@ public class ListHandler
 					&&finalList.get(i).pattern.getLast().equals(finalList.get(j).pattern.getFirst()))
 				{
 					biDirectionalList.add(finalList.get(i));
-					// Use this if you want to visualize this it as a graph: 
+					// Use this if you want to visualize this as a graph: 
 					// biDirectionalList.add(finalList.get(j));
 				}
 			}

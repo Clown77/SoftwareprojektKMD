@@ -1,7 +1,6 @@
 package classes;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -36,43 +35,13 @@ public class Main {
        
         executeMeasurements(foundPattern);
         
-        ListHandler listHandler = new ListHandler(foundPattern);
-        
-        generateFinalLists(listHandler);
+        ListHandler listHandler = generateFinalList(foundPattern);
         
         /** TODO: TEST! */
         
-        LinkedList<Pattern> finalList = listHandler.getFinalList();
-        LinkedList<String>	allWords = finalListToStrings(finalList);
-        LinkedList<Pattern> biDirectionalPattern = listHandler.getBidirectionalPattern();
+        LinkedList<Category> categories = createCategories(listHandler);
         
-        // Each Bidirectional Pattern is a clique
-        LinkedList<Category> categories = new LinkedList<Category>();
-        
-        for (Pattern clique : biDirectionalPattern)
-		{
-			categories.add(new Category(clique));
-		}
-        
-        // fill each category using all the final words
-        for (Category category : categories)
-		{
-			category.fillCategory(finalList, allWords);
-		}
-        
-		System.out.println("Kategorien: " +categories.toString());
-        
-        // Offer each Category to each category (n² -.-)
-        for (Category category : categories)
-		{
-        	// Wird Fehler schmeißen (HATS DOCH NICHT, LIEF DURCH! :D)
-			for (Category offeredCategory : categories)
-			{
-				if(category.offerCategory(offeredCategory.category)) categories.remove(offeredCategory);
-			}
-		}
-        
-        System.out.println("Finales Ergebnis: " +categories.toString());
+		mergeCategories(categories);
  
         if(DEBUG_MODE) System.out.println("Total time needed: " +((System.currentTimeMillis() - programmStartTime)/1000) +" seconds");
     }
@@ -218,8 +187,10 @@ public class Main {
     /**@description Creates 3 Lists, sorted by M1, M2 and M3. Then builds a list of final Patterns, for our final Graph using zB and zT.
      * 				It also creates a BidirectionalList, which contains all Pattern, that are bidirectional connected.
      */
-    private static void generateFinalLists(ListHandler listHandler) throws Exception 
+    private static ListHandler generateFinalList(LinkedList<LinkedList<Pattern>> foundPattern) throws Exception 
     {
+    	 ListHandler listHandler = new ListHandler(foundPattern);
+    	
         listHandler.sortPatternCandidatesM(1);
         listHandler.sortPatternCandidatesM(2);
         listHandler.sortPatternCandidatesM(3);
@@ -230,7 +201,7 @@ public class Main {
         listHandler.createFinalList();
         
         listHandler.collectBidirectionalPattern();
-		return;
+		return listHandler;
 	}
     
     // Because we used SinglePatternGraphs, there should be no double words anymore in the final SinglePatternGraph! But we need to test it!
@@ -248,5 +219,55 @@ public class Main {
 		}
     	
     	return allWords;
+    }
+    
+    public static LinkedList<Category> createCategories(ListHandler listHandler)
+    {
+    	LinkedList<Pattern> finalList = listHandler.getFinalList();
+        LinkedList<String>	allWords = finalListToStrings(finalList);
+        LinkedList<Pattern> biDirectionalPattern = listHandler.getBidirectionalPattern();
+        
+        // Each Bidirectional Pattern is a clique
+        LinkedList<Category> categories = new LinkedList<Category>();
+        
+        for (Pattern clique : biDirectionalPattern)
+		{
+			categories.add(new Category(clique));
+		}
+        
+        // fill each category using all the final words
+        for (Category category : categories)
+		{
+			category.fillCategory(finalList, allWords);
+		}
+        
+		if(DEBUG_MODE) System.out.println("Kategorien: " +categories.toString());
+        
+        return categories;
+    }
+    
+    public static void mergeCategories(LinkedList<Category> categories)
+    {
+    	// Collects all Categories that are merged into other categories and deletes the old ones
+		LinkedList<Category> collector = new LinkedList<Category>();
+		
+	    // Offer each Category to each category (n² -.-)
+	    for (Category category : categories)
+		{
+			for (Category offeredCategory : categories)
+			{
+				// upper Line: Else the category will always merge with itself and delete itself after that
+				if(categories.indexOf(offeredCategory) == categories.indexOf(category)) break; 
+				if(category.offerCategory(offeredCategory.category)) collector.add(offeredCategory);
+			}
+		}
+	    
+	    // Delete all categories that were merged into other categories
+	    for (Category category : collector)
+		{
+			categories.remove(category);
+		}
+	    
+		if(DEBUG_MODE) System.out.println("Merged Categories: " +categories.toString());
     }
 }
