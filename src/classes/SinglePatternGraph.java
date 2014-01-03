@@ -67,7 +67,7 @@ public class SinglePatternGraph
        
         sendMeasurementsToPattern();
        
-        // watch the graph beeing build ^^
+        // watch the graph being build ^^
         if(VISUALIZE_GRAPHS) createWindow(internGraph);
     }
    
@@ -123,7 +123,7 @@ public class SinglePatternGraph
         int symmetrie_counter = 0;
         int vertex_counter = 0;
         
-        // an iterator class, useable for directed graphs
+        // an iterator class, usable for directed graphs
         BreadthFirstIterator<String, DefaultEdge> iterator = new BreadthFirstIterator<String, DefaultEdge>(internGraph);
         
         // will visit every node of the Graph and check if its symmetric
@@ -157,7 +157,7 @@ public class SinglePatternGraph
             String vertex = iterator.next();
             node_counter++;
            
-            // because it has to be bidirectional it's enought if we check for one direction
+            // because it has to be bidirectional it's enough if we check for one direction
             if(symGraph.inDegreeOf(vertex) != 0) symmetric_node_counter++;
         }
        
@@ -177,7 +177,7 @@ public class SinglePatternGraph
         M3Value = (double)edgesCountSymGraph/(double)edgesCountGraph;
     }
    
-    /** can be used after setM1Values() calculated M1. This methode will now set M1 for all Pattern*/
+    /** can be used after setM1Values() calculated M1. This method will now set M1 for all Pattern*/
     public void sendMeasurementsToPattern()
     {
         for (Pattern currentPattern : patternCandidates)

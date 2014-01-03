@@ -10,7 +10,7 @@ public class PatternFinder
     /** @DEBUG_MODE Set true to get information about the process in the terminal*/
     private final static boolean DEBUG_MODE = true;
    
-    // Means the pattern has to occure TP times in 1 million words
+    // Means the pattern has to occur TP times in 1 million words
     private final int TP = 3;
    
     String PATH;
@@ -244,14 +244,14 @@ public class PatternFinder
     }
    
    
-    /**@return Returns null, if the methode 'findAllPattern' has not been used before.*/
+    /**@return Returns null, if the method 'findAllPattern' has not been used before.*/
     public LinkedList<LinkedList<Pattern>> getFoundPattern()
     {
         return foundPattern;
     }
    
    
-    // Can be used only, if the method 'findAllPattern' has been calles before
+    // Can be used only, if the method 'findAllPattern' has been calls before
     public void removeLowAppearencePattern(final int WORDNUMBER, LinkedList<Pattern> tempList)
     {
         // Change TP for tests

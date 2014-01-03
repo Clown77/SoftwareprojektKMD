@@ -93,7 +93,7 @@ public class Main {
             // We are not interested in case sensitivity
             zeile = zeile.toLowerCase();
  
-            // This checks if the line ends with a seperator (-). If it does, the lines will be concatenated
+            // This checks if the line ends with a separator (-). If it does, the lines will be concatenated
             zeile = handleLineBreak(zeile, br);
  
             // filters the words out of the string and adds them into the hashtable
@@ -114,8 +114,8 @@ public class Main {
         ourHash.setHFWBorder();
         ourHash.setCWBorder();
         if(DEBUG_MODE) System.out.println("Word Borders have been set. " +
-                "\n|X| <" +ourHash.getCWBorder() +" --> X = Content Word" +
-                "\n|X| >" +ourHash.getHFWBorder() +" --> X = High Frequency Word.");
+                "\n|X| < " +ourHash.getCWBorder() +" --> X = Content Word" +
+                "\n|X| > " +ourHash.getHFWBorder() +" --> X = High Frequency Word.");
     }
    
     /** @description Creates a Hashtable that fits well to our textsize */

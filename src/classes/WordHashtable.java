@@ -43,7 +43,7 @@ public class WordHashtable {
     {
         String word;
        
-        // uses delimeters in default, perfect for our task
+        // uses delimiters in default, perfect for our task
         StringTokenizer st = new StringTokenizer(zeile);
        
         while(st.hasMoreTokens())
@@ -82,7 +82,7 @@ public class WordHashtable {
                 table[hashValue] = new Word(word);
                 table[hashValue].increaseCounter();
                
-                // if a new word was found, increade the class-counter
+                // if a new word was found, increase the class-counter
                 regularWordsCount++;
                 return;
             }
@@ -115,7 +115,7 @@ public class WordHashtable {
         return true;
     }
    
-    // simple output to console including the word with its appearence
+    // simple output to console including the word with its appearance
     public void printHashtable()
     {
         for(int i = 0; i < size; i++)
@@ -146,7 +146,7 @@ public class WordHashtable {
         table = newArray;
     }
    
-    // Will return the kind of a word, given as param.
+    // Will return the kind of a word, given as parameter.
     // For this, we need to search in our table for exactly the same word
     public char getKindOfWord(String word)
     {
@@ -154,7 +154,7 @@ public class WordHashtable {
         return table[indexOfWordInTable].getKindOfWord();
     }
    
-    // returns the index value of a word in the table. we have to sondier
+    // returns the index value of a word in the table. we have to do a sounding
     // in the same way, as the hash does
     public int getIndexOfWordInTable(String word)
     {
@@ -175,7 +175,7 @@ public class WordHashtable {
                 return hashValue;
             }
            
-            // if the word is not the same, we need to sondier the same way, as the hashtable does
+            // if the word is not the same, we need to take the sounding the same way, as the hashtable does
             hashValue = (hashValue+1) % size;
         }   
     }
@@ -193,7 +193,7 @@ public class WordHashtable {
         }
     }
    
-    // Use this methodes only, when you are finished with hashing
+    // Use this methods only, when you are finished with hashing
     public void setHFWBorder()
     {
         HIGHFREQUENCY_WORD_BORDER = ((double)(textsize * TH))/1000000.0;

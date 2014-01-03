@@ -184,8 +184,7 @@ public class ListHandler
 		
 	}
 
-	/**
-	 * @description Deletes double pattern in finalList.
+	/** @description Deletes double pattern in finalList.
 	 */
 	private void deleteDoublePattern() 
 	{	

@@ -35,10 +35,10 @@ public class Word implements Comparable<Word>{
 		return 0;
 	}
 	
-	//	set kind of the curent word
+	//	set kind of the current word
 	public void setKindOfWord(char kindOfWord){this.kindOfWord = kindOfWord;}
 	
-	//	bool funktions for getting the ocurency of the word
+	//	boolean functions for getting the occurrence of the word
 	public boolean isContentWord(){ return this.kindOfWord == 'C'; }
 	
 	public boolean isEgalWord(){ return this.kindOfWord == 'N'; }

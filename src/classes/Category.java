@@ -39,42 +39,26 @@ public class Category
 	 *            M2 and M3 measurements
 	 * @param allWords
 	 *            contains all the words from the finalPatternList as Strings
-	 * 
-	 *            TODO Die boolean fulfillsConditions braucht man wegen dem
-	 *            Break eigentlich nicht. Tests schreiben, ob es auch ohne geht.
 	 */
 	public void fillCategory(LinkedList<Pattern> finalPatternList, LinkedList<String> allWords)
 	{
-		boolean fulfillsConditions = true;
-
 		for (String word : allWords)
 		{
-			fulfillsConditions = true;
-
 			// don't add words to categories, that are already part of the category
 			if(category.contains(word)) continue;
 			
 			// test if the word is unidirectional connected to all words of the clique	
-			if (!uniDirectionalToAll(word, finalPatternList))
-			{
-				fulfillsConditions = false;
-				continue;
-			}
+			if (!uniDirectionalToAll(word, finalPatternList)) continue;
 
 			// test if the word is bidirectional connected to all words of the clique
-			if (!biDirectionalToOne(word, finalPatternList))
-			{
-				fulfillsConditions = false;
-				continue;
-			}
+			if (!biDirectionalToOne(word, finalPatternList)) continue;
 			
 			// if the word passed all tests, add it to the category
-			if (fulfillsConditions) category.add(word);
+			category.add(word);
 		}
 	}
 
-	/**
-	 * @description Tests if the given word is unidirectional connected to all
+	/** @description Tests if the given word is unidirectional connected to all
 	 *              words in the clique
 	 */
 	private boolean uniDirectionalToAll(String word, LinkedList<Pattern> finalPatternList)
@@ -90,8 +74,7 @@ public class Category
 		return true;
 	}
 
-	/**
-	 * @description Tests if the given word is bidirectional connected to at
+	/** @description Tests if the given word is bidirectional connected to at
 	 *              least one word in the clique
 	 */
 	private boolean biDirectionalToOne(String word, LinkedList<Pattern> finalPatternList)
@@ -127,8 +110,7 @@ public class Category
 		return false;
 	}
 
-	/**
-	 * @description Tests if the offered Category contains >= 50 % of this
+	/** @description Tests if the offered Category contains >= 50 % of this
 	 *              category. If yes, it will merge both categories and return
 	 *              true, else returns false.
 	 */
@@ -157,8 +139,7 @@ public class Category
 		return false;
 	}
 
-	/**
-	 * @description Returns whether this category contains the given word or not.
+	/** @description Returns whether this category contains the given word or not.
 	 */
 	private boolean containsWord(String word)
 	{
@@ -171,8 +152,7 @@ public class Category
 		return false;
 	}
 
-	/**
-	 * @description returns a String-representation of the Category
+	/** @description returns a String-representation of the Category
 	 */
 	public String toString()
 	{
