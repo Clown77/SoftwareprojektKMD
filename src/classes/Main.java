@@ -9,10 +9,12 @@ public class Main {
  
     /** @DEBUG_MODE Set true to get information about the process in the terminal*/
     private static boolean DEBUG_MODE = true;
+    
+    /**Enter the Path of the text u want to use here */
+    private static String PATH = "kindleDocuments/Gesamttext/Bibel.txt";
    
     private static int TABLESIZE = 0;
     private static int WORDNUMBER = 0;
-    private static String PATH = "kindleDocuments/Gesamttext/Bibel.txt";
     private static boolean WINDOWING = true;
     private static int WINDOWNUMBER = 4;
  
