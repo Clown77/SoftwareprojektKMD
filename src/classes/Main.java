@@ -2,6 +2,7 @@ package classes;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 public class Main {
@@ -11,16 +12,48 @@ public class Main {
    
     private static int TABLESIZE = 0;
     private static int WORDNUMBER = 0;
-    private static String PATH = "Testfile.txt";//"kindleDocuments/Gesamttext/Bibel.txt";
+    private static String PATH = "kindleDocuments/Gesamttext/Bibel.txt";
+    private static boolean WINDOWING = true;
+    private static int WINDOWNUMBER = 4;
  
     public static void main(String[] args) throws Exception {
        
         checkArgumentVector(args);
        
         long programmStartTime = System.currentTimeMillis();
+        		
+        if(WINDOWING)
+        {        	
+        	String text = readInFile();
+        	
+        	LinkedList<String> parts = splitString(text, WINDOWNUMBER);
+            
+        	createWindows(parts, WINDOWNUMBER);
+        	
+        	LinkedList<LinkedList<Category>> categoriesCollector = collectCategories();
+            
+        	LinkedList<Category> finalSet =  mergeWindows(categoriesCollector);
+        	
+        	System.out.println("Final Set: " +finalSet.toString());
+        }
+        else
+        {
+        	LinkedList<Category> categories = discoverCategories();
+        }
  
-        WordHashtable ourHash = createTable();
- 
+        if(DEBUG_MODE) System.out.println("Total time needed: " +((System.currentTimeMillis() - programmStartTime)/1000) +" seconds");
+    }
+    
+    /** @description Does all the steps, described in the Paper "Efficient Unsupervised Discovery of Word Categories Using Symmetric Patterns and
+     * 				 High Frequency Words."
+     * 
+     * @return A List of the found Categories, using the textfile in "PATH".
+     * @throws Exception if the file was not found.
+     */
+    public static LinkedList<Category> discoverCategories() throws Exception
+    {
+    	WordHashtable ourHash = createTable();
+   	 
         fillHashtable(ourHash);
  
         calculateBorders(ourHash);
@@ -37,23 +70,144 @@ public class Main {
         
         ListHandler listHandler = generateFinalList(foundPattern);
         
-        /** TODO: TEST! 
-         * 
-         * 	Für meinen Test: TP auf 1 setzen
-         *  HFW-Border auf 10
-         *  Postprocessing aktivieren
-         *  
-         *  CURRENT BUGS:	Umlaute funktionieren bei mir leider immer noch nicht richtig.
-         *  
-         *  PERFORMANCE:	Es wäre total super, wenn wir das Pattern finden noch beschleunigen...
-         *
-         * */
-        
         LinkedList<Category> categories = createCategories(listHandler);
         
 		mergeCategories(categories);
- 
-        if(DEBUG_MODE) System.out.println("Total time needed: " +((System.currentTimeMillis() - programmStartTime)/1000) +" seconds");
+    	
+    	return categories;
+    }
+    
+    /** @description Each Category has to exist in at least 2 Windows */
+    public static LinkedList<Category> mergeWindows(LinkedList<LinkedList<Category>> categoriesCollector)
+    {
+    	LinkedList<Category> allCategories = new LinkedList<Category>();
+    	LinkedList<Category> finalSet = new LinkedList<Category>();
+    	
+    	for (LinkedList<Category> subList : categoriesCollector)
+		{
+			allCategories.addAll(subList);
+		}
+    	
+    	for (Category offeredCategory : allCategories)
+		{
+			for (Category currentCategory : allCategories)
+			{
+				// Don't compare a category with itself
+				if(allCategories.indexOf(currentCategory) == allCategories.indexOf(offeredCategory)) continue;
+				
+				if(offeredCategory.equals(currentCategory))
+				{
+					finalSet.add(offeredCategory);
+					
+					// remove all occurrences of this Category
+					boolean removed = true;
+					
+					do removed = allCategories.remove(offeredCategory);
+					while(removed);
+					
+					break;
+				}
+			}
+		}
+    	
+    	return finalSet;
+    }
+    
+    /** Collects the Categories from all Window and returns them as a List of Lists. Each sublist belongs to one window.
+     * @throws Exception if the File at "PATH" cannot be found.
+     */
+    public static LinkedList<LinkedList<Category>> collectCategories() throws Exception
+    {
+    	 LinkedList<LinkedList<Category>> categoriesCollector = new LinkedList<LinkedList<Category>>();
+    	
+    	for (int i = 0; i < WINDOWNUMBER; i++)
+		{
+			PATH = "Part" +i +".txt";
+			if(DEBUG_MODE) System.out.println("#### WINDOW " +(i+1) +" ####");
+			categoriesCollector.add(discoverCategories());
+		}
+    	
+    	return categoriesCollector;
+    }
+    
+    /** @description Returns a String that contains the whole text of the textfile at 'PATH'
+     * @throws Exception if the file at 'PATH' doesn't exist.
+     */
+    public static String readInFile() throws Exception
+    {
+        FileReader fr = new FileReader(PATH);
+        BufferedReader br = new BufferedReader(fr);
+       
+        // we fill the whole text into 'text' --> maybe change it later for better performance
+        StringBuffer input = new StringBuffer("");
+       
+        String zeile = br.readLine();
+       
+        while(zeile != null)
+        {
+            input.append(zeile +" ");
+            zeile = br.readLine();
+        }
+       
+        // we have to edit the text like we did with the words for the hashtable
+        String text = input.toString();
+       
+        br.close();
+        fr.close();
+       
+        return text;
+    }
+    
+    /** @description Returns a List of parts-1 Strings of the same size. The last part contains the rest of the string which can be slightly different in size
+     * 				 to the other parts. 
+     * 
+     * @param text is the String to be split
+     * @param parts is the number of parts that will be returned
+     */
+    public static LinkedList<String> splitString(String text, int parts)
+	{
+		int chars = text.length();
+		int partsize = chars/parts;
+		
+		LinkedList<String> result = new LinkedList<String>();
+		
+		int beginIndex = 0, endIndex = 0;
+		
+		for(int i = 0; i < parts-1 ; i++)
+		{
+			beginIndex = i*partsize;
+			endIndex = (i+1)*partsize;
+			result.add(text.substring(beginIndex, endIndex));
+		}
+		
+		// letzter Rest fehlt noch
+		result.add(text.substring(endIndex));
+		
+		return result;
+	}
+   
+    /** Creates the windows as different textfiles and returns a list of the files.
+     * 
+     * @param parts : Each part will be the text of a single window
+     * @param windowNumber is the number of windows that will be created
+     * @throws IOException if the FileWrite cannot open the file, e.g. because it doesn't exist.
+     */
+    public static void createWindows(LinkedList<String> parts, int windowNumber) throws IOException
+    {
+        for(int i = 0; i < windowNumber; i++)
+        {
+        	File currentTextfile = new File("Part" +i +".txt");
+        	
+        	FileWriter writer = new FileWriter(currentTextfile);
+        	
+        	// this fills a window with text
+        	writer.write(parts.get(i));
+        	
+        	writer.flush();
+        	writer.close();
+        }
+        
+        return;
     }
 
 
@@ -146,7 +300,7 @@ public class Main {
     /** @description Use this method to optimize the result for your text, by changing the type of any word. Use C for Content Word, H for High Frequency Words and N to give it no meaning */
     public static void postprocessTypes(WordHashtable ourHash)
     {
-        //example: ourHash.changeWordType("Gott", 'C');
+        //example: ourHash.changeWordType("heiliger", 'C');
         if(DEBUG_MODE) System.out.println("Postprocessing word types has been successfull.");
     }
    

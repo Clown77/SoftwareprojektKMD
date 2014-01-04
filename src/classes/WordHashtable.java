@@ -12,8 +12,8 @@ public class WordHashtable {
     int textsize = 0;
    
     // Describes how often a word has to appear in 1 000 000 words
-    private int TH = 200;
-    private int TC = 100;
+    private int TH = 100;
+    private int TC = 50;
    
     // hold the values for word categories, calculated for our amount of words
     private double CONTENT_WORD_BORDER;

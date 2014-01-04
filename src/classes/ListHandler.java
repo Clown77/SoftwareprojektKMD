@@ -16,7 +16,7 @@ public class ListHandler
 	/** @zT The top zT Elements of the MxSorted Lists will remain */
 	private int zT = 100;
 	/** @zB The bottom zB ELements of the MxSorted Lists will be deleted */
-	private int zB = 20;
+	private int zB = 100;
 	
 	
 	// Constructor
@@ -147,6 +147,12 @@ public class ListHandler
 	 */
 	public void removePatternOfZB() throws Exception 
 	{
+		if(true)
+		{
+			System.out.println("Zum Testen ist der zB-Filter momentan deaktiviert.");
+			return;
+		}
+		
 		// We cannot apply the zB filter if there are not even zB elements in the lists
 		if(M1Sorted.size() < zB)
 		{
@@ -182,6 +188,8 @@ public class ListHandler
 			for(int i = 1; i <= 3; i++) getSortedM(i).remove(currentPattern);
 		}
 		
+		System.out.println("zB-Filter was applied.");
+		return;
 	}
 
 	/** @description Deletes double pattern in finalList.

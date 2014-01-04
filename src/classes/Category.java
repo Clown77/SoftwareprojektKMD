@@ -111,26 +111,36 @@ public class Category
 	}
 
 	/** @description Tests if the offered Category contains >= 50 % of this
-	 *              category. If yes, it will merge both categories and return
-	 *              true, else returns false.
+	 *              category AND this category contains >= 50 % of the offered category. 
+	 *              If yes, it will merge both categories and return true, else returns false.
 	 */
 	public boolean offerCategory(LinkedList<String> offeredCategory)
 	{
 		LinkedList<String> differentWords = new LinkedList<String>();
-		double wordCount = offeredCategory.size();
-		double identicalWords = 0;
+		double identicalWordsOffered = 0;
+		double identicalWordsThis = 0;
 		
-		// counts how many words of the given category are contained in our category 
+		// counts how many words of the offered category are contained in our category 
 		for (String word : offeredCategory)	
 		{
-			if(containsWord(word)) identicalWords++;
+			if(containsWord(word)) identicalWordsOffered++;
 			else differentWords.add(word);
 		}
 		
-		// calculate the relation between both categories
-		double ratio = identicalWords/wordCount;
+		// calculate the relation for the offeredCategory
+		double ratioOffered = identicalWordsOffered/offeredCategory.size();
 		
-		if(ratio >= 0.5)
+		// counts how many words of this category are contained in the offered category
+		for (String word : category)
+		{
+			if(offeredCategory.contains(word)) identicalWordsThis++;
+			else differentWords.add(word);
+		}
+		
+		// calculate the relation for this category
+		double ratioThis = identicalWordsThis/category.size();
+		
+		if((ratioThis >= 0.5) && (ratioOffered >= 0.5))
 		{
 			category.addAll(differentWords);
 			return true;
@@ -141,7 +151,7 @@ public class Category
 
 	/** @description Returns whether this category contains the given word or not.
 	 */
-	private boolean containsWord(String word)
+	public boolean containsWord(String word)
 	{
 		for (String categoryWord : category)
 		{
@@ -157,6 +167,20 @@ public class Category
 	public String toString()
 	{
 		return category.toString();
+	}
+	
+	/** @description returns true, if both categories contain exact the same words as category */
+	public boolean equals(Category otherCategory)
+	{
+		if(category.size() != otherCategory.category.size()) return false;
+		
+		for (String word : category)
+		{
+			if(!otherCategory.containsWord(word)) return false;
+		}
+		
+		// Same size and all words contained in each other --> true
+		return true;
 	}
 
 }
