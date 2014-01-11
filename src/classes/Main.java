@@ -11,11 +11,11 @@ public class Main {
     private static boolean DEBUG_MODE = true;
     
     /**Enter the Path of the text u want to use here */
-    private static String PATH = "kindleDocuments/Gesamttext/Bibel.txt";
+    private static String PATH = "Testfile.txt";//"kindleDocuments/Gesamttext/Bibel.txt";
    
     private static int TABLESIZE = 0;
     private static int WORDNUMBER = 0;
-    private static boolean WINDOWING = true;
+    private static boolean WINDOWING = false;
     private static int WINDOWNUMBER = 4;
  
     public static void main(String[] args) throws Exception {
