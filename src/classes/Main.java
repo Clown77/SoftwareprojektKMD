@@ -15,8 +15,8 @@ public class Main {
    
     private static int TABLESIZE = 0;
     private static int WORDNUMBER = 0;
-    private static boolean WINDOWING = false;
-    private static int WINDOWNUMBER = 4;
+    private static boolean WINDOWING = true;
+    private static int WINDOWNUMBER = 2;
  
     public static void main(String[] args) throws Exception {
        
@@ -90,6 +90,28 @@ public class Main {
 			allCategories.addAll(subList);
 		}
     	
+    	
+    	while(!allCategories.isEmpty())
+    	{
+    		
+    		Category firstElement = allCategories.removeFirst();
+    		
+    		for (Category currentCategory : allCategories)
+			{
+    			if(currentCategory.equals(firstElement)) 
+				{
+					finalSet.add(firstElement);
+					break;
+				}
+			} 
+    		
+    		boolean removed = true;
+    		
+    		do removed = allCategories.remove(firstElement);
+			while(removed);
+
+    	}
+    	/*
     	for (Category offeredCategory : allCategories)
 		{
 			for (Category currentCategory : allCategories)
@@ -111,7 +133,7 @@ public class Main {
 				}
 			}
 		}
-    	
+    	*/
     	return finalSet;
     }
     

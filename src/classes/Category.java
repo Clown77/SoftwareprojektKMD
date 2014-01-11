@@ -142,7 +142,6 @@ public class Category
 		if((ratioThis >= 0.5) && (ratioOffered >= 0.5))
 		{
 			category.addAll(differentWords);
-			System.out.println(differentWords.toString());
 			return true;
 		}
 		
