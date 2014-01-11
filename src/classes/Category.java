@@ -124,7 +124,7 @@ public class Category
 		for (String word : offeredCategory)	
 		{
 			if(containsWord(word)) identicalWordsOffered++;
-			else differentWords.add(word);
+			else if(!differentWords.contains(word)) differentWords.add(word);
 		}
 		
 		// calculate the relation for the offeredCategory
@@ -134,7 +134,6 @@ public class Category
 		for (String word : category)
 		{
 			if(offeredCategory.contains(word)) identicalWordsThis++;
-			else differentWords.add(word);
 		}
 		
 		// calculate the relation for this category
@@ -143,6 +142,7 @@ public class Category
 		if((ratioThis >= 0.5) && (ratioOffered >= 0.5))
 		{
 			category.addAll(differentWords);
+			System.out.println(differentWords.toString());
 			return true;
 		}
 		
