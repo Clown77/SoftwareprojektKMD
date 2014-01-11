@@ -1,50 +1,41 @@
 package classes;
 
-import java.util.Collection;
 import java.util.LinkedList;
 
-import javax.naming.BinaryRefAddr;
-import javax.swing.UIDefaults.LazyInputMap;
-
-public class ListHandler {
+public class ListHandler 
+{
 	LinkedList<LinkedList<Pattern>> patternCandidates;
-	// TODO: In Speicher erst inizialisieren wen es gebraucht wird;
+	
 	LinkedList<Pattern> M1Sorted = new LinkedList<Pattern>();
 	LinkedList<Pattern> M2Sorted = new LinkedList<Pattern>();
 	LinkedList<Pattern> M3Sorted = new LinkedList<Pattern>();
-	LinkedList<Pattern> completeList = new LinkedList<Pattern>();
-	LinkedList<Pattern> bydirectionalList;
-	LinkedList<LinkedList<Pattern>> completeClique = new LinkedList<LinkedList<Pattern>>();
-
-	/**
-	 * Top x of each list remain
-	 */
-	private int zT = 100;
-	/**
-	 * Last x of each list to delete
-	 */
-	private int zB = 20;
 	
-	public ListHandler(LinkedList<LinkedList<Pattern>> patternCandidates) {
+	LinkedList<Pattern> finalList = new LinkedList<Pattern>();
+	LinkedList<Pattern> biDirectionalList = new LinkedList<Pattern>();
+
+	/** @zT The top zT Elements of the MxSorted Lists will remain */
+	private int zT = 100;
+	/** @zB The bottom zB ELements of the MxSorted Lists will be deleted */
+	private int zB = 100;
+	
+	
+	// Constructor
+	public ListHandler(LinkedList<LinkedList<Pattern>> patternCandidates) 
+	{
 		this.patternCandidates = patternCandidates;
-
 	}
 
-	public void clearAllM() throws Exception 
-	{	
-		for (int i = 1; i <= 3; i++) 
-		{
-			// removes pattern that appear in the ZB of any list
-			removeDoubleM(i);
-			clearZT_M(i);
-		}
-		
+	public LinkedList<Pattern> getBidirectionalPattern()
+	{
+		return biDirectionalList;
+	}
+	
+	public LinkedList<Pattern> getFinalList()
+	{
+		return finalList;
 	}
 
-	/**
-	 * @param mType Type of MSorted to opperate
-	 * @return MSorted
-	 * @throws Exception gets an invalid mType
+	/** @description Returns the List M<mType>Sorted
 	 */
 	public LinkedList<Pattern> getSortedM(int mType) throws Exception 
 	{
@@ -63,7 +54,7 @@ public class ListHandler {
 
 	/** 
 	 * sort pattern and add them in M(mType) in Pattern
-	 * @param mType Type of MSorted to opperate
+	 * @param mType Type of MSorted to operate
 	 */
 	public void sortPatternCandidatesM(int mType) 
 	{
@@ -105,166 +96,77 @@ public class ListHandler {
 			default: ;
 		}
 	}
-	
-	public void generateCliques() 
-	{
-		// Throw all MSorted into one completed list
-		inizializeCompleteList();
 
-		// Uses the Pattern to find bidirectional arcs
-		findBydirectionalList();
-		
-		
-		searchCompleteClique();
-	}
-	
-	/**
-	 * {@code}inizialise completeList
-	 * @param completeList = M1Sorted + M2Sorted + M3Sorted
+	/**@description Builds the final List using the filtered Lists M1, M2 and M3 and zT. 
 	 */
-	private void inizializeCompleteList() 
+	public void createFinalList() throws Exception 
 	{
-		
-		completeList.addAll(M1Sorted);
-		completeList.addAll(M2Sorted);
-		completeList.addAll(M3Sorted);
-		deleteDoublePattern();
-	}
-
-	/**
-	 * searches for binary pairs in the completeList
-	 * @param completeList is the complete List of found Pattern after m1,m2,m3
-	 * @return LinkedList<Pattern> twoBinaryList is a list of pairs of Pattern which are binary conected
-	 */
-	private void findBydirectionalList() 
-	{
-		
-		LinkedList<Pattern> bydirectionalList = new LinkedList<Pattern>();
-		
-		for (int i = 0; i < completeList.size(); i++) 
+		for(int i = 1; i <= 3; i++)
 		{
-			for (int j = i; j < completeList.size(); j++) 
+			if(getSortedM(i).size() > zT)
 			{
-				if (completeList.get(i).pattern.getFirst().equals(completeList.get(j).pattern.getLast()) 
-					&&completeList.get(i).pattern.getLast().equals(completeList.get(j).pattern.getFirst()))
+				for(int j = 0; j < zT; j++)
 				{
-					bydirectionalList.add(completeList.get(i));
+					finalList.add(getSortedM(i).get(j));
 				}
 			}
+			else
+			{
+				finalList.addAll(getSortedM(i));
+			}
 		}
+		
+		deleteDoublePattern();
+		deletePhantomPattern();
+		
+		System.out.println("FinalList: " +finalList.toString());
+		
+		return;
 	}
-	
-	/**
-	 * creates completeCluster and fills it whith all connections of Words from twoBinaryList 
-	 * and cleans then the ones whithout at least one binary Conection and conections to all Words
+
+	/** @description Collects all Bidirectional Pattern from the finalList.
 	 */
-	private void searchCompleteClique() {
-		
-		fillCompleteClique();
-		
-		cleanCompleteClique();
-		
-	}
-
-	/**
-	 * creates completeCluster and fills it whith all connections of Words from twoBinaryList 
-	 */
-	private void fillCompleteClique() {
-		
-		for (int i = 0; i < completeList.size(); i++) {
-			// add first element for checking
-			completeClique.add(new LinkedList<Pattern>());
-			completeClique.getLast().add(completeList.get(i));
-			for (int j = i+1; j < completeList.size(); j++) {
-				if (completeList.get(i).patternHasSameString(completeList.get(j))) {
-					completeClique.getLast().add(completeList.get(j));
-				}
-			}
-			if (completeClique.getLast().size() == 1) {
-				completeClique.removeLast();
-			}
-		}
-		
-	}
-
-	/**
-	 * cleans then the ones whithout at least one binary Conection and conections to all Words
-	 */
-	private void cleanCompleteClique() {
-		
-		deleteDoubleConections();
-		
-		for (LinkedList<Pattern> Clique : completeClique) {
-			for (Pattern pattern : Clique) {
-				if(!isInBydirectionalList(pattern)){
-					Clique.remove(pattern);
-					
-				}
-				if(!hasConectionToAllPattern(pattern, Clique)){
-					Clique.remove(pattern);
-				}
-			}
-			if (Clique.size()<=1) {
-				completeClique.remove(Clique);
-			}
-			
-		}
-		
-	}
-
-	/**
-	 * deletes one of the conections which are bydirectional becouse we need just one conection
-	 */
-	private void deleteDoubleConections() {
-		for (LinkedList<Pattern> Clique : completeClique) {
-			for (Pattern pattern : Clique) {
-				for (Pattern pattern2 : bydirectionalList) {
-					if (pattern.equals(pattern2)) {
-						Clique.remove(pattern);
-					}
-				}
-			}
-		}
-	}
-
-	private boolean hasConectionToAllPattern(Pattern pattern, LinkedList<Pattern> Clique) {
-		int conectionCOunter = 0;
-		for (Pattern curentPattern : Clique) {
-			if (pattern.patternHasSameString(curentPattern)) {
-				conectionCOunter += 1;
-			}
-		}
-		if (conectionCOunter < completeClique.size()) {
-			return false;
-		}
-		return true;
-	}
-
-	private boolean isInBydirectionalList(Pattern pattern) {
-		
-		for (Pattern curentPattern : bydirectionalList) {
-			if (pattern.patternHasSameString(curentPattern)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * {@code}search for last ZB Elements in MSortedX and delete in other MSortedY 
-	 * @param mType is the ID of the List
-	 * @throws Exception if getSortedM gets an invalid mType
-	 */
-	
-	//TODO: Alle die gelöscht werden sollen in eine Liste Packen und erst dann aus den jeweiligen Listen entfernen
-	private void removeDoubleM(int mType) throws Exception 
+	public void collectBidirectionalPattern() 
 	{
+		for (int i = 0; i < finalList.size(); i++) 
+		{
+			for (int j = i; j < finalList.size(); j++) 
+			{
+				if (finalList.get(i).pattern.getFirst().equals(finalList.get(j).pattern.getLast()) 
+					&&finalList.get(i).pattern.getLast().equals(finalList.get(j).pattern.getFirst()))
+				{
+					biDirectionalList.add(finalList.get(i));
+					// Use this if you want to visualize this as a graph: 
+					// biDirectionalList.add(finalList.get(j));
+				}
+			}
+		}
+	}
+
+	/** @description Applies the Filter zB on the M1, M2 and M3 Lists
+	 */
+	public void removePatternOfZB() throws Exception 
+	{
+		if(true)
+		{
+			System.out.println("Zum Testen ist der zB-Filter momentan deaktiviert.");
+			return;
+		}
+		
+		// We cannot apply the zB filter if there are not even zB elements in the lists
+		if(M1Sorted.size() < zB)
+		{
+			System.out.println("The zB-Filter was ignored, because there are not enough pattern found.");
+			return;
+		}
+		
 		LinkedList<Pattern> ZBElements = new LinkedList<Pattern>();
 		
 		for(int i = 0 ; i < zB; i++)
 		{
 			for(int j = 1; j <= 3; j++)
 			{
+				
 				boolean contains = false;
 				
 				for (Pattern currentPattern : ZBElements) 
@@ -279,66 +181,64 @@ public class ListHandler {
 				if(!contains) ZBElements.add(getSortedM(j).getLast());
 				getSortedM(j).removeLast();
 			}
-			System.out.println("i hat den Wert: " +i);
 		}
 		
 		for (Pattern currentPattern : ZBElements) 
 		{
-			for(int i = 1; i <= 3; i++)
-			{
-				getSortedM(i).remove(currentPattern);
-				System.out.println("Lösche aus M" +i +": " +currentPattern);
-			}
-			
+			for(int i = 1; i <= 3; i++) getSortedM(i).remove(currentPattern);
 		}
 		
+		System.out.println("zB-Filter was applied.");
+		return;
 	}
 
-	/**
-	 * {@code}short MSorted to zT
-	 * @param mType Type of MSorted to operate
-	 * @throws Exception if getSortedM gets an invalid mType
+	/** @description Deletes double pattern in finalList.
 	 */
-	private void clearZT_M(int mType) throws Exception 
-	{
-		if (getSortedM(mType).size()>=zT) 
-		{
-			int sizeM = getSortedM(mType).size();
-			for (int i = 0; i < sizeM-zT; i++) 
-			{
-				getSortedM(mType).removeLast();
-			}
-		}
-	}
-
-	/**
-	 * deletes double pattern in the List in completeList
-	 * @param completeList
-	 */
-	private void deleteDoublePattern() {
-		
+	private void deleteDoublePattern() 
+	{	
 		LinkedList<Pattern> toDelete = new LinkedList<Pattern>();
 		
-		for (int i = 0; i < completeList.size(); i++) 
+		for (int i = 0; i < finalList.size(); i++) 
 		{
-			for (int j = i+1; j < completeList.size(); j++) 
+			for (int j = i+1; j < finalList.size(); j++) 
 			{
-				if (completeList.get(i).equals(completeList.get(j))) 
+				if (finalList.get(i).equals(finalList.get(j))) 
 				{
-					toDelete.add(completeList.get(j));
+					toDelete.add(finalList.get(j));
+					
+					// if it found itself once, break! Else it will delete all occurrences of itself
+					break;
 				}
 			}
 		}
 		
 		for (Pattern pattern : toDelete) 
 		{
-			completeList.remove(pattern);
+			finalList.remove(pattern);
 		}
 	}
-
 	
 
 	//TODO: doppelte Cliquen löschen
 
 
+	/** @description PhantomPattern are Pattern, that contain all twice the same content words. The will form categories with exactly the same words, we don't want that.
+	 * 				 So we remove them.
+	 */
+	private void deletePhantomPattern()
+	{
+		LinkedList<Pattern> phantomPattern = new LinkedList<Pattern>();
+		
+		for (Pattern currentPattern : finalList)
+		{
+			if(currentPattern.pattern.getFirst().equals(currentPattern.pattern.getLast())) phantomPattern.add(currentPattern);
+		}
+		
+		for (Pattern pattern : phantomPattern)
+		{
+			finalList.remove(pattern);
+		}
+		
+		return;
+	}
 }

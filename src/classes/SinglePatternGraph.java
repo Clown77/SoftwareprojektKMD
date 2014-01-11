@@ -1,7 +1,9 @@
 package classes;
 import java.util.LinkedList;
 import java.util.Set;
+
 import javax.swing.JFrame;
+
 import org.jgraph.JGraph;
 import org.jgrapht.ext.JGraphModelAdapter;
 import org.jgrapht.graph.DefaultEdge;
@@ -10,7 +12,7 @@ import org.jgrapht.traverse.BreadthFirstIterator;
 public class SinglePatternGraph
 {
     /** @VISUALIZE_GRAPHS Set true to get a visualization of the Single Pattern Graph */
-    private final boolean VISUALIZE_GRAPHS = true;
+    private final boolean VISUALIZE_GRAPHS = false;
    
    
     // Contains all pattern candidates of a meta pattern
@@ -65,11 +67,11 @@ public class SinglePatternGraph
        
         sendMeasurementsToPattern();
        
-        // watch the graph beeing build ^^
+        // watch the graph being build ^^
         if(VISUALIZE_GRAPHS) createWindow(internGraph);
     }
    
-    // use this methode to activate a visualization of the graph
+    // use this method to for a visualization of the graph
     public void createWindow(SimpleDirectedGraph<String, DefaultEdge> graph)
     {
         // JFrame can use JGraphs only, not SimpleDirectedGraphs. So we need to create a JGraph, using the internGraph as source
@@ -88,7 +90,8 @@ public class SinglePatternGraph
     }
    
    
-    public void buildSymGraph()
+    @SuppressWarnings("unchecked")
+	public void buildSymGraph()
     {
         // exactly the same Class --> Safe
         symGraph = (SimpleDirectedGraph<String, DefaultEdge>)internGraph.clone();
@@ -119,10 +122,10 @@ public class SinglePatternGraph
     {
         int symmetrie_counter = 0;
         int vertex_counter = 0;
-       
-        // an iterator class, useable for directed graphs
+        
+        // an iterator class, usable for directed graphs
         BreadthFirstIterator<String, DefaultEdge> iterator = new BreadthFirstIterator<String, DefaultEdge>(internGraph);
-       
+        
         // will visit every node of the Graph and check if its symmetric
         do
         {
@@ -154,7 +157,7 @@ public class SinglePatternGraph
             String vertex = iterator.next();
             node_counter++;
            
-            // because it has to be bidirectional it's enought if we check for one direction
+            // because it has to be bidirectional it's enough if we check for one direction
             if(symGraph.inDegreeOf(vertex) != 0) symmetric_node_counter++;
         }
        
@@ -174,7 +177,7 @@ public class SinglePatternGraph
         M3Value = (double)edgesCountSymGraph/(double)edgesCountGraph;
     }
    
-    /** can be used after setM1Values() calculated M1. This methode will now set M1 for all Pattern*/
+    /** can be used after setM1Values() calculated M1. This method will now set M1 for all Pattern*/
     public void sendMeasurementsToPattern()
     {
         for (Pattern currentPattern : patternCandidates)
