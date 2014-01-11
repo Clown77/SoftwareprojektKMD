@@ -6,7 +6,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Mazze/Downloads/jgrapht-0.8.3/jgrapht-0.8.3/lib/jgraph.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mazze/Downloads/jgrapht-0.8.3/jgrapht-0.8.3/jgrapht-jdk1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MrEhris/Downloads/jgrapht-0.8.3/jgrapht-0.8.3/jgrapht-jdk1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MrEhris/Downloads/jgrapht-0.8.3/jgrapht-0.8.3/lib/jgraph.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
