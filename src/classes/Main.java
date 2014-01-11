@@ -111,29 +111,7 @@ public class Main {
 			while(removed);
 
     	}
-    	/*
-    	for (Category offeredCategory : allCategories)
-		{
-			for (Category currentCategory : allCategories)
-			{
-				// Don't compare a category with itself
-				if(allCategories.indexOf(currentCategory) == allCategories.indexOf(offeredCategory)) continue;
-				
-				if(offeredCategory.equals(currentCategory))
-				{
-					finalSet.add(offeredCategory);
-					
-					// remove all occurrences of this Category
-					boolean removed = true;
-					
-					do removed = allCategories.remove(offeredCategory);
-					while(removed);
-					
-					break;
-				}
-			}
-		}
-    	*/
+  
     	return finalSet;
     }
     
