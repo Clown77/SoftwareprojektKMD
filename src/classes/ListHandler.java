@@ -218,6 +218,10 @@ public class ListHandler
 		}
 	}
 	
+
+	//TODO: doppelte Cliquen löschen
+
+
 	/** @description PhantomPattern are Pattern, that contain all twice the same content words. The will form categories with exactly the same words, we don't want that.
 	 * 				 So we remove them.
 	 */
