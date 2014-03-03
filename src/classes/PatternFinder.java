@@ -17,7 +17,7 @@ public class PatternFinder
     int WORDNUMBER;
    
     // Contains all possible patterns
-    public LinkedList<String> legalPattern;
+    public static LinkedList<String> legalPattern;
    
     // Contains all pattern that were found in the text
     private LinkedList<LinkedList<Pattern>> foundPattern;
