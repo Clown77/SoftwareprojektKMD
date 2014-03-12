@@ -11,7 +11,7 @@ public class PatternFinder
     private final static boolean DEBUG_MODE = true;
    
     // Means the pattern has to occur TP times in 1 million words
-    private final int TP = 0;
+    private final static int TP = 0;
    
     String PATH;
     int WORDNUMBER;
@@ -79,7 +79,7 @@ public class PatternFinder
            
             // Pattern that don't appear often enough are removed
             removeLowAppearencePattern(WORDNUMBER, tempList);
-            if(DEBUG_MODE) System.out.println("Low appearence Pattern have been removed (TP Filter). TP is set to: " +TP);
+            if(DEBUG_MODE) System.out.println("Low appearence Pattern have been removed (TP Filter). TP is set to: " +getTP());
            
             foundPattern.add(tempList);
            
@@ -256,7 +256,7 @@ public class PatternFinder
     public void removeLowAppearencePattern(final int WORDNUMBER, LinkedList<Pattern> tempList)
     {
         // Change TP for tests
-        double ratio = TP/1000000.0;
+        double ratio = getTP()/1000000.0;
         double patternRatio = 0;
        
         for (int i = (tempList.size()-1); i >= 0; i--)
@@ -265,4 +265,9 @@ public class PatternFinder
             if(patternRatio < ratio) tempList.remove(i);
         }
     }
+
+	public static int getTP()
+	{
+		return TP;
+	}
 }

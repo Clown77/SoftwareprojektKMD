@@ -12,7 +12,7 @@ public class WordHashtable {
     int textsize = 0;
    
     // Describes how often a word has to appear in 1 000 000 words
-    private int TH = 100;
+    private static int TH = 100;
     private int TC = 50;
    
     // hold the values for word categories, calculated for our amount of words
@@ -196,7 +196,7 @@ public class WordHashtable {
     // Use this methods only, when you are finished with hashing
     public void setHFWBorder()
     {
-        HIGHFREQUENCY_WORD_BORDER = ((double)(textsize * TH))/1000000.0;
+        HIGHFREQUENCY_WORD_BORDER = ((double)(textsize * getTH()))/1000000.0;
     }
    
     public void setCWBorder()
@@ -248,5 +248,15 @@ public class WordHashtable {
     {
         return (int)HIGHFREQUENCY_WORD_BORDER+1;
     }
+
+	public static int getTH()
+	{
+		return TH;
+	}
+
+	public void setTH(int tH)
+	{
+		TH = tH;
+	}
    
 }
