@@ -238,6 +238,7 @@ public class WordHashtable {
             return false;
         }
     }
+    
    
     public int getCWBorder()
     {

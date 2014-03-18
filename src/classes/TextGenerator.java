@@ -92,7 +92,8 @@ public class TextGenerator {
 	{
 		for (String string : highFrequencyWords)
 		{
-			times(WordHashtable.getTH(), string, textFileWriter);
+//			TODO: von times die zahl automatisch bestimmen
+			times(5000000, string, textFileWriter);
 		}
 		textFileWriter.println();
 	}
