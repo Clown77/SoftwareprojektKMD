@@ -62,6 +62,8 @@ public class Main {
        
         setWordTypes(ourHash);
  
+        ourHash.printHashtable();
+        
         setWordNumber(ourHash);
  
         postprocessTypes(ourHash);

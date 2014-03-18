@@ -72,6 +72,8 @@ public class PatternFinder
            
             long timeend = System.currentTimeMillis();
            
+            
+            System.out.println("Found Pattern: "+ tempList.toString());
             // in this list we don't need the HFW's any more
             removeHighFrequencyWords(ourHash, tempList);
            

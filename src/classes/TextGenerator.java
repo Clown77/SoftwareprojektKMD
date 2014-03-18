@@ -59,7 +59,7 @@ public class TextGenerator {
 
 		makePattern(textFileWriter, loesungWriter);
 		
-		randomStrukture(textFileWriter);
+//		randomStrukture(textFileWriter);
 
 	}
 
@@ -109,10 +109,6 @@ public class TextGenerator {
 		}
 		}
 		
-		
-		
-	
-
 	private static void makePattern(PrintWriter textFileWriter, PrintWriter loesungWriter)
 	{
 		for (String patterncandidate : legalPattern)
@@ -136,6 +132,7 @@ public class TextGenerator {
 					break;
 				}
 			}
+			times(6, highFrequencyWords.getFirst(), textFileWriter);
 			loesungWriter.println();
 		}
 	}

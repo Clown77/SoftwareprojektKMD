@@ -1,6 +1,7 @@
 package classes;
  
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
  
 public class WordHashtable {
@@ -183,14 +184,22 @@ public class WordHashtable {
     // Marks every word in our table, if it is a high frequency word or a word that doesn't matter at all.
     public void setWordTypes()
     {
+    	
         for(int i = 0; i < size; i++)
         {
             //If the Word appears more than 50 times, its not a content word any more
-            if(table[i].getCounter() > CONTENT_WORD_BORDER)    table[i].setKindOfWord(NO_MEANING);
+            if(table[i].getCounter() > CONTENT_WORD_BORDER) {
+            	table[i].setKindOfWord(NO_MEANING);
+            }
+            	
            
             //If the word appears more than 100 times, its a high frequency word
-            if(table[i].getCounter() > HIGHFREQUENCY_WORD_BORDER) table[i].setKindOfWord(HIGHFREQUENCY_WORD);
+            if(table[i].getCounter() > HIGHFREQUENCY_WORD_BORDER){
+            	table[i].setKindOfWord(HIGHFREQUENCY_WORD);
+            }
         }
+        
+       
     }
    
     // Use this methods only, when you are finished with hashing
