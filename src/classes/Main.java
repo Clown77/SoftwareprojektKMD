@@ -67,7 +67,7 @@ public class Main {
         postprocessTypes(ourHash);
        
         LinkedList<LinkedList<Pattern>> foundPattern = getAllPattern(ourHash);
-       
+        
         executeMeasurements(foundPattern);
         
         ListHandler listHandler = generateFinalList(foundPattern);

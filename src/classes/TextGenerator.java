@@ -58,8 +58,60 @@ public class TextGenerator {
 		makeHighFrequent(textFileWriter, loesungWriter);
 
 		makePattern(textFileWriter, loesungWriter);
+		
+		randomStrukture(textFileWriter);
 
 	}
+
+	private static void randomStrukture(PrintWriter textFileWriter)
+	{
+		for (int i = 0; i < 100; i++)
+		{
+			int g = randGen.nextInt(1);
+			
+			switch (i)
+			{
+			case 0:
+				makeRandomPattern(textFileWriter);
+				break;
+			case 1:
+				int r = randGen.nextInt(60)+1;
+				int v = randGen.nextInt(highFrequencyWords.size())+1;
+
+				times(r, highFrequencyWords.get(v), textFileWriter);
+				
+			default:
+				break;
+			}
+			
+		}
+	}
+
+	private static void makeRandomPattern(PrintWriter textFileWriter)
+	{
+		int l = randGen.nextInt(legalPattern.size())+1;
+		
+		for (int i = 0; i < legalPattern.get(l).length(); i++)
+		{
+			switch (legalPattern.get(l).charAt(i))
+			{
+			case 'C':
+				String c = (contentWords.get(randGen.nextInt(contentWords.size())));
+				textFileWriter.print(c);
+				break;
+			case 'H':
+				String h = (highFrequencyWords.get(randGen.nextInt(highFrequencyWords.size())));
+				textFileWriter.print(h);
+				break;
+			default:
+				break;
+			}
+		}
+		}
+		
+		
+		
+	
 
 	private static void makePattern(PrintWriter textFileWriter, PrintWriter loesungWriter)
 	{
@@ -93,7 +145,7 @@ public class TextGenerator {
 		for (String string : highFrequencyWords)
 		{
 //			TODO: von times die zahl automatisch bestimmen
-			times(5000000, string, textFileWriter);
+			times(50000, string, textFileWriter);
 		}
 		textFileWriter.println();
 	}
